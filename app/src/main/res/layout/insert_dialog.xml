@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialogbg"
+    android:layout_margin="20dp"
+
+    xmlns:float="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Book Name"
+        android:id="@+id/bname"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textSize="16dp"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="fill_parent"
+            android:textColor="#ffffff"
+            android:layout_height="wrap_content"
+            android:text="Author Name"
+            android:id="@+id/aname"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="sem"
+            android:id="@+id/sname"
+            android:textColor="#ffffff"
+            android:layout_weight="4"/>
+
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+    <View android:id="@+id/strut2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignLeft="@id/strut2"
+            android:layout_margin="10dp"
+            android:background="#80ffffff"
+
+            android:id="@+id/price"
+
+
+
+            android:hint="Price" />
+
+    <Spinner
+        android:id="@+id/sem_spinner"
+        android:layout_width="0dp"
+        android:layout_alignRight="@id/strut2"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:background="#80ffffff"
+        android:layout_margin="10dp"
+
+
+
+        />
+    </RelativeLayout>
+   <RelativeLayout
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       >
+       <View android:id="@+id/strut"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_centerHorizontal="true"/>
+     <Button
+         android:layout_width="0dp"
+         android:layout_alignRight="@id/strut"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:background="@drawable/dialog_button_insert"
+         android:text="Dismiss"
+         android:textColor="#ffffff"
+         android:layout_margin="10dp"
+         android:id="@+id/dismiss"
+         />
+       <Button
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_alignLeft="@id/strut"
+           android:background="@drawable/dialog_button_cancel"
+           android:text="Insert"
+           android:textColor="#ffffff"
+           android:id="@+id/insert"
+           android:layout_margin="10dp"/>
+   </RelativeLayout>
+
+    </LinearLayout>

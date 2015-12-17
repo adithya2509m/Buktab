@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Buktab</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="context_menu">Context menu</string>
+    <string-array name="sem_array">
+        <item>Sem</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+
+    </string-array>
+    <string-array name="dept_array">
+        <item>ALL</item>
+        <item>AUT</item>
+        <item>BIO</item>
+        <item>CHE</item>
+        <item>CIV</item>
+        <item>CSE</item>
+        <item>ECE</item>
+        <item>EEE</item>
+        <item>IT</item>
+        <item>MAR</item>
+        <item>MEC</item>
+
+    </string-array>
+
+
+</resources>
