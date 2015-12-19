@@ -33,9 +33,12 @@
 
         float:fletPadding="10dp">
 
+        <!-- goyala wrk   -->
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:id="@+id/Uname"
 
             android:drawableLeft="@drawable/ic_person_black_24dp"
