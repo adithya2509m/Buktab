@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.Toast;
+
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -136,7 +137,11 @@ public class ManageBooks extends Fragment {
                             jasonprice[i]=temp.getString("Price");
                             jsondept[i]=temp2.getString("Department");
 
-                        }}
+                        }
+
+                        ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                        lay.setAdapter(EventList);
+                    }
 
                     else{
                         Toast.makeText(getActivity(), "Oops no books added in your account", Toast.LENGTH_LONG).show();
@@ -163,8 +168,6 @@ public class ManageBooks extends Fragment {
 
 
 
-        ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
-        lay.setAdapter(EventList);
 
 
         return rootView;
