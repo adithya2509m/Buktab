@@ -38,6 +38,7 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     EditText search ,price;
+    String[] jsonname1,jsonph1,jsonmail1;
    // Button searchbutton;
     ListView resultlist ;
     int count =0,pos=0,objectcount;
@@ -122,13 +123,17 @@ public class SearchFragment extends Fragment {
                         String filtersem = dropdownsem.getSelectedItem().toString();
                         String filterdept = dropdowndept.getSelectedItem().toString();
                         int filtercount = 0,filtercount2=0,check=-1;
-                        String[] jasonbook1, jasonauthor1, jasonsem1, jasonprice1,jsondept1,jasonbook2, jasonauthor2, jasonsem2, jasonprice2,jsondept2;
+                        String[] jasonbook1, jasonauthor1, jasonsem1, jasonprice1,jsondept1,jasonbook2, jasonauthor2, jasonsem2, jasonprice2,jsondept2,jsonname2,jsonph2,jsonmail2;
+
 
                         jasonbook1=new String[1];
                         jasonauthor1=new String[1];
                         jasonsem1=new String[1];
                         jasonprice1=new String[1];
                         jsondept1=new String[1];
+                        jsonname1=new String[1];
+                        jsonmail1=new String[1];
+                        jsonph1=new String[1];
 
 
 
@@ -146,7 +151,7 @@ public class SearchFragment extends Fragment {
 
                             for (int i = 0; i < objectcount; i++) {
 
-                                if (jasonsem[i] == filtersem) {
+                                if (jasonsem[i].equals( filtersem)) {
 
                                     index[filtercount] = i;
                                     filtercount++;
@@ -159,6 +164,9 @@ public class SearchFragment extends Fragment {
                             jasonprice1 = new String[filtercount];
                             jasonsem1 = new String[filtercount];
                             jsondept1 = new String[filtercount];
+                            jsonname1=new String[filtercount];
+                            jsonmail1=new String[filtercount];
+                            jsonph1=new String[filtercount];
 
                             for (int j = 0; j < filtercount; j++) {
 
@@ -167,6 +175,9 @@ public class SearchFragment extends Fragment {
                                 jasonsem1[j] = jasonsem[index[j]];
                                 jasonprice1[j] = jasonprice[index[j]];
                                 jsondept1[j] = jsondept[index[j]];
+                                jsonname1[j] = jsonname[index[j]];
+                                jsonph1[j] = jsonph[index[j]];
+                                jsonmail1[j] = jsonmail[index[j]];
 
                             }}
 
@@ -175,7 +186,7 @@ public class SearchFragment extends Fragment {
 
                             for (int i = 0; i < objectcount; i++) {
 
-                                if (jsondept[i] == filterdept) {
+                                if (jsondept[i].equals( filterdept)) {
 
                                     index[filtercount] = i;
                                     filtercount++;
@@ -188,6 +199,9 @@ public class SearchFragment extends Fragment {
                             jasonprice1 = new String[filtercount];
                             jasonsem1 = new String[filtercount];
                             jsondept1 = new String[filtercount];
+                            jsonname1=new String[filtercount];
+                            jsonmail1=new String[filtercount];
+                            jsonph1=new String[filtercount];
 
                             for (int j = 0; j < filtercount; j++) {
 
@@ -196,6 +210,9 @@ public class SearchFragment extends Fragment {
                                 jasonsem1[j] = jasonsem[index[j]];
                                 jasonprice1[j] = jasonprice[index[j]];
                                 jsondept1[j] = jsondept[index[j]];
+                                jsonname1[j] = jsonname[index[j]];
+                                jsonph1[j] = jsonph[index[j]];
+                                jsonmail1[j] = jsonmail[index[j]];
 
 
 
@@ -206,7 +223,7 @@ public class SearchFragment extends Fragment {
 
                             for (int i = 0; i < objectcount; i++) {
 
-                                if (jsondept[i] == filterdept) {
+                                if (jsondept[i].equals( filterdept)) {
 
                                 index[filtercount] = i;
                                 filtercount++;
@@ -219,6 +236,9 @@ public class SearchFragment extends Fragment {
                         jasonprice2 = new String[filtercount];
                         jasonsem2 = new String[filtercount];
                         jsondept2 = new String[filtercount];
+                            jsonname2=new String[filtercount];
+                            jsonmail2=new String[filtercount];
+                            jsonph2=new String[filtercount];
 
                         for (int j = 0; j < filtercount; j++) {
 
@@ -227,13 +247,17 @@ public class SearchFragment extends Fragment {
                             jasonsem2[j] = jasonsem[index[j]];
                             jasonprice2[j] = jasonprice[index[j]];
                             jsondept2[j] = jsondept[index[j]];
+                            jsonname2[j] = jsonname[index[j]];
+                            jsonph2[j] = jsonph[index[j]];
+                            jsonmail2[j] = jsonmail[index[j]];
+
 
                         }
 
 
                         for(int k=0;k<filtercount;k++){
 
-                            if(jasonsem2[k]==filtersem){
+                            if(jasonsem2[k].equals(filtersem)){
 
                                 index[filtercount2]=k;
                                 filtercount2++;
@@ -244,17 +268,25 @@ public class SearchFragment extends Fragment {
                             jasonprice1 = new String[filtercount2];
                             jasonsem1 = new String[filtercount2];
                             jsondept1 = new String[filtercount2];
+                            jsonname1=new String[filtercount2];
+                            jsonmail1=new String[filtercount2];
+                            jsonph1=new String[filtercount2];
 
 
 
 
-                         for(int l=0;l<filtercount2;l++){
+
+
+                            for(int l=0;l<filtercount2;l++){
 
                              jasonauthor1[l] = jasonauthor[index[l]];
                              jasonbook1[l] = jasonbook[index[l]];
                              jasonsem1[l] = jasonsem[index[l]];
                              jasonprice1[l] = jasonprice[index[l]];
                              jsondept1[l] = jsondept[index[l]];
+                                jsonname1[l] = jsonname[index[l]];
+                                jsonph1[l] = jsonph[index[l]];
+                                jsonmail1[l] = jsonmail[index[l]];
 
 
                          }
@@ -277,17 +309,19 @@ public class SearchFragment extends Fragment {
                             ListAdapter EventList= new customlist2(getActivity(),jasonbook1,jasonsem1,jasonauthor1,jasonprice1,jsondept1);
                             resultlist.setAdapter(EventList);
 
+                            dialog.dismiss();
+
                         resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                                 Toast.makeText(getActivity().getApplicationContext(), "Heloo", Toast.LENGTH_SHORT).show();
-                                final Dialog dialog = new Dialog(getActivity(), R.style.NewDialog);
+                                final Dialog dialog1 = new Dialog(getActivity(), R.style.NewDialog);
 
-                                dialog.setContentView(R.layout.search_dialog);
+                                dialog1.setContentView(R.layout.search_dialog);
                                 // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                                dialog.setTitle("Get it from...");
+                                dialog1.setTitle("Get it from...");
 
-                                dialog.show();
+                                dialog1.show();
 
                                 TextView bname = (TextView) dialog.findViewById(R.id.bname);
                                 TextView aname = (TextView) dialog.findViewById(R.id.aname);
@@ -295,13 +329,13 @@ public class SearchFragment extends Fragment {
 
                                 Button dismiss = (Button) dialog.findViewById(R.id.dismiss);
                                 Button insert = (Button) dialog.findViewById(R.id.insert);
-                                bname.setText(jsonname[position]);
-                                aname.setText(jsonph[position]);
-                                sname.setText(jsonmail[position]);
+                                bname.setText(jsonname1[position]);
+                                aname.setText(jsonph1[position]);
+                                sname.setText(jsonmail1[position]);
                                 dismiss.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        dialog.dismiss();
+                                        dialog1.dismiss();
                                     }
                                 });
 
@@ -309,7 +343,7 @@ public class SearchFragment extends Fragment {
                                     @Override
                                     public void onClick(View view) {
 
-                                        dialog.dismiss();
+                                        dialog1.dismiss();
                                         String numberToDial = "tel:" + jsonph[position];
                                         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numberToDial)));
 
