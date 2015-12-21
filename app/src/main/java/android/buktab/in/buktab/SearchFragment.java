@@ -323,12 +323,12 @@ public class SearchFragment extends Fragment {
 
                                 dialog1.show();
 
-                                TextView bname = (TextView) dialog.findViewById(R.id.bname);
-                                TextView aname = (TextView) dialog.findViewById(R.id.aname);
-                                TextView sname = (TextView) dialog.findViewById(R.id.sname);
+                                TextView bname = (TextView) dialog1.findViewById(R.id.bname);
+                                TextView aname = (TextView) dialog1.findViewById(R.id.aname);
+                                TextView sname = (TextView) dialog1.findViewById(R.id.sname);
 
-                                Button dismiss = (Button) dialog.findViewById(R.id.dismiss);
-                                Button insert = (Button) dialog.findViewById(R.id.insert);
+                                Button dismiss = (Button) dialog1.findViewById(R.id.dismiss);
+                                Button insert = (Button) dialog1.findViewById(R.id.insert);
                                 bname.setText(jsonname1[position]);
                                 aname.setText(jsonph1[position]);
                                 sname.setText(jsonmail1[position]);
