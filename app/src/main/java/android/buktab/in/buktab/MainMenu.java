@@ -1,7 +1,7 @@
 package android.buktab.in.buktab;
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -110,7 +110,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
             if (addToBackStack)
                 transaction.addToBackStack(backStackName);
             transaction.commit();*/
-        android.app.FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(containerId, fragment).commit();
 
@@ -153,9 +153,10 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         addFragment(new SearchFragment(), false, R.id.container);
         else if(position==2)
             addFragment(new InsertFragment(), false, R.id.container);
-        else if(position==3)
+        else if(position==4)
             addFragment(new ManageBooks(), false, R.id.container);
-
+        else if(position==3)
+            addFragment(new MainFragment(), false, R.id.container);
     }
 
     @Override

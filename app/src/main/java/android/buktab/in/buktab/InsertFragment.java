@@ -3,7 +3,7 @@ package android.buktab.in.buktab;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
