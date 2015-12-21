@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             app:cardCornerRadius="2dp"
+            app:cardBackgroundColor="@color/primary"
 
             app:cardElevation="2dp"
             app:cardPreventCornerOverlap="false"

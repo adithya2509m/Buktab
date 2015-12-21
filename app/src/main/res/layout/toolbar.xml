@@ -13,8 +13,9 @@
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/text_color"
+        android:textColor="@color/textColorPrimary"
+
         android:textSize="@dimen/tool_bar_text_size"
-        android:gravity="left" />
+        android:gravity="center" />
 
 </android.support.v7.widget.Toolbar>

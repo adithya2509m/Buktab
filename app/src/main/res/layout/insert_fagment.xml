@@ -20,7 +20,7 @@
             app:cardCornerRadius="2dp"
             app:cardElevation="2dp"
             app:cardPreventCornerOverlap="false"
-
+            app:cardBackgroundColor="@color/primary"
             app:contentPadding="0dp"
             >
 
@@ -34,6 +34,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/search"
                 android:hint="Search"
+                android:textColorHint="@color/secondary_text"
+                android:textColor="@color/textColorPrimary"
                 android:drawableLeft="@drawable/ic_search_black_24dp"
 
                 />
