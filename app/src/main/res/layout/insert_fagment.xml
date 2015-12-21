@@ -9,15 +9,26 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+       >
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false"
+
+            app:contentPadding="0dp"
+            >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -29,12 +40,13 @@
 
 
         </LinearLayout>
-
+</android.support.v7.widget.CardView>
         <ListView
             android:id="@+id/resultlist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter">
+            android:scaleType="fitCenter"
+            android:layout_margin="8dp">
 
 
         </ListView>
