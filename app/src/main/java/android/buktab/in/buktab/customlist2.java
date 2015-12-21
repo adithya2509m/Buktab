@@ -17,9 +17,9 @@ public class customlist2 extends ArrayAdapter<String> {
     private final String[] sems;
     private final String[] authors ;
     private final String[] prices ;
+    private final String[] dept ;
 
-
-    public customlist2(Context context, String books[], String sems[], String authors[], String prices[]) {
+    public customlist2(Context context, String books[], String sems[], String authors[], String prices[],String dept[]) {
 
         super(context, R.layout.customlist,books );
 
@@ -28,6 +28,7 @@ public class customlist2 extends ArrayAdapter<String> {
         this.authors = authors;
         this.prices = prices;
         this.sems=sems;
+        this.dept=dept;
     }
 
 
@@ -42,12 +43,13 @@ public class customlist2 extends ArrayAdapter<String> {
         TextView a = (TextView) custom_list.findViewById(R.id.semester);
         TextView p = (TextView) custom_list.findViewById(R.id.price);
         TextView au = (TextView) custom_list.findViewById(R.id.author);
-
+        TextView dep=(TextView)custom_list.findViewById(R.id.dept);
 
         b.setText(books[position]);
-        a.setText(authors[position]);
+        a.setText(sems[position]);
        p.setText(prices[position]);
-        au.setText(sems[position]);
+        dep.setText(dept[position]);
+        au.setText(authors[position]);
 
 
 

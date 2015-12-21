@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment {
     ListView resultlist ;
     int count =0,pos=0;
 
-    String[] jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail;
+    String[] jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
 
 
 
@@ -138,6 +138,7 @@ public class SearchFragment extends Fragment {
                         jsonmail=new String[jsonArray.length()];
                         jsonph=new String[jsonArray.length()];
                         jsonname=new String[jsonArray.length()];
+                        jsondept=new String[jsonArray.length()];
 
                         for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
@@ -147,7 +148,7 @@ public class SearchFragment extends Fragment {
                             jasonauthor[i] = temp2.getString("Author");
                             jasonsem[i]=temp.getString("Semester");
                             jasonprice[i]=temp.getString("Price");
-
+                            jsondept[i]=temp2.getString("Department");
                             jsonmail[i]=temp3.getString("email");
                             jsonph[i]=temp3.getString("phoneNo");
                             jsonname[i]=temp3.getString("username");
@@ -184,7 +185,7 @@ public class SearchFragment extends Fragment {
 
             }else{
 
-                ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice);
+                ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
                 resultlist.setAdapter(EventList);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
