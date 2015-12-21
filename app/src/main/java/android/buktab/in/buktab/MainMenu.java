@@ -151,8 +151,11 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         //addFragment(new ContactUsFragment(), true, R.id.container);
         if(position==1)
         addFragment(new SearchFragment(), false, R.id.container);
-        else
+        else if(position==2)
             addFragment(new InsertFragment(), false, R.id.container);
+        else if(position==3)
+            addFragment(new ManageBooks(), false, R.id.container);
+
     }
 
     @Override
