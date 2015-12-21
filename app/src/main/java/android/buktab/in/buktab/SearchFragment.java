@@ -14,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +40,9 @@ public class SearchFragment extends Fragment {
     EditText search ,price;
    // Button searchbutton;
     ListView resultlist ;
-    int count =0,pos=0;
+    int count =0,pos=0,objectcount;
+
+    android.support.design.widget.FloatingActionButton filter;
 
     String[] jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
 
@@ -54,6 +58,7 @@ public class SearchFragment extends Fragment {
         search = (EditText) rootView.findViewById(R.id.search);
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
+        filter=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
 
 
 
@@ -84,7 +89,246 @@ public class SearchFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                final Dialog dialog = new Dialog(getActivity(), R.style.NewDialog);
+
+                dialog.setContentView(R.layout.fab_dialog);
+                // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.setTitle("Filter");
+
+
+                final Spinner dropdownsem = (Spinner) dialog.findViewById(R.id.semdrop);
+                String[] items = getResources().getStringArray(R.array.sem_array);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items);
+                dropdownsem.setAdapter(adapter);
+
+
+                final Spinner dropdowndept = (Spinner) dialog.findViewById(R.id.deptdrop);
+                String[] items1= getResources().getStringArray(R.array.dept_array);
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items1);
+                dropdowndept.setAdapter(adapter1);
+
+                dialog.show();
+
+                Button fil = (Button) dialog.findViewById(R.id.filter);
+
+                fil.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String filtersem = dropdownsem.getSelectedItem().toString();
+                        String filterdept = dropdowndept.getSelectedItem().toString();
+                        int filtercount = 0,filtercount2=0,check=-1;
+                        String[] jasonbook1, jasonauthor1, jasonsem1, jasonprice1,jsondept1,jasonbook2, jasonauthor2, jasonsem2, jasonprice2,jsondept2;
+
+                        jasonbook1=new String[1];
+                        jasonauthor1=new String[1];
+                        jasonsem1=new String[1];
+                        jasonprice1=new String[1];
+                        jsondept1=new String[1];
+
+
+
+
+
+                        int[] index = new int[objectcount];
+
+                        if(filtersem.equals("Sem")&&filterdept.equals("ALL")){
+                            check=0;
+
+                        }
+
+
+                        if(!filtersem.equals("Sem")&&filterdept.equals("ALL")) {
+
+                            for (int i = 0; i < objectcount; i++) {
+
+                                if (jasonsem[i] == filtersem) {
+
+                                    index[filtercount] = i;
+                                    filtercount++;
+
+                                }
+                            }
+
+                            jasonauthor1 = new String[filtercount];
+                            jasonbook1 = new String[filtercount];
+                            jasonprice1 = new String[filtercount];
+                            jasonsem1 = new String[filtercount];
+                            jsondept1 = new String[filtercount];
+
+                            for (int j = 0; j < filtercount; j++) {
+
+                                jasonauthor1[j] = jasonauthor[index[j]];
+                                jasonbook1[j] = jasonbook[index[j]];
+                                jasonsem1[j] = jasonsem[index[j]];
+                                jasonprice1[j] = jasonprice[index[j]];
+                                jsondept1[j] = jsondept[index[j]];
+
+                            }}
+
+
+                        else if(filtersem.equals("Sem")&&!filterdept.equals("ALL")){
+
+                            for (int i = 0; i < objectcount; i++) {
+
+                                if (jsondept[i] == filterdept) {
+
+                                    index[filtercount] = i;
+                                    filtercount++;
+
+                                }
+                            }
+
+                            jasonauthor1 = new String[filtercount];
+                            jasonbook1 = new String[filtercount];
+                            jasonprice1 = new String[filtercount];
+                            jasonsem1 = new String[filtercount];
+                            jsondept1 = new String[filtercount];
+
+                            for (int j = 0; j < filtercount; j++) {
+
+                                jasonauthor1[j] = jasonauthor[index[j]];
+                                jasonbook1[j] = jasonbook[index[j]];
+                                jasonsem1[j] = jasonsem[index[j]];
+                                jasonprice1[j] = jasonprice[index[j]];
+                                jsondept1[j] = jsondept[index[j]];
+
+
+
+                            }}
+
+
+                        else if(!filtersem.equals("Sem")&&!filterdept.equals("ALL")){
+
+                            for (int i = 0; i < objectcount; i++) {
+
+                                if (jsondept[i] == filterdept) {
+
+                                index[filtercount] = i;
+                                filtercount++;
+
+                            }
+                        }
+
+                        jasonauthor2 = new String[filtercount];
+                        jasonbook2 = new String[filtercount];
+                        jasonprice2 = new String[filtercount];
+                        jasonsem2 = new String[filtercount];
+                        jsondept2 = new String[filtercount];
+
+                        for (int j = 0; j < filtercount; j++) {
+
+                            jasonauthor2[j] = jasonauthor[index[j]];
+                            jasonbook2[j] = jasonbook[index[j]];
+                            jasonsem2[j] = jasonsem[index[j]];
+                            jasonprice2[j] = jasonprice[index[j]];
+                            jsondept2[j] = jsondept[index[j]];
+
+                        }
+
+
+                        for(int k=0;k<filtercount;k++){
+
+                            if(jasonsem2[k]==filtersem){
+
+                                index[filtercount2]=k;
+                                filtercount2++;
+                            }}
+
+                            jasonauthor1 = new String[filtercount2];
+                            jasonbook1 = new String[filtercount2];
+                            jasonprice1 = new String[filtercount2];
+                            jasonsem1 = new String[filtercount2];
+                            jsondept1 = new String[filtercount2];
+
+
+
+
+                         for(int l=0;l<filtercount2;l++){
+
+                             jasonauthor1[l] = jasonauthor[index[l]];
+                             jasonbook1[l] = jasonbook[index[l]];
+                             jasonsem1[l] = jasonsem[index[l]];
+                             jasonprice1[l] = jasonprice[index[l]];
+                             jsondept1[l] = jsondept[index[l]];
+
+
+                         }
+
+
+
+
+                        }
+
+                        if(check==0){
+
+                            dialog.dismiss();
+                        }
+
+                        else{
+
+
+
+
+                            ListAdapter EventList= new customlist2(getActivity(),jasonbook1,jasonsem1,jasonauthor1,jasonprice1,jsondept1);
+                            resultlist.setAdapter(EventList);
+
+                        resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                                Toast.makeText(getActivity().getApplicationContext(), "Heloo", Toast.LENGTH_SHORT).show();
+                                final Dialog dialog = new Dialog(getActivity(), R.style.NewDialog);
+
+                                dialog.setContentView(R.layout.search_dialog);
+                                // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                                dialog.setTitle("Get it from...");
+
+                                dialog.show();
+
+                                TextView bname = (TextView) dialog.findViewById(R.id.bname);
+                                TextView aname = (TextView) dialog.findViewById(R.id.aname);
+                                TextView sname = (TextView) dialog.findViewById(R.id.sname);
+
+                                Button dismiss = (Button) dialog.findViewById(R.id.dismiss);
+                                Button insert = (Button) dialog.findViewById(R.id.insert);
+                                bname.setText(jsonname[position]);
+                                aname.setText(jsonph[position]);
+                                sname.setText(jsonmail[position]);
+                                dismiss.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                insert.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        dialog.dismiss();
+                                        String numberToDial = "tel:" + jsonph[position];
+                                        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numberToDial)));
+
+                                    }
+                                });
+
+
+                            }
+                        });}
+
+
+
+
+
+
+                    }
+                });
+            }
+        });
 
 
 
@@ -129,7 +373,7 @@ public class SearchFragment extends Fragment {
                     {
 
 
-                        JSONArray jsonArray=jsonobject.getJSONArray("result");
+                        JSONArray jsonArray=jsonobject.getJSONArray("result");objectcount=jsonArray.length();
                         int len=jsonArray.length();
                         jasonbook=new String[jsonArray.length()];
                         jasonauthor=new String[jsonArray.length()];
