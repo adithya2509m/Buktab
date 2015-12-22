@@ -33,7 +33,7 @@ import java.util.List;
 public class DeptSearchFragment  extends Fragment {
 
     Spinner deptsearch,semsearch;
-    String url="52.10.251.227:3000/getAds/byDeptAndSem";
+    String url="http://52.10.251.227:3000/getAds/byDeptAndSem";
     ListView resultlist;
     String sem,dept;
     String[] jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
