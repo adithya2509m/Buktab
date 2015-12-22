@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="10dp"
+
     >
 
 
@@ -19,7 +19,7 @@
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
         app:cardPreventCornerOverlap="false"
-
+        android:layout_margin="10dp"
         app:contentPadding="0dp"
         >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
