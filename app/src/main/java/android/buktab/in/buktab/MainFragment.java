@@ -37,7 +37,8 @@ public class MainFragment extends Fragment {
         mTabHost.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
 
             @Override
-            public void onViewDetachedFromWindow(View v) {}
+            public void onViewDetachedFromWindow(View v) {
+            }
 
             @Override
             public void onViewAttachedToWindow(View v) {
@@ -50,7 +51,7 @@ public class MainFragment extends Fragment {
         
 
        mTabHost.addTab(mTabHost.newTabSpec("fragmentb").setIndicator("Name"),
-                InsertFragment.class, null);
+                DeptSearchFragment.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec("fragmentd").setIndicator("Department"),
                 SearchFragment.class, null);
