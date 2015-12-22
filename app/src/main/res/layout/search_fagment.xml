@@ -38,6 +38,9 @@
 
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:id="@+id/search"
                 android:hint="search"
                 android:drawableLeft="@drawable/ic_search_black_24dp"
@@ -64,7 +67,8 @@
                 android:id="@+id/resultlist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter">
+                android:scaleType="fitCenter"
+                android:layout_margin="8dp">
 
             </ListView>
 
