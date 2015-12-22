@@ -47,6 +47,7 @@ public class MainFragment extends Fragment {
 
 
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.realtabcontent);
+        
 
        mTabHost.addTab(mTabHost.newTabSpec("fragmentb").setIndicator("Name"),
                 InsertFragment.class, null);
