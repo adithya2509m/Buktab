@@ -13,6 +13,11 @@
         <activity
             android:name=".Login"
              >
+
+        </activity>
+
+
+        <activity android:name=".MainMenu2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +25,7 @@
             </intent-filter>
         </activity>
 
-
-
-<activity android:name=".MainMenu"/>
+        <activity android:name=".MainMenu"/>
         <activity android:name=".Register"/>
 
 
