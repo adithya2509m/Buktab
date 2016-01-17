@@ -125,12 +125,13 @@
                 android:background="#00000000"
                 android:src="@drawable/ic_delete_black_24dp"
                 android:layout_gravity="right"
+                android:focusable="false"
 
                 />
 
 
             <ImageButton
-
+                android:focusable="false"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="#00000000"

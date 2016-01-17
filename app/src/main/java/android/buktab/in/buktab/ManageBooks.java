@@ -11,6 +11,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -142,6 +143,7 @@ public class ManageBooks extends Fragment {
 
                         ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
                         lay.setAdapter(EventList);
+
                     }
 
                     else{

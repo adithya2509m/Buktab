@@ -1,12 +1,14 @@
 package android.buktab.in.buktab;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,8 +72,8 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         TextView au = (TextView) view.findViewById(R.id.author);
         TextView dep=(TextView)view.findViewById(R.id.dept);
 
-        Button delete=(Button) view.findViewById(R.id.delete);
-        Button manage=(Button)view.findViewById(R.id.update);
+        ImageButton delete=(ImageButton) view.findViewById(R.id.delete);
+        ImageButton manage=(ImageButton)view.findViewById(R.id.update);
 
         b.setText(books.get(position));
         a.setText(sems.get(position));
