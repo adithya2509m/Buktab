@@ -116,27 +116,27 @@
                 android:orientation="horizontal"
                 android:layout_gravity="right">
 
-            <ImageButton
+            <Button
 
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/delete"
-                android:background="#00000000"
-                android:src="@drawable/ic_delete_black_24dp"
+
+                android:background="@drawable/ic_delete_black_24dp"
                 android:layout_gravity="right"
-                android:focusable="false"
+                android:focusable="true"
 
                 />
 
 
-            <ImageButton
-                android:focusable="false"
+            <Button
+                android:focusable="true"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="#00000000"
+
                 android:id="@+id/update"
-                android:src="@drawable/ic_update_black_24dp"
+                android:background="@drawable/ic_update_black_24dp"
                 android:layout_gravity="right"
 
                 />

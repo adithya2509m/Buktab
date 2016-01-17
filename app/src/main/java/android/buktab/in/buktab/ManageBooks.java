@@ -136,6 +136,8 @@ public class ManageBooks extends Fragment {
     }
 
 
+    public void myClickHandler(View v) {
 
+    }
 
-}
+    }

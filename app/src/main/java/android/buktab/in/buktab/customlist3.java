@@ -72,8 +72,8 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         TextView au = (TextView) view.findViewById(R.id.author);
         TextView dep=(TextView)view.findViewById(R.id.dept);
 
-        ImageButton delete=(ImageButton) view.findViewById(R.id.delete);
-        ImageButton manage=(ImageButton)view.findViewById(R.id.update);
+        Button delete=(Button) view.findViewById(R.id.delete);
+        Button manage=(Button)view.findViewById(R.id.update);
 
         b.setText(books.get(position));
         a.setText(sems.get(position));
@@ -85,7 +85,7 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG);
+                Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG).show();
                // notifyDataSetChanged();
             }
         });
@@ -93,7 +93,7 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "manage " + position, Toast.LENGTH_LONG);
+                Toast.makeText(context, "manage " + position, Toast.LENGTH_LONG).show();
                 //notifyDataSetChanged();
             }
         });
