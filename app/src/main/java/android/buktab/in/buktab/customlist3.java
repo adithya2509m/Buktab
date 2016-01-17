@@ -26,8 +26,9 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
     private final ArrayList<String> authors ;
     private final ArrayList<String> prices ;
     private final ArrayList<String> dept ;
+    private final ArrayList<String> id;
 
-    public customlist3(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept) {
+    public customlist3(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept,ArrayList<String> id) {
 
 
 
@@ -37,6 +38,7 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         this.prices = prices;
         this.sems=sems;
         this.dept=dept;
+        this.id=id;
     }
 
 
@@ -86,6 +88,17 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
             public void onClick(View v) {
 
                 Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+
+
+
+
+
                // notifyDataSetChanged();
             }
         });

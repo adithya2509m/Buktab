@@ -38,7 +38,7 @@ public class ManageBooks extends Fragment {
 
     ListView lay;
     String url="http://52.10.251.227:3000/manageBooks";
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class ManageBooks extends Fragment {
         jasonsem = new ArrayList<String>();
         jasonprice = new ArrayList<String>();
         jsondept = new ArrayList<String>();
+        jsonid=new ArrayList<String>();
 
         lay = (ListView)rootView.findViewById(R.id.list);
 
@@ -90,10 +91,11 @@ public class ManageBooks extends Fragment {
                             jasonsem.add(temp.getString("Semester"));
                             jasonprice.add(temp.getString("Price"));
                             jsondept.add(temp2.getString("Department"));
+                            jsonid.add(temp2.getString("_id"));
 
                         }
 
-                        ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                        ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonid);
                         lay.setAdapter(EventList);
 
                     }
