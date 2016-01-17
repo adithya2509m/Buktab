@@ -1,5 +1,6 @@
 package android.buktab.in.buktab;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +34,37 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
+        ImageButton search=(ImageButton)findViewById(R.id.optionsearch);
+        ImageButton manage=(ImageButton)findViewById(R.id.optionmanage);
+        ImageButton logout=(ImageButton)findViewById(R.id.optionlogout);
+       // Button search=(Button)findViewById(R.id.optionsearch);
         fragmentManager = getSupportFragmentManager();
         initToolbar();
         //initMenuFragment();
        // addFragment(new MainFragment(), true, R.id.container);
-        addFragment(new InsertFragment(), false, R.id.container);
+        addFragment(new MainFragment(), false, R.id.container);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFragment(new MainFragment(), false, R.id.container);
+
+            }
+        });
+
+        manage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFragment(new ManageBooks(), false, R.id.container);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void initMenuFragment() {

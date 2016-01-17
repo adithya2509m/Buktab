@@ -51,10 +51,10 @@ public class MainFragment extends Fragment {
         
 
        mTabHost.addTab(mTabHost.newTabSpec("fragmentb").setIndicator("Name"),
-                DeptSearchFragment.class, null);
+               SearchFragment.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec("fragmentd").setIndicator("Department"),
-                SearchFragment.class, null);
+                DeptSearchFragment.class, null);
         mTabHost.getTabWidget().setDividerDrawable(null);
         for (int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
             mTabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.tab_selector);
