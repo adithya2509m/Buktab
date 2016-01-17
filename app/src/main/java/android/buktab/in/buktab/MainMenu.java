@@ -151,7 +151,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
         //addFragment(new ContactUsFragment(), true, R.id.container);
         if(position==1)
-        addFragment(new SearchFragment(), false, R.id.container);
+        addFragment(new ManageBooks(), false, R.id.container);
         else if(position==2)
             addFragment(new InsertFragment(), false, R.id.container);
         else if(position==4)

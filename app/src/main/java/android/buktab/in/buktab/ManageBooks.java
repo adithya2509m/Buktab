@@ -139,7 +139,7 @@ public class ManageBooks extends Fragment {
 
                         }
 
-                        ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                        ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
                         lay.setAdapter(EventList);
                     }
 
