@@ -33,7 +33,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         setContentView(R.layout.menu_main);
         fragmentManager = getSupportFragmentManager();
         initToolbar();
-        initMenuFragment();
+        //initMenuFragment();
        // addFragment(new MainFragment(), true, R.id.container);
         addFragment(new InsertFragment(), false, R.id.container);
     }
@@ -118,8 +118,8 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+       /* MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);*/
         return true;
     }
 
