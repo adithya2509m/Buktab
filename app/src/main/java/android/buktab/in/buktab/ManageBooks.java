@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
@@ -35,7 +36,7 @@ import java.util.List;
  */
 public class ManageBooks extends Fragment {
 
-    SwipeMenuListView lay;
+    ListView lay;
     String url="http://52.10.251.227:3000/manageBooks";
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept;
 
@@ -48,62 +49,13 @@ public class ManageBooks extends Fragment {
         jasonprice = new ArrayList<String>();
         jsondept = new ArrayList<String>();
 
-        lay = (SwipeMenuListView)rootView.findViewById(R.id.list);
-
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        getActivity());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(dp2px(90));
-                // set item title
-                openItem.setTitle("Update");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);
-
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        getActivity());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(dp2px(90));
-                // set a icon
-                deleteItem.setIcon(R.drawable.ic_cancel_black_24dp);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-
-        lay.setMenuCreator(creator);
-
-        lay.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+        lay = (ListView)rootView.findViewById(R.id.list);
 
 
-                switch (index) {
-                    case 0:
-                        Toast.makeText(getActivity(), "delete", Toast.LENGTH_LONG).show();
-                        break;
-                    case 1:
-                        Toast.makeText(getActivity(), "update", Toast.LENGTH_LONG).show();
-                        break;
-                }
-                return false;
-            }
-        });
+
+
+
+
 
 
         JSONObject jsonobject;

@@ -7,7 +7,7 @@
 
 
 
-    <com.baoyz.swipemenulistview.SwipeMenuListView
+    <ListView
         android:focusable="true"
         android:id="@+id/list"
         android:layout_width="match_parent"
