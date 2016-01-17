@@ -117,9 +117,12 @@
                 android:layout_gravity="right">
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/delete"
+                android:background="#00000000"
                 android:src="@drawable/ic_delete_black_24dp"
                 android:layout_gravity="right"
 
@@ -127,8 +130,10 @@
 
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#00000000"
                 android:id="@+id/update"
                 android:src="@drawable/ic_update_black_24dp"
                 android:layout_gravity="right"
