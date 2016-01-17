@@ -36,11 +36,16 @@ public class ManageBooks extends Fragment {
 
     SwipeMenuListView lay;
     String url="http://52.10.251.227:3000/manageBooks";
-    String[] jasonbook,jasonauthor,jasonsem,jasonprice,jsondept;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.manage_fragment, container, false);
-
+        jasonauthor = new ArrayList<String>();
+        jasonbook = new ArrayList<String>();
+        jasonsem = new ArrayList<String>();
+        jasonprice = new ArrayList<String>();
+        jsondept = new ArrayList<String>();
 
         lay = (SwipeMenuListView)rootView.findViewById(R.id.list);
 
@@ -122,20 +127,16 @@ public class ManageBooks extends Fragment {
 
                         JSONArray jsonArray=jsonobject.getJSONArray("result");
                         int len=jsonArray.length();
-                        jasonbook=new String[jsonArray.length()];
-                        jasonauthor=new String[jsonArray.length()];
-                        jasonsem=new String[jsonArray.length()];
-                        jasonprice=new String[jsonArray.length()];
-                        jsondept=new String[jsonArray.length()];
+
 
                         for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
                             JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
-                            jasonbook[i] = temp2.getString("Name");
-                            jasonauthor[i] = temp2.getString("Author");
-                            jasonsem[i]=temp.getString("Semester");
-                            jasonprice[i]=temp.getString("Price");
-                            jsondept[i]=temp2.getString("Department");
+                            jasonbook.add(temp2.getString("Name"));
+                            jasonauthor.add(temp2.getString("Author"));
+                            jasonsem.add(temp.getString("Semester"));
+                            jasonprice.add(temp.getString("Price"));
+                            jsondept.add(temp2.getString("Department"));
 
                         }
 

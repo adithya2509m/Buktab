@@ -5,23 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Created by Arunkumar on 12/9/2015.
  */
-public class customlist3 extends ArrayAdapter<String> {
+public class customlist3 extends BaseAdapter implements ListAdapter {
 
     private final Context context;
-    private final String[] books;
-    private final String[] sems;
-    private final String[] authors ;
-    private final String[] prices ;
-    private final String[] dept ;
+    private final ArrayList<String> books;
+    private final ArrayList<String> sems;
+    private final ArrayList<String> authors ;
+    private final ArrayList<String> prices ;
+    private final ArrayList<String> dept ;
 
-    public customlist3(Context context, String books[], String sems[], String authors[], String prices[],String dept[]) {
+    public customlist3(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept) {
 
-        super(context, R.layout.customlist3,books );
+
 
         this.books=books;
         this.context = context;
@@ -33,27 +39,65 @@ public class customlist3 extends ArrayAdapter<String> {
 
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public int getCount() {
+        return books.size();
+    }
 
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View custom_list = inflater.inflate(R.layout.customlist3, parent, false);
+    @Override
+    public Object getItem(int position) {
+        return books.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
+        View view = convertView;
+
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.customlist3, null);
+        }
 
 
-        TextView b = (TextView) custom_list.findViewById(R.id.bookname);
-        TextView a = (TextView) custom_list.findViewById(R.id.semester);
-        TextView p = (TextView) custom_list.findViewById(R.id.price);
-        TextView au = (TextView) custom_list.findViewById(R.id.author);
-        TextView dep=(TextView)custom_list.findViewById(R.id.dept);
+        TextView b = (TextView) view.findViewById(R.id.bookname);
+        TextView a = (TextView) view.findViewById(R.id.semester);
+        TextView p = (TextView) view.findViewById(R.id.price);
+        TextView au = (TextView) view.findViewById(R.id.author);
+        TextView dep=(TextView)view.findViewById(R.id.dept);
 
-        b.setText(books[position]);
-        a.setText(sems[position]);
-        p.setText(prices[position]);
-        dep.setText(dept[position]);
-        au.setText(authors[position]);
+        Button delete=(Button) view.findViewById(R.id.delete);
+        Button manage=(Button)view.findViewById(R.id.update);
+
+        b.setText(books.get(position));
+        a.setText(sems.get(position));
+        p.setText(prices.get(position));
+        dep.setText(dept.get(position));
+        au.setText(authors.get(position));
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG);
+               // notifyDataSetChanged();
+            }
+        });
+
+        manage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "manage " + position, Toast.LENGTH_LONG);
+                //notifyDataSetChanged();
+            }
+        });
 
 
-
-        return custom_list;
+        return view;
 
     }
 
