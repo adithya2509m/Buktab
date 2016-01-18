@@ -206,6 +206,16 @@ public class SearchFragment extends Fragment {
 
 
 
+                                }else{
+
+                                    iterator1.next();
+                                    iterator2.next();
+                                    iterator4.next();
+                                    iterator5.next();
+                                    iterator6.next();
+                                    iterator7.next();
+                                    iterator8.next();
+
                                 }
                             }
 
@@ -244,6 +254,16 @@ public class SearchFragment extends Fragment {
 
 
 
+
+                                }else{
+
+                                    iterator1.next();
+                                    iterator2.next();
+                                    iterator4.next();
+                                    iterator5.next();
+                                    iterator6.next();
+                                    iterator7.next();
+                                    iterator3.next();
 
                                 }
                             }
@@ -285,6 +305,16 @@ public class SearchFragment extends Fragment {
 
 
 
+
+
+                                }else{
+
+                                    iterator1.next();
+                                    iterator2.next();
+                                    iterator4.next();
+                                    iterator5.next();
+                                    iterator6.next();
+                                    iterator7.next();
 
 
                                 }
