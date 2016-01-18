@@ -225,6 +225,8 @@ public class Register extends AppCompatActivity {
                                                @Override
                                                public void onClick(View v) {
 
+                                                   circularButton2.setProgress(50);
+
                                                    String ruser = Runame.getText().toString();
                                                    String rpass = Rpword.getText().toString();
                                                    String remail = Remail.getText().toString();

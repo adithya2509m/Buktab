@@ -73,6 +73,8 @@ public class Login extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                 circularButton1.setProgress(50);
+
                  String user=Uname.getText().toString();
                  String pass=Pword.getText().toString();
 
