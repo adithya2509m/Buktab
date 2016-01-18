@@ -28,6 +28,7 @@ public class Login extends ActionBarActivity {
 
     final String loginurl="http://52.10.251.227:3000/login";
     static String token="";
+    static String username="";
 
 
     @Override
@@ -98,6 +99,7 @@ public class Login extends ActionBarActivity {
                                 SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor  editor = pref.edit();
                                 token=jsonobject.getString("token");
+                                username=user;
                                 editor.putString("Token",token );
                                 editor.putString("isloggedin","true");
                                 editor.commit();

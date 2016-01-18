@@ -120,12 +120,15 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
+        TextView uname=(TextView)findViewById(R.id.uname);
+
         setSupportActionBar(mToolbar);
        // getSupportActionBar().setHomeButtonEnabled(true);
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mToolBarTextView.setText("Welcome to Buktab");
+        mToolBarTextView.setText("Buktab");
+        //uname.setText(Login.username);
     }
 
     protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {

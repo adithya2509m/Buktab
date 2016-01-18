@@ -4,9 +4,23 @@
     android:id="@+id/toolbar"
     app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
+    android:layout_height="75dp"
     android:minHeight="?attr/actionBarSize"
     android:background="?attr/colorPrimary">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.buktab.in.buktab.RoundImage
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/user_icon"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:paddingLeft="10dp">
 
     <TextView
         android:id="@+id/text_view_toolbar_title"
@@ -14,8 +28,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="@color/textColorPrimary"
-
+        android:text="Buktab"
         android:textSize="@dimen/tool_bar_text_size"
-        android:gravity="center" />
+        android:gravity="left" />
+        <TextView
+            android:id="@+id/uname"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/textColorSecondary"
+            android:text="Addy"
+            android:textSize="@dimen/tool_bar_text_size"
+            android:gravity="left" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorPrimary"
+            android:gravity="center"
+            android:text="YOUR BOOKS"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:text="2"
+                android:textColor="@color/textColorPrimary"
+                android:background="@drawable/ovalbg"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/circlebg"
+                android:text="+"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
 </android.support.v7.widget.Toolbar>
