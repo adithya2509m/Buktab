@@ -26,7 +26,7 @@ import java.util.List;
 public class Splash extends Activity {
 
     /** Duration of wait **/
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid;
+    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid;
     String url="http://52.10.251.227:3000/manageBooks";
     String token;
     int log=0;

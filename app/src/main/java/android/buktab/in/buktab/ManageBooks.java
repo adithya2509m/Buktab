@@ -50,6 +50,16 @@ public class ManageBooks extends Fragment {
         jsondept = new ArrayList<String>();
         jsonid=new ArrayList<String>();
 
+
+        jasonauthor=Splash.jasonauthor;
+        jasonbook=Splash.jasonbook;
+        jasonsem=Splash.jasonsem;
+        jasonprice=Splash.jasonprice;
+        jsondept=Splash.jsondept;
+        jsonid=Splash.jsonid;
+
+
+
         lay = (ListView)rootView.findViewById(R.id.list);
 
 
@@ -57,74 +67,8 @@ public class ManageBooks extends Fragment {
 
 
 
-
-
-        JSONObject jsonobject;
-        final JSONParser jParser2 = new JSONParser();
-        List<NameValuePair> params2 = new ArrayList<NameValuePair>();
-
-        params2.add(new BasicNameValuePair("token", Login.token));
-
-        jsonobject = jParser2.makeHttpRequest(url, "GET", params2);
-
-        final ConnectionDetector cd = new ConnectionDetector(getActivity());
-        if(cd.isConnectingToInternet()){
-
-            try{
-                if(jsonobject!=null){
-
-                    String result=jsonobject.getString("success");
-
-                    if(result.equals("true"))
-                    {
-
-
-                        JSONArray jsonArray=jsonobject.getJSONArray("result");
-                        int len=jsonArray.length();
-
-
-                        for(int i =0;i<jsonArray.length();i++) {
-                            JSONObject temp = jsonArray.getJSONObject(i);
-                            JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
-                            jasonbook.add(temp2.getString("Name"));
-                            jasonauthor.add(temp2.getString("Author"));
-                            jasonsem.add(temp.getString("Semester"));
-                            jasonprice.add(temp.getString("Price"));
-                            jsondept.add(temp2.getString("Department"));
-                            jsonid.add(temp.getString("_id"));
-
-                        }
-
-                        ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonid);
+                ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonid);
                         lay.setAdapter(EventList);
-
-                    }
-
-                    else{
-                        Toast.makeText(getActivity(), "Oops no books added in your account", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-
-                else{
-                    Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
-
-                }}
-
-
-
-            catch (JSONException e){
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }}
-
-        else{
-
-            Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
-        }
-
-
-
 
 
         return rootView;
@@ -132,14 +76,5 @@ public class ManageBooks extends Fragment {
     }
 
 
-    private int dp2px(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
-                getResources().getDisplayMetrics());
-    }
-
-
-    public void myClickHandler(View v) {
-
-    }
 
     }
