@@ -1,8 +1,10 @@
  package android.buktab.in.buktab;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import com.dd.CircularProgressButton;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -28,6 +32,7 @@ public class Login extends ActionBarActivity {
 
 
     final String loginurl="http://52.10.251.227:3000/login";
+    String url="http://52.10.251.227:3000/manageBooks";
     static String token="";
     static String username="";
 
@@ -87,7 +92,7 @@ public class Login extends ActionBarActivity {
                     final JSONParser jParser1 = new JSONParser();
                     List<NameValuePair> params1 = new ArrayList<NameValuePair>();
                     params1.add(new BasicNameValuePair("password",pass));
-                    params1.add(new BasicNameValuePair("username",user));
+                    params1.add(new BasicNameValuePair("username", user));
 
 
                     jsonobject = jParser1.makeHttpRequest(loginurl, "POST", params1);
@@ -108,6 +113,18 @@ public class Login extends ActionBarActivity {
                                 editor.commit();
 
                                 circularButton1.setProgress(100);
+
+                                final ConnectionDetector cd1 = new ConnectionDetector(Login.this);
+                                if (cd.isConnectingToInternet()) {
+                                    new loginmanage().execute();
+                                } else {
+                                    Toast.makeText(Login.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                                }
+
+
+
+
+
                                 Intent i=new Intent(Login.this,MainMenu.class);
                                 startActivity(i);
                             }
@@ -215,4 +232,125 @@ public class Login extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+    private class loginmanage extends AsyncTask<String,String,Boolean>
+    {
+        private ProgressDialog nDialog;
+        EditText temp;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            nDialog = new ProgressDialog(Login.this);
+            nDialog.setTitle("Fetching data from server");
+            nDialog.setMessage("Please Wait..");
+            nDialog.setIndeterminate(false);
+            nDialog.setCancelable(true);
+            nDialog.show();
+            Toast.makeText(Login.this.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+
+
+            JSONObject jsonobject;
+            final JSONParser jParser2 = new JSONParser();
+            List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+
+            SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            String islogged=pref.getString("isloggedin",null);
+
+
+            params2.add(new BasicNameValuePair("token", Login.token));
+
+            jsonobject = jParser2.makeHttpRequest(url, "GET", params2);
+
+            try{
+                if(jsonobject!=null){
+
+                    String result=jsonobject.getString("success");
+
+                    if(result.equals("true"))
+                    {
+
+
+                        JSONArray jsonArray=jsonobject.getJSONArray("result");
+                        int len=jsonArray.length();
+
+
+                        for(int i =0;i<jsonArray.length();i++) {
+                            JSONObject temp = jsonArray.getJSONObject(i);
+                            JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
+                           Splash.jasonbook.add(temp2.getString("Name"));
+                           Splash.jasonauthor.add(temp2.getString("Author"));
+                           Splash.jasonsem.add(temp.getString("Semester"));
+                           Splash.jasonprice.add(temp.getString("Price"));
+                           Splash.jsondept.add(temp2.getString("Department"));
+                           Splash.jsonid.add(temp.getString("_id"));
+
+                        }
+
+                        return true;
+
+                    }
+
+                    else{
+                        return true;
+                    }
+
+                }
+
+                else{
+
+                    return false;
+
+                }}
+
+
+
+            catch (JSONException e){
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+            // nDialog.dismiss();
+            if(!th){
+                nDialog.dismiss();
+                Toast.makeText(Login.this, "No server response", Toast.LENGTH_LONG).show();
+
+
+
+            }
+            else{
+
+                nDialog.dismiss();
+                Intent i=new Intent(Login.this,MainMenu.class);
+                startActivity(i);
+
+
+
+            }
+
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }
