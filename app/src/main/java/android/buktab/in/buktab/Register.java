@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -266,12 +267,34 @@ public class Register extends AppCompatActivity {
                                                                } else {
                                                                    Toast.makeText(Register.this, "Registeration failed", Toast.LENGTH_LONG).show();
                                                                    circularButton2.setProgress(-1);
+                                                                   final Handler handler = new Handler();
+                                                                   handler.postDelayed(new Runnable() {
+                                                                       @Override
+                                                                       public void run() {
+                                                                           // Do something after 5s = 5000ms
+                                                                           circularButton2.setProgress(0);
+                                                                           circularButton2.setIndeterminateProgressMode(true);
+
+
+                                                                       }
+                                                                   }, 3000);
 
                                                                }
 
                                                            } else {
                                                                Toast.makeText(Register.this, "No Response From Server", Toast.LENGTH_LONG).show();
                                                                circularButton2.setProgress(-1);
+                                                               final Handler handler = new Handler();
+                                                               handler.postDelayed(new Runnable() {
+                                                                   @Override
+                                                                   public void run() {
+                                                                       // Do something after 5s = 5000ms
+                                                                       circularButton2.setProgress(0);
+                                                                       circularButton2.setIndeterminateProgressMode(true);
+
+
+                                                                   }
+                                                               }, 3000);
 
                                                            }
 
@@ -285,6 +308,17 @@ public class Register extends AppCompatActivity {
                                                    } else {
                                                        circularButton2.setProgress(-1);
                                                        Toast.makeText(Register.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                                                       final Handler handler = new Handler();
+                                                       handler.postDelayed(new Runnable() {
+                                                           @Override
+                                                           public void run() {
+                                                               // Do something after 5s = 5000ms
+                                                               circularButton2.setProgress(0);
+                                                               circularButton2.setIndeterminateProgressMode(true);
+
+
+                                                           }
+                                                       }, 3000);
                                                    }
 
 

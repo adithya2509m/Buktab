@@ -3,6 +3,7 @@
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -115,12 +116,35 @@ public class Login extends ActionBarActivity {
                                 Toast.makeText(Login.this, "Incorrect Username or Password", Toast.LENGTH_LONG).show();
                                 circularButton1.setProgress(-1);
 
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Do something after 5s = 5000ms
+                                        circularButton1.setProgress(0);
+                                        circularButton1.setIndeterminateProgressMode(true);
+
+
+                                    }
+                                }, 3000);
+
                             }
 
                         }
                         else{
                             Toast.makeText(Login.this, "No Response From Server", Toast.LENGTH_LONG).show();
                             circularButton1.setProgress(-1);
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Do something after 5s = 5000ms
+                                    circularButton1.setProgress(0);
+                                    circularButton1.setIndeterminateProgressMode(true);
+
+                                }
+                            }, 3000);
 
                         }
 
@@ -139,6 +163,17 @@ public class Login extends ActionBarActivity {
                 }else{
                     circularButton1.setProgress(-1);
                     Toast.makeText(Login.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 5s = 5000ms
+                            circularButton1.setProgress(0);
+                            circularButton1.setIndeterminateProgressMode(true);
+
+                        }
+                    }, 3000);
                 }
 
 
