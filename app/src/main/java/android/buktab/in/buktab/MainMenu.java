@@ -62,7 +62,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addFragment(new InsertFragment(), false, R.id.container);
             }
         });
     }

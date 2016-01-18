@@ -63,7 +63,7 @@ public class ManageBooks extends Fragment {
         final JSONParser jParser2 = new JSONParser();
         List<NameValuePair> params2 = new ArrayList<NameValuePair>();
 
-        params2.add(new BasicNameValuePair("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IjU2NmZmMGIwNmQ4YzgxMzU1MWQ1MDdlOSI.ON1liq4QMz7uUuPhHGAQkevfqM4njzdbtzhlN-SORVg"));
+        params2.add(new BasicNameValuePair("token", Login.token));
 
         jsonobject = jParser2.makeHttpRequest(url, "GET", params2);
 
