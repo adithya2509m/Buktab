@@ -1,19 +1,33 @@
 package android.buktab.in.buktab;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.media.Image;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Arunkumar on 12/9/2015.
@@ -27,6 +41,8 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
     private final ArrayList<String> prices ;
     private final ArrayList<String> dept ;
     private final ArrayList<String> id;
+    int pos,check;
+    String deleteurl="http://52.10.251.227:3000/delete";
 
     public customlist3(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept,ArrayList<String> id) {
 
@@ -89,9 +105,14 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
 
                 Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG).show();
 
+                     pos=position;
 
-
-
+                final ConnectionDetector cd = new ConnectionDetector(context);
+                if (cd.isConnectingToInternet()) {
+                    new jsondelete().execute();
+                } else {
+                    Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
+                }
 
 
 
@@ -116,6 +137,110 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
 
     }
 
+    private class jsondelete extends AsyncTask<String,String,Boolean>
+    {
+        private ProgressDialog nDialog;
+        EditText temp;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            nDialog = new ProgressDialog(context);
+            nDialog.setTitle("Fetching data from server");
+            nDialog.setMessage("Please Wait..");
+            nDialog.setIndeterminate(false);
+            nDialog.setCancelable(true);
+            nDialog.show();
+            Toast.makeText(context.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+
+
+            JSONObject jsonobject;
+            final JSONParser jParser2 = new JSONParser();
+            List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+
+            params2.add(new BasicNameValuePair("token", Login.token));
+            params2.add(new BasicNameValuePair("id", id.get(pos)));
+
+            jsonobject = jParser2.makeHttpRequest(deleteurl, "POST", params2);
+
+            try{
+                if(jsonobject!=null){
+
+                    String result=jsonobject.getString("success");
+
+                    if(result.equals("true"))
+                    {
+                        books.remove(pos);
+                        authors.remove(pos);
+                        sems.remove(pos);
+                        prices.remove(pos);
+                        dept.remove(pos);
+                        id.remove(pos);
+
+                        return true;
+                    }
+
+                    else{
+                        check=1;
+                        return false;
+                    }
+
+
+
+                     }
+                else{
+                    check=0;
+                    return false;}
+            }
+
+
+
+
+
+            catch (JSONException e){
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+            // nDialog.dismiss();
+            if(!th){
+
+                if(check==0){
+                Toast.makeText(context, "No response from server", Toast.LENGTH_LONG).show();
+                nDialog.dismiss();}
+                else{
+                    Toast.makeText(context, "Success failed", Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
+
+                }
+
+            }else{
+                notifyDataSetChanged();
+                Toast.makeText(context, "Delete Successful", Toast.LENGTH_LONG).show();
+                nDialog.dismiss();
+            }
+        }
+            }
+
+
+
+
+
+
+
+
+
 
 
 }
+
+
+
