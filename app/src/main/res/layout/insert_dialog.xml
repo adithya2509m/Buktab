@@ -53,6 +53,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignLeft="@id/strut2"
             android:layout_margin="10dp"
+            android:inputType="number"
             android:background="#80ffffff"
 
             android:id="@+id/price"
