@@ -311,7 +311,12 @@ public class InsertFragment extends Fragment {
 
                     if(result.equals("true"))
                     {
-
+                        Splash.jasonbook.add(jasonbook[pos]);
+                        Splash.jasonauthor.add(jasonauthor[pos]);
+                        Splash.jasonsem.add(sem);
+                        Splash.jasonprice.add(price.getText().toString());
+                        Splash.jsondept.add(jasondept[pos]);
+                        Splash.jsonid.add(jsonobject.getJSONObject("post").getString("_id"));
                         return true;
                         }
 
