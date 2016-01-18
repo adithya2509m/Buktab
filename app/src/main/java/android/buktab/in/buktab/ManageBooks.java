@@ -91,7 +91,7 @@ public class ManageBooks extends Fragment {
                             jasonsem.add(temp.getString("Semester"));
                             jasonprice.add(temp.getString("Price"));
                             jsondept.add(temp2.getString("Department"));
-                            jsonid.add(temp2.getString("_id"));
+                            jsonid.add(temp.getString("_id"));
 
                         }
 
