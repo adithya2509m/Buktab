@@ -149,6 +149,14 @@ public class Splash extends Activity {
             // nDialog.dismiss();
             if(!th){
                 nDialog.dismiss();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+
+                    }
+                }, 3000);
                 Intent mainIntent = new Intent(Splash.this,Login.class);
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
@@ -164,6 +172,15 @@ public class Splash extends Activity {
                    }
                    else{
                        nDialog.dismiss();
+                       final Handler handler = new Handler();
+                       handler.postDelayed(new Runnable() {
+                           @Override
+                           public void run() {
+                               // Do something after 5s = 5000ms
+
+
+                           }
+                       }, 3000);
                        Intent mainIntent = new Intent(Splash.this,Login.class);
                        Splash.this.startActivity(mainIntent);
                        Splash.this.finish();
