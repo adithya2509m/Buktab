@@ -36,11 +36,19 @@ public class DeptSearchFragment  extends Fragment {
     String url="http://52.10.251.227:3000/getAds/byDeptAndSem";
     ListView resultlist;
     String sem,dept;
-    String[] jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.deptsearch_fragment, container, false);
+        jasonbook= new ArrayList<String>();
+        jasonauthor= new ArrayList<String>();
+        jasonsem= new ArrayList<String>();
+        jasonprice= new ArrayList<String>();
+        jsonname= new ArrayList<String>();
+        jsonph= new ArrayList<String>();
+        jsonmail= new ArrayList<String>();
+        jsondept= new ArrayList<String>();
 
         deptsearch=(Spinner)rootView.findViewById(R.id.deptsearch);
         semsearch=(Spinner)rootView.findViewById(R.id.semsearch);
@@ -85,27 +93,20 @@ public class DeptSearchFragment  extends Fragment {
 
                                 JSONArray jsonArray=jsonobject.getJSONArray("result");
                                 int len=jsonArray.length();
-                                jasonbook=new String[jsonArray.length()];
-                                jasonauthor=new String[jsonArray.length()];
-                                jasonsem=new String[jsonArray.length()];
-                                jasonprice=new String[jsonArray.length()];
-                                jsonmail=new String[jsonArray.length()];
-                                jsonph=new String[jsonArray.length()];
-                                jsonname=new String[jsonArray.length()];
-                                jsondept=new String[jsonArray.length()];
+
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
                                     JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
                                     JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);
-                                    jasonbook[i] = temp2.getString("Name");
-                                    jasonauthor[i] = temp2.getString("Author");
-                                    jasonsem[i]=temp.getString("Semester");
-                                    jasonprice[i]=temp.getString("Price");
-                                    jsondept[i]=temp2.getString("Department");
-                                    jsonmail[i]=temp3.getString("email");
-                                    jsonph[i]=temp3.getString("phoneNo");
-                                    jsonname[i]=temp3.getString("username");
+                                    jasonbook.add(temp2.getString("Name"));
+                                    jasonauthor.add(temp2.getString("Author"));
+                                    jasonsem.add(temp.getString("Semester"));
+                                    jasonprice.add(temp.getString("Price"));
+                                    jsondept.add(temp2.getString("Department"));
+                                    jsonmail.add(temp3.getString("email"));
+                                    jsonph.add(temp3.getString("phoneNo"));
+                                    jsonname.add(temp3.getString("username"));
 
                                 }}
 
@@ -132,7 +133,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
                     ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
-                    resultlist.setAdapter(EventList);
+                 resultlist.setAdapter(EventList);
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -151,9 +152,9 @@ public class DeptSearchFragment  extends Fragment {
 
                             Button dismiss=(Button)dialog.findViewById(R.id.dismiss);
                             Button insert =(Button)dialog.findViewById(R.id.insert);
-                            bname.setText(jsonname[position]);
-                            aname.setText(jsonph[position]);
-                            sname.setText(jsonmail[position]);
+                            bname.setText(jsonname.get(position));
+                            aname.setText(jsonph.get(position));
+                            sname.setText(jsonmail.get(position));
                             dismiss.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -166,7 +167,7 @@ public class DeptSearchFragment  extends Fragment {
                                 public void onClick(View view) {
 
                                     dialog.dismiss();
-                                    String numberToDial = "tel:"+jsonph[position];
+                                    String numberToDial = "tel:"+jsonph.get(position);
                                     startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numberToDial)));
 
                                 }
@@ -220,27 +221,19 @@ public class DeptSearchFragment  extends Fragment {
 
                                 JSONArray jsonArray=jsonobject.getJSONArray("result");
                                 int len=jsonArray.length();
-                                jasonbook=new String[jsonArray.length()];
-                                jasonauthor=new String[jsonArray.length()];
-                                jasonsem=new String[jsonArray.length()];
-                                jasonprice=new String[jsonArray.length()];
-                                jsonmail=new String[jsonArray.length()];
-                                jsonph=new String[jsonArray.length()];
-                                jsonname=new String[jsonArray.length()];
-                                jsondept=new String[jsonArray.length()];
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
                                     JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
                                     JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);
-                                    jasonbook[i] = temp2.getString("Name");
-                                    jasonauthor[i] = temp2.getString("Author");
-                                    jasonsem[i]=temp.getString("Semester");
-                                    jasonprice[i]=temp.getString("Price");
-                                    jsondept[i]=temp2.getString("Department");
-                                    jsonmail[i]=temp3.getString("email");
-                                    jsonph[i]=temp3.getString("phoneNo");
-                                    jsonname[i]=temp3.getString("username");
+                                    jasonbook.add(temp2.getString("Name"));
+                                    jasonauthor.add(temp2.getString("Author"));
+                                    jasonsem.add(temp.getString("Semester"));
+                                    jasonprice.add(temp.getString("Price"));
+                                    jsondept.add(temp2.getString("Department"));
+                                    jsonmail.add(temp3.getString("email"));
+                                    jsonph.add(temp3.getString("phoneNo"));
+                                    jsonname.add(temp3.getString("username"));
 
                                 }}
 
@@ -286,9 +279,9 @@ public class DeptSearchFragment  extends Fragment {
 
                             Button dismiss=(Button)dialog.findViewById(R.id.dismiss);
                             Button insert =(Button)dialog.findViewById(R.id.insert);
-                            bname.setText(jsonname[position]);
-                            aname.setText(jsonph[position]);
-                            sname.setText(jsonmail[position]);
+                            bname.setText(jsonname.get(position));
+                            aname.setText(jsonph.get(position));
+                            sname.setText(jsonmail.get(position));
                             dismiss.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -301,7 +294,7 @@ public class DeptSearchFragment  extends Fragment {
                                 public void onClick(View view) {
 
                                     dialog.dismiss();
-                                    String numberToDial = "tel:"+jsonph[position];
+                                    String numberToDial = "tel:"+jsonph.get(position);
                                     startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numberToDial)));
 
                                 }

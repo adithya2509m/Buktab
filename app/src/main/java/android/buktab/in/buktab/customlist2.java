@@ -5,23 +5,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Arunkumar on 12/9/2015.
  */
-public class customlist2 extends ArrayAdapter<String> {
+public class customlist2 extends BaseAdapter implements ListAdapter {
 
     private final Context context;
-    private final String[] books;
-    private final String[] sems;
-    private final String[] authors ;
-    private final String[] prices ;
-    private final String[] dept ;
+    private final ArrayList<String> books;
+    private final ArrayList<String> sems;
+    private final ArrayList<String> authors ;
+    private final ArrayList<String> prices ;
+    private final ArrayList<String> dept ;
 
-    public customlist2(Context context, String books[], String sems[], String authors[], String prices[],String dept[]) {
+    public customlist2(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept) {
 
-        super(context, R.layout.customlist,books );
+
 
         this.books=books;
         this.context = context;
@@ -33,10 +37,30 @@ public class customlist2 extends ArrayAdapter<String> {
 
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public int getCount() {
+        return books.size();
+    }
 
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View custom_list = inflater.inflate(R.layout.customlist2, parent, false);
+    @Override
+    public Object getItem(int position) {
+        return books.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        View custom_list = convertView;
+
+        if (custom_list == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            custom_list = inflater.inflate(R.layout.customlist2, null);
+        }
+
 
 
         TextView b = (TextView) custom_list.findViewById(R.id.bookname);
@@ -45,11 +69,11 @@ public class customlist2 extends ArrayAdapter<String> {
         TextView au = (TextView) custom_list.findViewById(R.id.author);
         TextView dep=(TextView)custom_list.findViewById(R.id.dept);
 
-        b.setText(books[position]);
-        a.setText(sems[position]);
-       p.setText(prices[position]);
-        dep.setText(dept[position]);
-        au.setText(authors[position]);
+        b.setText(books.get(position));
+        a.setText(sems.get(position));
+       p.setText(prices.get(position));
+        dep.setText(dept.get(position));
+        au.setText(authors.get(position));
 
 
 
