@@ -225,7 +225,11 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
             }else{
                 notifyDataSetChanged();
                 Toast.makeText(context, "Delete Successful", Toast.LENGTH_LONG).show();
+
                 nDialog.dismiss();
+
+                Splash.bookcount--;
+                MainMenu.bcnt.setText("" + Splash.bookcount);
             }
         }
             }

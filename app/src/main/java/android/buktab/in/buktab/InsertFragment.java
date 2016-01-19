@@ -350,7 +350,8 @@ public class InsertFragment extends Fragment {
 
             }else{
                 Toast.makeText(getActivity(), "Insert Successful", Toast.LENGTH_LONG).show();
-
+                Splash.bookcount++;
+                MainMenu.bcnt.setText("" + Splash.bookcount);
             }
 
 

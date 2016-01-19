@@ -35,6 +35,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
+    static TextView bcnt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +128,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
         TextView uname=(TextView)findViewById(R.id.uname);
-        TextView bcnt=(TextView)findViewById(R.id.bookcount);
+         bcnt=(TextView)findViewById(R.id.bookcount);
         ImageView uicon=(ImageView)findViewById(R.id.uicon);
         Button add=(Button)findViewById(R.id.addbook);
 
