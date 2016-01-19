@@ -37,8 +37,10 @@ import java.util.List;
 public class ManageBooks extends Fragment {
 
     ListView lay;
+
     String url="http://52.10.251.227:3000/manageBooks";
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid;
+    android.support.design.widget.FloatingActionButton add;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,19 +64,22 @@ public class ManageBooks extends Fragment {
 
         lay = (ListView)rootView.findViewById(R.id.list);
 
+        add=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }});
 
 
+            ListAdapter EventList = new customlist3(getActivity(), jasonbook, jasonsem, jasonauthor, jasonprice, jsondept, jsonid);
+            lay.setAdapter(EventList);
 
 
+            return rootView;
 
-                ListAdapter EventList= new customlist3(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonid);
-                        lay.setAdapter(EventList);
-
-
-        return rootView;
-
-    }
-
+        }
 
 
     }
