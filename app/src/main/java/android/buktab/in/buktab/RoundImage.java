@@ -52,6 +52,7 @@ public class RoundImage extends ImageView {
                 && drawable instanceof VectorDrawable) {
             ((VectorDrawable) drawable).draw(canvas);
             b = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
+
             Canvas c = new Canvas();
             c.setBitmap(b);
             drawable.draw(c);

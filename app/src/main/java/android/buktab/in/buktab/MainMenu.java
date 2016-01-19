@@ -1,5 +1,9 @@
 package android.buktab.in.buktab;
 
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -121,6 +127,9 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
         TextView uname=(TextView)findViewById(R.id.uname);
+        ImageView uicon=(ImageView)findViewById(R.id.uicon);
+
+        scaleImage(uicon, 250);
 
         setSupportActionBar(mToolbar);
        // getSupportActionBar().setHomeButtonEnabled(true);
@@ -128,7 +137,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mToolBarTextView.setText("Buktab");
-        //uname.setText(Login.username);
+        uname.setText(Login.username);
     }
 
     protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
@@ -195,5 +204,50 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
     @Override
     public void onMenuItemLongClick(View clickedView, int position) {
         Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    private void scaleImage(ImageView view, int boundBoxInDp)
+    {
+        // Get the ImageView and its bitmap
+        Drawable drawing = view.getDrawable();
+        Bitmap bitmap = ((BitmapDrawable)drawing).getBitmap();
+
+        // Get current dimensions
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        // Determine how much to scale: the dimension requiring less scaling is
+        // closer to the its side. This way the image always stays inside your
+        // bounding box AND either x/y axis touches it.
+        float xScale = ((float) boundBoxInDp) / width;
+        float yScale = ((float) boundBoxInDp) / height;
+        float scale = (xScale <= yScale) ? xScale : yScale;
+
+        // Create a matrix for the scaling and add the scaling data
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale);
+
+        // Create a new bitmap and convert it to a format understood by the ImageView
+        Bitmap scaledBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        BitmapDrawable result = new BitmapDrawable(scaledBitmap);
+        width = scaledBitmap.getWidth();
+        height = scaledBitmap.getHeight();
+
+        // Apply the scaled bitmap
+        view.setImageDrawable(result);
+
+        // Now change ImageView's dimensions to match the scaled image
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+        params.width = width;
+        params.height = height;
+        view.setLayoutParams(params);
+    }
+
+    private int dpToPx(int dp)
+    {
+        float density = getApplicationContext().getResources().getDisplayMetrics().density;
+        return Math.round((float)dp * density);
     }
 }

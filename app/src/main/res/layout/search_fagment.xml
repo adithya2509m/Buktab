@@ -36,8 +36,8 @@
 
             android:layout_margin="5dp">
             <EditText
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
 
                 android:src="@drawable/ic_account_circle_black_24dp"

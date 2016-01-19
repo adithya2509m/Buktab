@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="?attr/actionBarSize"
     android:minHeight="?attr/actionBarSize"
     android:background="?attr/colorPrimary">
 <LinearLayout
@@ -14,7 +14,8 @@
     <android.buktab.in.buktab.RoundImage
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/user_icon"/>
+        android:id="@+id/uicon"
+        android:src="@drawable/male_user"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
         android:layout_height="match_parent"
         android:textColor="@color/textColorPrimary"
         android:text="Buktab"
+        android:textStyle="bold"
         android:textSize="@dimen/tool_bar_text_size"
         android:gravity="left" />
         <TextView
@@ -38,11 +40,12 @@
             android:layout_height="match_parent"
             android:textColor="@color/textColorSecondary"
             android:text="Addy"
-            android:textSize="@dimen/tool_bar_text_size"
+            android:paddingLeft="9dp"
+            android:textSize="14dp"
             android:gravity="left" />
     </LinearLayout>
     <LinearLayout
-        android:layout_weight="3"
+        android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -51,7 +54,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textColorPrimary"
             android:gravity="center"
-            android:text="YOUR BOOKS"/>
+            android:text="Your Books"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,12 +63,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="12dp"
                 android:layout_gravity="center"
                 android:gravity="center"
 
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:text="2"
                 android:textColor="@color/textColorPrimary"
                 android:background="@drawable/ovalbg"
@@ -74,12 +77,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/circlebg"
-                android:text="+"/>
+                android:text="+"
+                android:textSize="10dp"/>
         </LinearLayout>
 
     </LinearLayout>
