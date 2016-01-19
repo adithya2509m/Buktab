@@ -37,6 +37,7 @@ public class Login extends ActionBarActivity {
     static String username="";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -282,7 +283,7 @@ public class Login extends ActionBarActivity {
                         JSONArray jsonArray=jsonobject.getJSONArray("result");
                         int len=jsonArray.length();
 
-
+                        Splash.bookcount=jsonArray.length();
                         for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
                             JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);

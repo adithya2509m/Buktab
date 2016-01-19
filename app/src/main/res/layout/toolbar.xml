@@ -66,7 +66,7 @@
                 android:textSize="12dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-
+                android:id="@+id/bookcount"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
                 android:text="2"
@@ -83,6 +83,7 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/circlebg"
                 android:text="+"
+                android:id="@+id/addbook"
                 android:textSize="10dp"/>
         </LinearLayout>
 

@@ -30,6 +30,7 @@ public class Splash extends Activity {
     String url="http://52.10.251.227:3000/manageBooks";
     String token;
     int log=0;
+    static int  bookcount=0;
 
     /** Called when the activity is first created. */
     @Override
@@ -106,7 +107,7 @@ public class Splash extends Activity {
                         JSONArray jsonArray=jsonobject.getJSONArray("result");
                         int len=jsonArray.length();
 
-
+                        bookcount=jsonArray.length();
                         for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
                             JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);

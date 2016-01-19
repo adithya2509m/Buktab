@@ -127,9 +127,21 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
         TextView uname=(TextView)findViewById(R.id.uname);
+        TextView bcnt=(TextView)findViewById(R.id.bookcount);
         ImageView uicon=(ImageView)findViewById(R.id.uicon);
+        Button add=(Button)findViewById(R.id.addbook);
 
-        scaleImage(uicon, 250);
+
+        bcnt.setText("" + Splash.bookcount);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFragment(new InsertFragment(), false, R.id.container);
+
+            }
+        });
+
+        scaleImage(uicon, 125);
 
         setSupportActionBar(mToolbar);
        // getSupportActionBar().setHomeButtonEnabled(true);
