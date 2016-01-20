@@ -36,5 +36,25 @@
 
     </string-array>
 
+    <string name="desc_list_item_icon">Item Icon</string>
+
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Search</item>
+        <item >Manage</item>
+        <item >Logout</item>
+
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_search_black_24dp</item>
+        <item>@drawable/ic_phone_android_black_24dp</item>
+        <item>@drawable/ic_person_black_24dp</item>
+
+    </array>
+
 
 </resources>

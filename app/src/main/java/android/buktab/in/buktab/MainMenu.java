@@ -1,24 +1,31 @@
 package android.buktab.in.buktab;
 
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +38,29 @@ import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenu extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener{
+public class MainMenu extends AppCompatActivity {
+
+
+
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    // nav drawer title
+    private CharSequence mDrawerTitle;
+
+    // used to store app title
+    private CharSequence mTitle;
+
+    // slide menu items
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
+
+
+    private ArrayList<NavDrawerItem> navDrawerItems;
+    private NavDrawerListAdapter adapter;
+
+
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
@@ -41,88 +70,100 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_main);
-        ImageButton search=(ImageButton)findViewById(R.id.optionsearch);
-        ImageButton manage=(ImageButton)findViewById(R.id.optionmanage);
-        ImageButton logout=(ImageButton)findViewById(R.id.optionlogout);
-       // Button search=(Button)findViewById(R.id.optionsearch);
-        fragmentManager = getSupportFragmentManager();
+
         initToolbar();
+
+        mTitle = mDrawerTitle = getTitle();
+
+        // load slide menu items
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
+        // nav drawer icons from resources
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+
+        navDrawerItems = new ArrayList<NavDrawerItem>();
+
+        // adding nav drawer items to array
+        // Home
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+        // Find People
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+        // Photos
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+        // Communities, Will add a counter here
+       /* navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
+        // Pages
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+        // What's hot, We  will add a counter here
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
+*/
+
+        // Recycle the typed array
+        navMenuIcons.recycle();
+        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+
+        // setting the nav drawer list adapter
+        adapter = new NavDrawerListAdapter(getApplicationContext(),
+                navDrawerItems);
+        mDrawerList.setAdapter(adapter);
+
+        // enabling action bar app icon and behaving it as toggle button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        android.support.v7.widget.Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                toolbar, //nav menu toggle icon
+                R.string.app_name, // nav drawer open - description for accessibility
+                R.string.app_name // nav drawer close - description for accessibility
+        ){
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle(mTitle);
+                // calling onPrepareOptionsMenu() to show action bar icons
+                invalidateOptionsMenu();
+
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(mDrawerTitle);
+                // calling onPrepareOptionsMenu() to hide action bar icons
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerToggle.syncState();
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        if (savedInstanceState == null) {
+            // on first time display view for first nav item
+            displayView(0);
+        }
+
+       // Button search=(Button)findViewById(R.id.optionsearch);
+      //  fragmentManager = getSupportFragmentManager();
+       // initToolbar();
         //initMenuFragment();
        // addFragment(new MainFragment(), true, R.id.container);
-        addFragment(new MainFragment(), false, R.id.container);
+//        addFragment(new MainFragment(), false, R.id.container);
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFragment(new MainFragment(), false, R.id.container);
 
-            }
-        });
-
-        manage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFragment(new ManageBooks(), false, R.id.container);
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFragment(new InsertFragment(), false, R.id.container);
-            }
-        });
     }
 
-    private void initMenuFragment() {
-        MenuParams menuParams = new MenuParams();
-        menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
-        menuParams.setMenuObjects(getMenuObjects());
-        menuParams.setClosableOutside(false);
-        mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
-        mMenuDialogFragment.setItemClickListener(this);
-        mMenuDialogFragment.setItemLongClickListener(this);
+    private class SlideMenuClickListener implements
+            ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+            // display view for selected nav drawer item
+            displayView(position);
+        }
     }
 
-    private List<MenuObject> getMenuObjects() {
-        // You can use any [resource, bitmap, drawable, color] as image:
-        // item.setResource(...)
-        // item.setBitmap(...)
-        // item.setDrawable(...)
-        // item.setColor(...)
-        // You can set image ScaleType:
-        // item.setScaleType(ScaleType.FIT_XY)
-        // You can use any [resource, drawable, color] as background:
-        // item.setBgResource(...)
-        // item.setBgDrawable(...)
-        // item.setBgColor(...)
-        // You can use any [color] as text color:
-        // item.setTextColor(...)
-        // You can set any [color] as divider color:
-        // item.setDividerColor(...)
 
-        List<MenuObject> menuObjects = new ArrayList<>();
-
-        MenuObject close = new MenuObject();
-        close.setResource(R.drawable.icn_close);
-
-        MenuObject profile = new MenuObject("Manage Profile");
-        profile.setResource(R.drawable.ic_account_circle_black_24dp);
-
-
-
-        MenuObject sell = new MenuObject("Add and sell books");
-        sell.setResource(R.drawable.ic_local_offer_black_24dp);
-
-        MenuObject logout = new MenuObject("logout");
-        logout.setResource(R.drawable.ic_phone_android_black_24dp);
-
-        menuObjects.add(close);
-        menuObjects.add(profile);
-        menuObjects.add(sell);
-        menuObjects.add(logout);
-        return menuObjects;
-    }
 
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -137,7 +178,7 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addFragment(new InsertFragment(), false, R.id.container);
+                displayView(4);
 
             }
         });
@@ -153,41 +194,27 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         uname.setText(Login.username);
     }
 
-    protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
-        invalidateOptionsMenu();
-       /* String backStackName = fragment.getClass().getName();
-        boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStackName, 0);
-        if (!fragmentPopped) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(containerId, fragment, backStackName)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            if (addToBackStack)
-                transaction.addToBackStack(backStackName);
-            transaction.commit();*/
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(containerId, fragment).commit();
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
        /* MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);*/
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.context_menu:
-                if (fragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-                    mMenuDialogFragment.show(fragmentManager, ContextMenuDialogFragment.TAG);
-                }
-                break;
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
         }
-        return super.onOptionsItemSelected(item);
+        // Handle action bar actions click
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
      //rest
     @Override
@@ -200,24 +227,88 @@ public class MainMenu extends AppCompatActivity implements OnMenuItemClickListen
         }
     }
 
+
+
     @Override
-    public void onMenuItemClick(View clickedView, int position) {
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
-        //addFragment(new ContactUsFragment(), true, R.id.container);
-        if(position==1)
-        addFragment(new ManageBooks(), false, R.id.container);
-        else if(position==2)
-            addFragment(new InsertFragment(), false, R.id.container);
-        else if(position==4)
-            addFragment(new ManageBooks(), false, R.id.container);
-        else if(position==3)
-            addFragment(new MainFragment(), false, R.id.container);
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // if nav drawer is opened, hide the action items
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.action_settings).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    /**
+     * Diplaying fragment view for selected nav drawer list item
+     * */
+    private void displayView(int position) {
+        // update the main content by replacing fragments
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new MainFragment();
+                break;
+            case 1:
+                fragment = new ManageBooks();
+                break;
+            case 2:
+                fragment = new InsertFragment();
+                break;
+            case 4:
+                fragment = new InsertFragment();
+                break;
+
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment).commit();
+
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            mDrawerList.setSelection(position);
+            setTitle(navMenuTitles[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+           // Toast.makeText(MainMenu.this, "fragment null123", Toast.LENGTH_LONG).show();
+        } else {
+            // error in creating fragment
+            //Toast.makeText(MainMenu.this,"fragment null",Toast.LENGTH_LONG).show();
+            Log.e("MainActivity", "Error in creating fragment");
+        }
     }
 
     @Override
-    public void onMenuItemLongClick(View clickedView, int position) {
-        Toast.makeText(this, "Long clicked on position: " + position, Toast.LENGTH_SHORT).show();
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        getSupportActionBar().setTitle(mTitle);
     }
+
+    /**
+     * When using the ActionBarDrawerToggle, you must call it during
+     * onPostCreate() and onConfigurationChanged()...
+     */
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+
+
+
+
 
 
 
