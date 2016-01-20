@@ -43,6 +43,7 @@ public class SearchFragment extends Fragment {
    // Button searchbutton;
     ListView resultlist ;
     int count =0,pos=0,objectcount;
+    View rootView;
 
     android.support.design.widget.FloatingActionButton filter;
 
@@ -56,7 +57,7 @@ public class SearchFragment extends Fragment {
     String posturl="http://52.10.251.227:3000/postBook";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.search_fagment, container, false);
+         rootView = inflater.inflate(R.layout.search_fagment, container, false);
         search = (EditText) rootView.findViewById(R.id.search);
 
         jasonbook= new ArrayList<String>();
@@ -82,6 +83,7 @@ public class SearchFragment extends Fragment {
 
                 }
                 else{
+                    startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
                     if (cd.isConnectingToInternet()) {
                         new jasonsearch().execute();
@@ -134,6 +136,7 @@ public class SearchFragment extends Fragment {
                 fil.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        startAnim();
                         ArrayList<String> jasonbookf,jasonauthorf,jasonsemf,jasonpricef,jsonnamef,jsonphf,jsonmailf,jsondeptf;
                         jasonbookf= new ArrayList<String>();
                         jasonauthorf= new ArrayList<String>();
@@ -324,13 +327,13 @@ public class SearchFragment extends Fragment {
                         }
 
                         if (check == 0) {
-
+                            stopAnim();
                             dialog.dismiss();
                         } else {
 
 
                             ListAdapter EventList = new customlist2(getActivity(), jasonbookf, jasonsemf, jasonauthorf, jasonpricef, jsondeptf);
-
+                            stopAnim();
                             resultlist.setAdapter(EventList);
 
                             dialog.dismiss();
@@ -389,6 +392,15 @@ public class SearchFragment extends Fragment {
 
         return rootView;
     }
+
+    void startAnim(){
+        rootView. findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    void stopAnim(){
+        rootView.findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
+
 
 
 
@@ -464,6 +476,7 @@ public class SearchFragment extends Fragment {
 
 
             catch (JSONException e){
+                stopAnim();
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
@@ -479,6 +492,7 @@ public class SearchFragment extends Fragment {
             }else{
 
                 ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                stopAnim();
                 resultlist.setAdapter(EventList);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

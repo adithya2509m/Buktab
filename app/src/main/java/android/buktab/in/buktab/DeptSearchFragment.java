@@ -37,10 +37,11 @@ public class DeptSearchFragment  extends Fragment {
     ListView resultlist;
     String sem,dept;
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
+    View rootView;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.deptsearch_fragment, container, false);
+         rootView = inflater.inflate(R.layout.deptsearch_fragment, container, false);
         jasonbook= new ArrayList<String>();
         jasonauthor= new ArrayList<String>();
         jasonsem= new ArrayList<String>();
@@ -72,7 +73,7 @@ public class DeptSearchFragment  extends Fragment {
                 if(!sem.equals("Sem")&&!dept.equals("ALL")){
 
 
-
+                    startAnim();
                     JSONObject jsonobject;
                     final JSONParser jParser2 = new JSONParser();
                     List<NameValuePair> params2 = new ArrayList<NameValuePair>();
@@ -111,6 +112,7 @@ public class DeptSearchFragment  extends Fragment {
                                 }}
 
                             else{
+                                stopAnim();
                                 Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                             }
 
@@ -126,6 +128,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
                     catch (JSONException e){
+                        stopAnim();
                         Log.e("Error", e.getMessage());
                         e.printStackTrace();
                     }
@@ -133,6 +136,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
                     ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                    stopAnim();
                  resultlist.setAdapter(EventList);
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -200,7 +204,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
 
-
+                     startAnim();
                     JSONObject jsonobject;
                     final JSONParser jParser2 = new JSONParser();
                     List<NameValuePair> params2 = new ArrayList<NameValuePair>();
@@ -238,6 +242,7 @@ public class DeptSearchFragment  extends Fragment {
                                 }}
 
                             else{
+                                stopAnim();
                                 Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                             }
 
@@ -253,6 +258,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
                     catch (JSONException e){
+                        stopAnim();
                         Log.e("Error", e.getMessage());
                         e.printStackTrace();
                     }
@@ -260,6 +266,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
                     ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                    stopAnim();
                     resultlist.setAdapter(EventList);
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
@@ -332,6 +339,14 @@ public class DeptSearchFragment  extends Fragment {
 
 
         return rootView;
+    }
+
+    void startAnim(){
+        rootView. findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    void stopAnim(){
+        rootView.findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
 
 }

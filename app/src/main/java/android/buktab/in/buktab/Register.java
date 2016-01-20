@@ -151,181 +151,192 @@ public class Register extends AppCompatActivity {
 
         Rphone.setOnFocusChangeListener(new View.OnFocusChangeListener()
 
-                                        {
-                                            @Override
-                                            public void onFocusChange(View v, boolean hasFocus) {
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
 
-                                                if (!hasFocus) {
+                if (!hasFocus) {
 
-                                                    if(Rphone.getText().equals("")){
+                    if (Rphone.getText().equals("")) {
 
-                                                        Rphone.setError("Please enter the phone number");
+                        Rphone.setError("Please enter the phone number");
 
-                                                    }
+                    } else {
 
-                                                    else{
+                        String MobilePattern = "[0-9]{10}";
 
-                                                    String MobilePattern = "[0-9]{10}";
+                        if (!Rphone.getText().toString().matches(MobilePattern)) {
 
-                                                    if (!Rphone.getText().toString().matches(MobilePattern)) {
+                            Rphone.setError("Enter a valid phone number with 10 digits");
 
-                                                        Rphone.setError("Enter a valid phone number with 10 digits");
+                        } else {
 
-                                                    } else {
+                            final ConnectionDetector cd = new ConnectionDetector(Register.this);
+                            if (cd.isConnectingToInternet()) {
 
-                                                        final ConnectionDetector cd = new ConnectionDetector(Register.this);
-                                                        if (cd.isConnectingToInternet()) {
+                                JSONObject jsonobject4;
+                                final JSONParser jParser4 = new JSONParser();
+                                List<NameValuePair> params4 = new ArrayList<NameValuePair>();
 
-                                                            JSONObject jsonobject4;
-                                                            final JSONParser jParser4 = new JSONParser();
-                                                            List<NameValuePair> params4 = new ArrayList<NameValuePair>();
+                                String url = "http://52.10.251.227:3000/validate/phoneNo/" + Rphone.getText();
 
-                                                            String url = "http://52.10.251.227:3000/validate/phoneNo/" + Rphone.getText();
+                                jsonobject4 = jParser4.makeHttpRequest(url, "GET", params4);
 
-                                                            jsonobject4 = jParser4.makeHttpRequest(url, "GET", params4);
+                                try {
+                                    if (jsonobject4 != null) {
 
-                                                            try {
-                                                                if (jsonobject4 != null) {
+                                        String result2 = jsonobject4.getString("success");
 
-                                                                    String result2 = jsonobject4.getString("success");
+                                        if (result2.equals("false")) {
 
-                                                                    if (result2.equals("false")) {
-
-                                                                        Rphone.setError("Phone number already registered");
+                                            Rphone.setError("Phone number already registered");
 
 
-                                                                    }
-
-                                                                } else {
-                                                                    Toast.makeText(Register.this, "No Response From Server", Toast.LENGTH_LONG).show();
-
-
-                                                                }
-
-
-                                                            } catch (Exception e) {
-                                                                Log.e("Error", e.getMessage());
-                                                                e.printStackTrace();
-                                                            }
-
-                                                        } else {
-
-                                                            Toast.makeText(Register.this, "No Internet Connection", Toast.LENGTH_LONG).show();
-                                                        }
-                                                    }
-                                                }}
-                                            }
                                         }
 
-        );
+                                    } else {
+                                        Toast.makeText(Register.this, "No Response From Server", Toast.LENGTH_LONG).show();
 
 
-        circularButton2.setOnClickListener(new View.OnClickListener()
-
-                                           {
-                                               @Override
-                                               public void onClick(View v) {
-
-                                                   circularButton2.setProgress(50);
-
-                                                   String ruser = Runame.getText().toString();
-                                                   String rpass = Rpword.getText().toString();
-                                                   String remail = Remail.getText().toString();
-                                                   String rphone = Rphone.getText().toString();
+                                    }
 
 
-                                                   final ConnectionDetector cd = new ConnectionDetector(Register.this);
-                                                   if (cd.isConnectingToInternet()) {
+                                } catch (Exception e) {
+                                    Log.e("Error", e.getMessage());
+                                    e.printStackTrace();
+                                }
+
+                            } else {
+
+                                Toast.makeText(Register.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                                circularButton2.setProgress(-1);
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Do something after 5s = 5000ms
+                                        circularButton2.setProgress(0);
+                                        circularButton2.setIndeterminateProgressMode(true);
 
 
-                                                       JSONObject jsonobject;
-                                                       final JSONParser jParser2 = new JSONParser();
-                                                       List<NameValuePair> params2 = new ArrayList<NameValuePair>();
-                                                       params2.add(new BasicNameValuePair("email", remail));
-                                                       params2.add(new BasicNameValuePair("password", rpass));
-                                                       params2.add(new BasicNameValuePair("username", ruser));
-                                                       params2.add(new BasicNameValuePair("phoneNo", rphone));
+                                    }
+                                }, 3000);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            );
 
 
-                                                       jsonobject = jParser2.makeHttpRequest(Regsiterurl, "POST", params2);
+            circularButton2.setOnClickListener(new View.OnClickListener()
 
-                                                       try {
-                                                           if (jsonobject != null) {
+            {
+                @Override
+                public void onClick (View v){
 
-                                                               String result = jsonobject.getString("success");
+                circularButton2.setProgress(50);
 
-                                                               if (result.equals("true")) {
-
-                                                                   Toast.makeText(Register.this, "Registeration Successful", Toast.LENGTH_LONG).show();
-
-
-                                                                   circularButton2.setProgress(100);
-
-                                                                   Intent i = new Intent(Register.this, Login.class);
-                                                                   startActivity(i);
-
-                                                               } else {
-                                                                   Toast.makeText(Register.this, "Registeration failed", Toast.LENGTH_LONG).show();
-                                                                   circularButton2.setProgress(-1);
-                                                                   final Handler handler = new Handler();
-                                                                   handler.postDelayed(new Runnable() {
-                                                                       @Override
-                                                                       public void run() {
-                                                                           // Do something after 5s = 5000ms
-                                                                           circularButton2.setProgress(0);
-                                                                           circularButton2.setIndeterminateProgressMode(true);
+                String ruser = Runame.getText().toString();
+                String rpass = Rpword.getText().toString();
+                String remail = Remail.getText().toString();
+                String rphone = Rphone.getText().toString();
 
 
-                                                                       }
-                                                                   }, 3000);
-
-                                                               }
-
-                                                           } else {
-                                                               Toast.makeText(Register.this, "No Response From Server", Toast.LENGTH_LONG).show();
-                                                               circularButton2.setProgress(-1);
-                                                               final Handler handler = new Handler();
-                                                               handler.postDelayed(new Runnable() {
-                                                                   @Override
-                                                                   public void run() {
-                                                                       // Do something after 5s = 5000ms
-                                                                       circularButton2.setProgress(0);
-                                                                       circularButton2.setIndeterminateProgressMode(true);
+                final ConnectionDetector cd = new ConnectionDetector(Register.this);
+                if (cd.isConnectingToInternet()) {
 
 
-                                                                   }
-                                                               }, 3000);
-
-                                                           }
-
-
-                                                       } catch (Exception e) {
-                                                           Log.e("Error", e.getMessage());
-                                                           e.printStackTrace();
-                                                       }
+                    JSONObject jsonobject;
+                    final JSONParser jParser2 = new JSONParser();
+                    List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+                    params2.add(new BasicNameValuePair("email", remail));
+                    params2.add(new BasicNameValuePair("password", rpass));
+                    params2.add(new BasicNameValuePair("username", ruser));
+                    params2.add(new BasicNameValuePair("phoneNo", rphone));
 
 
-                                                   } else {
-                                                       circularButton2.setProgress(-1);
-                                                       Toast.makeText(Register.this, "No Internet Connection", Toast.LENGTH_LONG).show();
-                                                       final Handler handler = new Handler();
-                                                       handler.postDelayed(new Runnable() {
-                                                           @Override
-                                                           public void run() {
-                                                               // Do something after 5s = 5000ms
-                                                               circularButton2.setProgress(0);
-                                                               circularButton2.setIndeterminateProgressMode(true);
+                    jsonobject = jParser2.makeHttpRequest(Regsiterurl, "POST", params2);
+
+                    try {
+                        if (jsonobject != null) {
+
+                            String result = jsonobject.getString("success");
+
+                            if (result.equals("true")) {
+
+                                Toast.makeText(Register.this, "Registeration Successful", Toast.LENGTH_LONG).show();
 
 
-                                                           }
-                                                       }, 3000);
-                                                   }
+                                circularButton2.setProgress(100);
+
+                                Intent i = new Intent(Register.this, Login.class);
+                                startActivity(i);
+
+                            } else {
+                                Toast.makeText(Register.this, "Registeration failed", Toast.LENGTH_LONG).show();
+                                circularButton2.setProgress(-1);
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Do something after 5s = 5000ms
+                                        circularButton2.setProgress(0);
+                                        circularButton2.setIndeterminateProgressMode(true);
 
 
-                                               }
-                                           }
+                                    }
+                                }, 3000);
 
-        );
+                            }
+
+                        } else {
+                            Toast.makeText(Register.this, "No Response From Server", Toast.LENGTH_LONG).show();
+                            circularButton2.setProgress(-1);
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Do something after 5s = 5000ms
+                                    circularButton2.setProgress(0);
+                                    circularButton2.setIndeterminateProgressMode(true);
+
+
+                                }
+                            }, 3000);
+
+                        }
+
+
+                    } catch (Exception e) {
+                        Log.e("Error", e.getMessage());
+                        e.printStackTrace();
+                    }
+
+
+                } else {
+                    circularButton2.setProgress(-1);
+                    Toast.makeText(Register.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 5s = 5000ms
+                            circularButton2.setProgress(0);
+                            circularButton2.setIndeterminateProgressMode(true);
+
+
+                        }
+                    }, 3000);
+                }
+
+
+            }
+            }
+
+            );
         }
 
 

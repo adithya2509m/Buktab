@@ -39,6 +39,7 @@ public class InsertFragment extends Fragment {
     ListView resultlist ;
     int count =0,pos=0;
     String sem="";
+    View rootView;
 
     String[] jasonbook,jasonauthor,jasondept,jasonprice,jsonid;
 
@@ -50,7 +51,7 @@ public class InsertFragment extends Fragment {
     String posturl="http://52.10.251.227:3000/postBook";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.insert_fagment, container, false);
+         rootView = inflater.inflate(R.layout.insert_fagment, container, false);
         search = (EditText) rootView.findViewById(R.id.search);
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
@@ -65,6 +66,7 @@ public class InsertFragment extends Fragment {
 
                 }
                 else{
+                    startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
                     if (cd.isConnectingToInternet()) {
                         new jasonsearch().execute();
@@ -89,8 +91,22 @@ public class InsertFragment extends Fragment {
 
 
 
+
+
         return rootView;
     }
+
+    void startAnim(){
+        rootView. findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    void stopAnim(){
+        rootView.findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
+
+
+
+
 
     private class jasonsearch extends AsyncTask<String,String,Boolean>
     {
@@ -179,6 +195,7 @@ public class InsertFragment extends Fragment {
             }else{
 
                 ListAdapter EventList= new customlist(getActivity(),jasonbook,jasondept,jasonauthor,jasonprice);
+                stopAnim();
                 resultlist.setAdapter(EventList);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -239,7 +256,7 @@ public class InsertFragment extends Fragment {
 
                                         Toast.makeText(getActivity(), "Select Sem", Toast.LENGTH_LONG).show();
                                     }else{
-
+                                        startAnim();
                                         new Insert().execute();
                                     }
                                 } else {
@@ -267,12 +284,12 @@ public class InsertFragment extends Fragment {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-           nDialog = new ProgressDialog(getActivity());
+        /*   nDialog = new ProgressDialog(getActivity());
             nDialog.setTitle("Sending data to server");
             nDialog.setMessage("Please Wait..");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
-            nDialog.show();
+            nDialog.show();*/
             //Toast.makeText(getContext(),"fetching results",Toast.LENGTH_SHORT).show();
         }
 
@@ -344,11 +361,13 @@ public class InsertFragment extends Fragment {
         }
         @Override
         protected void onPostExecute(Boolean th){
-            nDialog.dismiss();
+           // nDialog.dismiss();
             if(!th){
+                stopAnim();
                 Toast.makeText(getActivity(), "Insert Failed", Toast.LENGTH_LONG).show();
 
             }else{
+                stopAnim();
                 Toast.makeText(getActivity(), "Insert Successful", Toast.LENGTH_LONG).show();
                 Splash.bookcount++;
                 MainMenu.bcnt.setText("" + Splash.bookcount);
