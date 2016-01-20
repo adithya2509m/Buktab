@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Toast;
@@ -44,7 +45,7 @@ public class Splash extends Activity {
         jsondept = new ArrayList<String>();
         jsonid=new ArrayList<String>();
 
-
+        startAnim();
 
         final ConnectionDetector cd = new ConnectionDetector(Splash.this);
         if (cd.isConnectingToInternet()) {
@@ -55,6 +56,14 @@ public class Splash extends Activity {
 
     }
 
+    void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
+
     private class splashmanage extends AsyncTask<String,String,Boolean>
     {
         private ProgressDialog nDialog;
@@ -63,13 +72,13 @@ public class Splash extends Activity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Splash.this);
+         /*   nDialog = new ProgressDialog(Splash.this);
             nDialog.setTitle("Fetching data from server");
             nDialog.setMessage("Please Wait..");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
-            Toast.makeText(Splash.this.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Splash.this.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();*/
         }
 
         @Override
@@ -149,7 +158,7 @@ public class Splash extends Activity {
         protected void onPostExecute(Boolean th){
             // nDialog.dismiss();
             if(!th){
-                nDialog.dismiss();
+              //  nDialog.dismiss();
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -159,6 +168,7 @@ public class Splash extends Activity {
                     }
                 }, 3000);
                 Intent mainIntent = new Intent(Splash.this,Login.class);
+                stopAnim();
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
 
@@ -168,11 +178,11 @@ public class Splash extends Activity {
 
                    if(log==1){
                        Toast.makeText(Splash.this, "No Internet Connection", Toast.LENGTH_LONG).show();
-                       nDialog.dismiss();
+                    //   nDialog.dismiss();
 
                    }
                    else{
-                       nDialog.dismiss();
+                    //   nDialog.dismiss();
                        final Handler handler = new Handler();
                        handler.postDelayed(new Runnable() {
                            @Override
@@ -183,6 +193,7 @@ public class Splash extends Activity {
                            }
                        }, 3000);
                        Intent mainIntent = new Intent(Splash.this,Login.class);
+                       stopAnim();
                        Splash.this.startActivity(mainIntent);
                        Splash.this.finish();
 

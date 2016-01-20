@@ -35,6 +35,7 @@ public class Login extends ActionBarActivity {
     String url="http://52.10.251.227:3000/manageBooks";
     static String token="";
     static String username="";
+     CircularProgressButton circularButton1;
 
 
 
@@ -74,7 +75,7 @@ public class Login extends ActionBarActivity {
 
 
 
-        final CircularProgressButton circularButton1 = (CircularProgressButton) findViewById(R.id.circularButton1);
+         circularButton1 = (CircularProgressButton) findViewById(R.id.circularButton1);
         circularButton1.setIndeterminateProgressMode(true);
         circularButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,16 +111,28 @@ public class Login extends ActionBarActivity {
                                 token=jsonobject.getString("token");
                                 username=user;
                                 editor.putString("Token",token );
-                                editor.putString("isloggedin","true");
+                                editor.putString("isloggedin", "true");
                                 editor.commit();
 
-                                circularButton1.setProgress(100);
+
 
                                 final ConnectionDetector cd1 = new ConnectionDetector(Login.this);
                                 if (cd.isConnectingToInternet()) {
                                     new loginmanage().execute();
                                 } else {
                                     Toast.makeText(Login.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                                    circularButton1.setProgress(-1);
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // Do something after 5s = 5000ms
+                                            circularButton1.setProgress(0);
+                                            circularButton1.setIndeterminateProgressMode(true);
+
+
+                                        }
+                                    }, 3000);
                                 }
 
 
@@ -246,13 +259,13 @@ public class Login extends ActionBarActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(Login.this);
+        /*    nDialog = new ProgressDialog(Login.this);
             nDialog.setTitle("Fetching data from server");
             nDialog.setMessage("Please Wait..");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();
-            Toast.makeText(Login.this.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();*/
         }
 
         @Override
@@ -325,15 +338,28 @@ public class Login extends ActionBarActivity {
         protected void onPostExecute(Boolean th){
             // nDialog.dismiss();
             if(!th){
-                nDialog.dismiss();
+              //  nDialog.dismiss();
+                circularButton1.setProgress(-1);
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something after 5s = 5000ms
+                        circularButton1.setProgress(0);
+                        circularButton1.setIndeterminateProgressMode(true);
+
+                    }
+                }, 3000);
                 Toast.makeText(Login.this, "No server response", Toast.LENGTH_LONG).show();
+
 
 
 
             }
             else{
-
-                nDialog.dismiss();
+                circularButton1.setProgress(100);
+              //  nDialog.dismiss();
                 Intent i=new Intent(Login.this,MainMenu.class);
                 startActivity(i);
 
