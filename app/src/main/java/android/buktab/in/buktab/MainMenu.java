@@ -59,6 +59,7 @@ RelativeLayout draw;
     // slide menu items
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+    TextView title;
 
 
      static ArrayList<NavDrawerItem> navDrawerItems;
@@ -76,7 +77,7 @@ RelativeLayout draw;
         setContentView(R.layout.menu_main);
 
         initToolbar();
-
+        title=(TextView)findViewById(R.id.text_view_toolbar_title);
        // ImageView profpic=(ImageView)findViewById(R.id.profimage);
        // scaleImage(profpic, 125);
         draw=(RelativeLayout)findViewById(R.id.draw);
@@ -287,7 +288,15 @@ RelativeLayout draw;
                 mDrawerList.setItemChecked(position, true);
                 mDrawerList.setSelection(position);
                 setTitle(navMenuTitles[position]);
+                title.setText(navMenuTitles[position]);
                 mDrawerLayout.closeDrawer(draw);
+            }else{
+                mDrawerList.setItemChecked(1, true);
+                mDrawerList.setSelection(1);
+                setTitle(navMenuTitles[1]);
+                title.setText("Add Book");
+                mDrawerLayout.closeDrawer(draw);
+
             }
            // Toast.makeText(MainMenu.this, "fragment null123", Toast.LENGTH_LONG).show();
         } else {
