@@ -61,7 +61,7 @@ RelativeLayout draw;
     private TypedArray navMenuIcons;
 
 
-    private ArrayList<NavDrawerItem> navDrawerItems;
+     static ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
 
@@ -194,7 +194,7 @@ RelativeLayout draw;
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayView(4);
+                displayView(99);
 
             }
         });
@@ -269,7 +269,7 @@ RelativeLayout draw;
             case 2:
                 fragment = new InsertFragment();
                 break;
-            case 4:
+            case 99:
                 fragment = new InsertFragment();
                 break;
 
@@ -283,10 +283,12 @@ RelativeLayout draw;
                     .replace(R.id.container, fragment).commit();
 
             // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
-            setTitle(navMenuTitles[position]);
-            mDrawerLayout.closeDrawer(draw);
+            if(position!=99) {
+                mDrawerList.setItemChecked(position, true);
+                mDrawerList.setSelection(position);
+                setTitle(navMenuTitles[position]);
+                mDrawerLayout.closeDrawer(draw);
+            }
            // Toast.makeText(MainMenu.this, "fragment null123", Toast.LENGTH_LONG).show();
         } else {
             // error in creating fragment

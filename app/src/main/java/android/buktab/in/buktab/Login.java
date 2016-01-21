@@ -53,6 +53,7 @@ public class Login extends ActionBarActivity {
         String islogged=pref.getString("isloggedin",null);
         if(islogged!=null && islogged.equals("true")){
             token=pref.getString("Token",null);
+            username=pref.getString("User",null);
             Intent i=new Intent(Login.this,MainMenu.class);
             startActivity(i);
 
@@ -111,6 +112,7 @@ public class Login extends ActionBarActivity {
                                 token=jsonobject.getString("token");
                                 username=user;
                                 editor.putString("Token",token );
+                                editor.putString("User",username );
                                 editor.putString("isloggedin", "true");
                                 editor.commit();
 

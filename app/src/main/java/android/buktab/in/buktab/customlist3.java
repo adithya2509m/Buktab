@@ -230,6 +230,7 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
 
                 Splash.bookcount--;
                 MainMenu.bcnt.setText("" + Splash.bookcount);
+                MainMenu.navDrawerItems.get(1).setCount("" + Splash.bookcount);
             }
         }
             }
