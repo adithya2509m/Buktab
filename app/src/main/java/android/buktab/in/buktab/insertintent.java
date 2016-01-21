@@ -2,15 +2,24 @@ package android.buktab.in.buktab;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +47,18 @@ public class insertintent extends AppCompatActivity {
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insert_intent);
+
+        Toolbar mtoolbar =(Toolbar)findViewById(R.id.toolbar2);
+        setSupportActionBar(mtoolbar);
 
          id=getIntent().getExtras().getString("id");
          bn=(TextView)findViewById(R.id.bname);
@@ -50,6 +68,9 @@ public class insertintent extends AppCompatActivity {
         bn.setText(getIntent().getExtras().getString("bookname").trim());
         an.setText(getIntent().getExtras().getString("author").trim());
         dn.setText(getIntent().getExtras().getString("dept").trim());
+
+        ImageView uicon=(ImageView)findViewById(R.id.uicon);
+        scaleImage(uicon, 125);
 
         price=(EditText)findViewById(R.id.price);
         spinner=(Spinner)findViewById(R.id.sem_spinner);
@@ -66,6 +87,7 @@ public class insertintent extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 sem = parent.getItemAtPosition(pos).toString();
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
@@ -77,16 +99,15 @@ public class insertintent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ConnectionDetector cd=new ConnectionDetector(insertintent.this);
+                ConnectionDetector cd = new ConnectionDetector(insertintent.this);
                 if (cd.isConnectingToInternet()) {
 
-                    if(price.getText().toString().length()==0) {
+                    if (price.getText().toString().length() == 0) {
                         price.setError("Set Price");
-                    }
-                   else  if(sem.length()==0){
+                    } else if (sem.length() == 0) {
 
                         Toast.makeText(insertintent.this, "Select Sem", Toast.LENGTH_LONG).show();
-                    }else{
+                    } else {
 
                         new Insert().execute();
                     }
@@ -95,11 +116,23 @@ public class insertintent extends AppCompatActivity {
                 }
 
 
-
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
+
+
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -212,6 +245,42 @@ public class insertintent extends AppCompatActivity {
 
 
 
+    private void scaleImage(ImageView view, int boundBoxInDp)
+    {
+        // Get the ImageView and its bitmap
+        Drawable drawing = view.getDrawable();
+        Bitmap bitmap = ((BitmapDrawable)drawing).getBitmap();
+
+        // Get current dimensions
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        // Determine how much to scale: the dimension requiring less scaling is
+        // closer to the its side. This way the image always stays inside your
+        // bounding box AND either x/y axis touches it.
+        float xScale = ((float) boundBoxInDp) / width;
+        float yScale = ((float) boundBoxInDp) / height;
+        float scale = (xScale <= yScale) ? xScale : yScale;
+
+        // Create a matrix for the scaling and add the scaling data
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale);
+
+        // Create a new bitmap and convert it to a format understood by the ImageView
+        Bitmap scaledBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        BitmapDrawable result = new BitmapDrawable(scaledBitmap);
+        width = scaledBitmap.getWidth();
+        height = scaledBitmap.getHeight();
+
+        // Apply the scaled bitmap
+        view.setImageDrawable(result);
+
+        // Now change ImageView's dimensions to match the scaled image
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+        params.width = width;
+        params.height = height;
+        view.setLayoutParams(params);
+    }
 
 
 

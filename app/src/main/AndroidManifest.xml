@@ -22,7 +22,10 @@
 
 
         <activity android:name=".Login"/>
-        <activity android:name=".insertintent"/>
+        <activity android:name=".insertintent">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainMenu"/>
+        </activity>
 <activity android:name=".MainMenu"
     android:windowSoftInputMode="adjustPan"
     />
