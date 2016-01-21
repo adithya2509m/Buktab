@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:editable="false"
-        android:hasfocus="true"
+
         android:text="Book Name"/>
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:hasfocus="true"
+
         android:editable="false"
         android:text="Author Name"/>
 
@@ -52,7 +52,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:hasfocus="true"
+
         android:editable="false"
         android:text="Department"/>
 
@@ -70,7 +70,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:hasfocus="true"
+
         android:editable="false"
         android:text="Please select the semester and price"/>
 
