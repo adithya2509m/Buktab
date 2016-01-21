@@ -26,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ import java.util.List;
 public class MainMenu extends AppCompatActivity {
 
 
-
+RelativeLayout draw;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -73,7 +74,13 @@ public class MainMenu extends AppCompatActivity {
 
         initToolbar();
 
+       // ImageView profpic=(ImageView)findViewById(R.id.profimage);
+       // scaleImage(profpic, 125);
+        draw=(RelativeLayout)findViewById(R.id.draw);
         mTitle = mDrawerTitle = getTitle();
+
+        TextView uname=(TextView)findViewById(R.id.username);
+        uname.setText(Login.username);
 
         // load slide menu items
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -91,7 +98,7 @@ public class MainMenu extends AppCompatActivity {
         // Home
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
         // Find People
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1),true,"" + Splash.bookcount));
         // Photos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         // Communities, Will add a counter here
@@ -232,7 +239,7 @@ public class MainMenu extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(draw);
         menu.findItem(R.id.action_settings).setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
@@ -270,7 +277,7 @@ public class MainMenu extends AppCompatActivity {
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
             setTitle(navMenuTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
+            mDrawerLayout.closeDrawer(draw);
            // Toast.makeText(MainMenu.this, "fragment null123", Toast.LENGTH_LONG).show();
         } else {
             // error in creating fragment
