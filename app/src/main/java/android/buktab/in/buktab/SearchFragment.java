@@ -42,7 +42,7 @@ public class SearchFragment extends Fragment {
     String[] jsonname1,jsonph1,jsonmail1;
    // Button searchbutton;
     ListView resultlist ;
-    int count =0,pos=0,objectcount;
+    int count =0,pos=0,objectcount,no=0;
     View rootView;
     private jasonsearch searchquery;
 
@@ -473,7 +473,8 @@ public class SearchFragment extends Fragment {
                         }}
 
                     else{
-                        Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                        no=1;
+                       // Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                     }
 
 
@@ -481,7 +482,7 @@ public class SearchFragment extends Fragment {
                     return true; }
 
                 else{
-                    Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
                     return false;
                 }}
 
@@ -499,51 +500,37 @@ public class SearchFragment extends Fragment {
         protected void onPostExecute(Boolean th){
            // nDialog.dismiss();
             if(!th){
+                if(no==0)
                 Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
-
+                else
+                    Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
             }else{
 
                 ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
                 stopAnim();
                 resultlist.setAdapter(EventList);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                         Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
-                        final Dialog dialog = new Dialog(getActivity(),R.style.NewDialog);
 
-                        dialog.setContentView(R.layout.search_dialog);
-                       // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                        dialog.setTitle("Get it from...");
 
-                        dialog.show();
+                        Intent i=new Intent(getActivity(),Searchintent.class);
+                        i.putExtra("name",jsonname.get(position));
+                        i.putExtra("phone",jsonph.get(position));
+                        i.putExtra("email",jsonmail.get(position));
+                        i.putExtra("book",jasonbook.get(position));
+                        i.putExtra("author",jasonauthor.get(position));
+                        i.putExtra("sem",jasonsem.get(position));
+                        i.putExtra("dept",jsondept.get(position));
+                        i.putExtra("price",jasonprice.get(position));
+                        startActivity(i);
 
-                        TextView bname= (TextView) dialog.findViewById(R.id.bname);
-                        TextView aname= (TextView) dialog.findViewById(R.id.aname);
-                        TextView sname= (TextView) dialog.findViewById(R.id.sname);
 
-                        Button dismiss=(Button)dialog.findViewById(R.id.dismiss);
-                        Button insert =(Button)dialog.findViewById(R.id.insert);
-                        bname.setText(jsonname.get(position));
-                        aname.setText(jsonph.get(position));
-                        sname.setText(jsonmail.get(position));
-                        dismiss.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog.dismiss();
-                            }
-                        });
 
-                        insert.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
 
-                                dialog.dismiss();
-                                String numberToDial = "tel:"+jsonph.get(position);
-                                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numberToDial)));
-
-                            }
-                        });
 
 
                     }

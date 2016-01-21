@@ -30,6 +30,7 @@
     android:windowSoftInputMode="adjustPan"
     />
         <activity android:name=".Register"/>
+        <activity android:name=".Searchintent"/>
 
 
 </application>
