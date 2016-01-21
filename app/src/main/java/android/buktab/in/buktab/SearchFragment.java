@@ -110,26 +110,27 @@ public class SearchFragment extends Fragment {
        search.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                if(count<3){
-                    count++;
 
-                }
-                else{
-                    startAnim();
-                    final ConnectionDetector cd = new ConnectionDetector(getActivity());
-                    if (cd.isConnectingToInternet()) {
 
-                        searchquery= new jasonsearch();
-                        searchquery.execute();
+                    if (search.getText().length() < 3) {
+
 
                     } else {
-                        Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                        startAnim();
+                        final ConnectionDetector cd = new ConnectionDetector(getActivity());
+                        if (cd.isConnectingToInternet()) {
+
+                            searchquery = new jasonsearch();
+                            searchquery.execute();
+
+                        } else {
+                            Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
-
                 // you can call or do what you want with your EditText here
 
-            }
+
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                // Toast.makeText(getContext(),"on change",Toast.LENGTH_SHORT).show();

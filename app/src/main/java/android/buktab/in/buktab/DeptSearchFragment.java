@@ -232,6 +232,14 @@ public class DeptSearchFragment  extends Fragment {
 
                                 JSONArray jsonArray=jsonobject.getJSONArray("result");
                                 int len=jsonArray.length();
+                                jasonbook.clear();
+                                jasonauthor.clear();
+                                jasonsem.clear();
+                                jasonprice.clear();
+                                jsondept.clear();
+                                jsonmail.clear();
+                                jsonph.clear();
+                                jsonname.clear();
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
