@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -73,6 +74,36 @@ public class SearchFragment extends Fragment {
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
         filter=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
+
+        resultlist.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int mLastFirstVisibleItem;
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+                if(mLastFirstVisibleItem<firstVisibleItem)
+                {
+                    Log.i("SCROLLING DOWN","TRUE");
+                    filter.hide();
+
+                    //Toast.makeText(getContext(),"scroll down",Toast.LENGTH_SHORT).show();
+                }
+                if(mLastFirstVisibleItem>firstVisibleItem)
+                {
+                    Log.i("SCROLLING UP","TRUE");
+                    filter.show();
+                    //Toast.makeText(getContext(),"scroll up",Toast.LENGTH_SHORT).show();
+                }
+                mLastFirstVisibleItem=firstVisibleItem;
+
+            }
+        });
 
 
 

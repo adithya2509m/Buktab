@@ -12,6 +12,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -66,6 +67,36 @@ public class ManageBooks extends Fragment {
         lay = (ListView)rootView.findViewById(R.id.list);
 
         add=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
+
+        lay.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int mLastFirstVisibleItem;
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+                if(mLastFirstVisibleItem<firstVisibleItem)
+                {
+                    Log.i("SCROLLING DOWN","TRUE");
+                    add.hide();
+
+                    //Toast.makeText(getContext(),"scroll down",Toast.LENGTH_SHORT).show();
+                }
+                if(mLastFirstVisibleItem>firstVisibleItem)
+                {
+                    Log.i("SCROLLING UP","TRUE");
+                    add.show();
+                    //Toast.makeText(getContext(),"scroll up",Toast.LENGTH_SHORT).show();
+                }
+                mLastFirstVisibleItem=firstVisibleItem;
+
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override

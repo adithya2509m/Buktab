@@ -64,6 +64,8 @@ public class insertintent extends AppCompatActivity {
          bn=(TextView)findViewById(R.id.bname);
          an=(TextView)findViewById(R.id.aname);
          dn=(TextView)findViewById(R.id.dept);
+        TextView uname=(TextView)findViewById(R.id.uname);
+        uname.setText(Login.username);
 
         bn.setText(getIntent().getExtras().getString("bookname").trim());
         an.setText(getIntent().getExtras().getString("author").trim());
