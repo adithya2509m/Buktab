@@ -1,5 +1,6 @@
 package android.buktab.in.buktab;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -82,7 +83,18 @@ RelativeLayout draw;
        // scaleImage(profpic, 125);
         draw=(RelativeLayout)findViewById(R.id.draw);
         mTitle = mDrawerTitle = getTitle();
-
+        Button share=(Button)findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Hey !! try this cool app which lets me sell out old books.";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Download the Interrupt15 App from");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
         TextView uname=(TextView)findViewById(R.id.username);
         uname.setText(Login.username);
 
