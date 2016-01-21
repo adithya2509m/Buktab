@@ -37,6 +37,7 @@ import java.util.List;
  */
 public class insertintent extends AppCompatActivity {
 
+    GPSTracker gps;
 
 
     EditText price;
@@ -59,7 +60,7 @@ public class insertintent extends AppCompatActivity {
 
         Toolbar mtoolbar =(Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(mtoolbar);
-
+        gps = new GPSTracker(insertintent.this);
          id=getIntent().getExtras().getString("id");
          bn=(TextView)findViewById(R.id.bname);
          an=(TextView)findViewById(R.id.aname);
@@ -158,8 +159,7 @@ public class insertintent extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(String... args){
-            GPSTracker gps;
-            gps = new GPSTracker(insertintent.this);
+
             double latitude = 10,longitude=10;
             if(gps.canGetLocation()) {
 
