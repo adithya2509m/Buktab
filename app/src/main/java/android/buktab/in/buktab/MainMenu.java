@@ -42,6 +42,9 @@ import java.util.List;
 public class MainMenu extends AppCompatActivity {
 
 
+    static int man=0;
+
+
 RelativeLayout draw;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -147,7 +150,13 @@ RelativeLayout draw;
 
         if (savedInstanceState == null) {
             // on first time display view for first nav item
+            if(man==0)
             displayView(0);
+            else {
+                displayView(1);
+                man=0;
+
+            }
         }
 
        // Button search=(Button)findViewById(R.id.optionsearch);

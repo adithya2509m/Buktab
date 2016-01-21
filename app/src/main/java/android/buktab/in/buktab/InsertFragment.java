@@ -210,7 +210,7 @@ public class InsertFragment extends Fragment {
                         //  Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
 
 
-                        Intent i = new Intent(getActivity(), Insertintent.class);
+                        Intent i = new Intent(getActivity(), insertintent.class);
                         i.putExtra("bookname",jasonbook[position]);
                         i.putExtra("author",jasonauthor[position]);
                         i.putExtra("dept",jasondept[position]);

@@ -11,14 +11,20 @@
 
 
 
-    <EditText
+    <TextView
         android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:editable="false"
-
+        android:textColor="@color/primary_dark"
         android:text="Book Name"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -29,14 +35,20 @@
 
         android:layout_marginTop="10dp"/>
 
-    <EditText
+    <TextView
         android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-
+        android:textColor="@color/primary_dark"
         android:editable="false"
         android:text="Author Name"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -47,14 +59,21 @@
 
         android:layout_marginTop="10dp"/>
 
-    <EditText
+    <TextView
         android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-
+        android:textColor="@color/primary_dark"
         android:editable="false"
         android:text="Department"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -65,14 +84,20 @@
 
         android:layout_marginTop="10dp"/>
 
-    <EditText
+    <TextView
         android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-
+        android:textColor="@color/primary_dark"
         android:editable="false"
         android:text="Please select the semester and price"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark" />
 
 
     <LinearLayout
