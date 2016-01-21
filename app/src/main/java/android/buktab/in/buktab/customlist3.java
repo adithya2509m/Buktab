@@ -93,11 +93,11 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         Button delete=(Button) view.findViewById(R.id.delete);
         Button manage=(Button)view.findViewById(R.id.update);
 
-        b.setText(books.get(position));
-        a.setText(sems.get(position));
-        p.setText(prices.get(position));
-        dep.setText(dept.get(position));
-        au.setText(authors.get(position));
+        b.setText(books.get(position).trim());
+        a.setText(sems.get(position).trim());
+        p.setText(prices.get(position).trim());
+        dep.setText(dept.get(position).trim());
+        au.setText(authors.get(position).trim());
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override

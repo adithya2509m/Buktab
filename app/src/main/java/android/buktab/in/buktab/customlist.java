@@ -45,9 +45,9 @@ public class customlist extends ArrayAdapter<String> {
         //TextView au = (TextView) custom_list.findViewById(R.id.author);
 
 
-        b.setText(books[position]);
-        a.setText(authors[position]);
-        p.setText(depts[position]);
+        b.setText(books[position].trim());
+        a.setText(authors[position].trim());
+        p.setText(depts[position].trim());
        // au.setText(sems[position]);
 
 

@@ -47,9 +47,9 @@ public class insertintent extends AppCompatActivity {
          an=(TextView)findViewById(R.id.aname);
          dn=(TextView)findViewById(R.id.dept);
 
-        bn.setText(getIntent().getExtras().getString("bookname"));
-        an.setText(getIntent().getExtras().getString("author"));
-        dn.setText(getIntent().getExtras().getString("dept"));
+        bn.setText(getIntent().getExtras().getString("bookname").trim());
+        an.setText(getIntent().getExtras().getString("author").trim());
+        dn.setText(getIntent().getExtras().getString("dept").trim());
 
         price=(EditText)findViewById(R.id.price);
         spinner=(Spinner)findViewById(R.id.sem_spinner);

@@ -67,7 +67,7 @@
                 android:gravity="center"
                 android:textSize="24dp"
                 android:text="blah"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 />
         </LinearLayout>
 
