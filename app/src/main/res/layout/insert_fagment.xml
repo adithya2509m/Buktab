@@ -97,6 +97,7 @@
 
             <ListView
                 android:paddingTop="15dp"
+
                 android:id="@+id/resultlist"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
