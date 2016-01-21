@@ -44,6 +44,7 @@ public class SearchFragment extends Fragment {
     ListView resultlist ;
     int count =0,pos=0,objectcount;
     View rootView;
+    private jasonsearch searchquery;
 
     android.support.design.widget.FloatingActionButton filter;
 
@@ -86,7 +87,10 @@ public class SearchFragment extends Fragment {
                     startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
                     if (cd.isConnectingToInternet()) {
-                        new jasonsearch().execute();
+
+                        searchquery= new jasonsearch();
+                        searchquery.execute();
+
                     } else {
                         Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
                     }
@@ -444,6 +448,14 @@ public class SearchFragment extends Fragment {
 
                         JSONArray jsonArray=jsonobject.getJSONArray("result");objectcount=jsonArray.length();
                         int len=jsonArray.length();
+                        jasonbook.clear();
+                        jasonauthor.clear();
+                        jasonsem.clear();
+                        jasonprice.clear();
+                        jsondept.clear();
+                        jsonmail.clear();
+                        jsonph.clear();
+                        jsonname.clear();
 
                         for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
