@@ -195,7 +195,7 @@ RelativeLayout top;
                 seminc.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(sposition !=items.length){
+                        if(sposition !=items.length-1){
                             sposition++;
                             dropdownsem.setSelection(sposition);
 
@@ -230,7 +230,7 @@ RelativeLayout top;
                 deptinc.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(dposition !=items1.length){
+                        if(dposition !=items1.length-1){
                             dposition++;
                             dropdowndept.setSelection(dposition);
 
