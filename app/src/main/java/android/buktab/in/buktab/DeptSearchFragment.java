@@ -97,9 +97,9 @@ public class DeptSearchFragment  extends Fragment {
                         if(jsonobject!=null){
 
                             String result=jsonobject.getString("success");
-                            String message=jsonobject.getString("message");
+                           // String message=jsonobject.getString("message");
 
-                            if(result.equals("true")&& !message.equals("No Books match your Search Condition"))
+                            if(result.equals("true"))
                             {
 
 
@@ -134,7 +134,7 @@ public class DeptSearchFragment  extends Fragment {
                                 Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                                 top.setVisibility(View.VISIBLE);
                                 TextView m=(TextView)rootView.findViewById(R.id.message);
-                                m.setText(message);
+                                //m.setText(message);
                             }
 
 
@@ -239,9 +239,9 @@ public class DeptSearchFragment  extends Fragment {
                         if(jsonobject!=null){
 
                             String result=jsonobject.getString("success");
-                            String message=jsonobject.getString("message");
+                            //String message=jsonobject.getString("message");
 
-                            if(result.equals("true")&& !message.equals("No Books match your Search Condition"))
+                            if(result.equals("true"))
                             {
 
 
@@ -276,7 +276,7 @@ public class DeptSearchFragment  extends Fragment {
                                 Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                                 top.setVisibility(View.VISIBLE);
                                 TextView m=(TextView)rootView.findViewById(R.id.message);
-                                m.setText(message);
+                                //m.setText(message);
                             }
 
 
