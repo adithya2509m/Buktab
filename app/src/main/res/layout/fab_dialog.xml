@@ -2,31 +2,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dialogbg"
+    android:background="#ffffff"
     android:layout_margin="20dp"
 
 
     xmlns:float="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:editable="false"
+        android:textColor="@color/primary_dark"
+        android:text="Filter Search Result"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginTop="20dp"
+
+
+    >
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="28dp"
+        android:background="@drawable/increase"
+        android:id="@+id/semdec"/>
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="111dp"
         android:layout_height="wrap_content"
-
         android:id="@+id/semdrop"
 
         />
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="28dp"
+        android:id="@+id/seminc"
+        android:background="@drawable/decrease"/>
+</LinearLayout>
 
-    <Spinner
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:background="@drawable/increase"
+            android:id="@+id/deptdec"
+            />
+    <Spinner
+
+        android:layout_width="111dp"
         android:layout_height="wrap_content"
 
         android:id="@+id/deptdrop"
 
         />
+
     <Button
+        android:layout_width="50dp"
+        android:layout_height="28dp"
+        android:id="@+id/deptinc"
+        android:background="@drawable/decrease"/>
+</LinearLayout>
+    <Button
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:id="@+id/filter"
+        android:textColor="#ffffff"
+        android:background="@color/primary_dark"
         android:layout_height="wrap_content"
         android:text="filter"/>
 

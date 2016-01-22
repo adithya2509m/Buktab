@@ -2,6 +2,7 @@ package android.buktab.in.buktab;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -49,6 +50,7 @@ public class SearchFragment extends Fragment {
     int count =0,pos=0,objectcount,no=0;
     View rootView;
     private jasonsearch searchquery;
+    int sposition =0,dposition=0;
 
     android.support.design.widget.FloatingActionButton filter;
 
@@ -152,6 +154,9 @@ RelativeLayout top;
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                top.setVisibility(View.VISIBLE);
+                TextView m=(TextView)rootView.findViewById(R.id.message);
+                m.setText("");
 
 
                 final Dialog dialog = new Dialog(getActivity(), R.style.NewDialog);
@@ -159,20 +164,79 @@ RelativeLayout top;
                 dialog.setContentView(R.layout.fab_dialog);
                 // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.setTitle("Filter");
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        top.setVisibility(View.INVISIBLE);
+                    }
+                });
 
 
                 final Spinner dropdownsem = (Spinner) dialog.findViewById(R.id.semdrop);
-                String[] items = getResources().getStringArray(R.array.sem_array);
+                final String[] items = getResources().getStringArray(R.array.sem_array);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items);
                 dropdownsem.setAdapter(adapter);
 
 
                 final Spinner dropdowndept = (Spinner) dialog.findViewById(R.id.deptdrop);
-                String[] items1 = getResources().getStringArray(R.array.dept_array);
+                final String[] items1 = getResources().getStringArray(R.array.dept_array);
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items1);
                 dropdowndept.setAdapter(adapter1);
 
                 dialog.show();
+
+                Button seminc=(Button)dialog.findViewById(R.id.seminc);
+                Button semdec=(Button)dialog.findViewById(R.id.semdec);
+                Button deptinc=(Button)dialog.findViewById(R.id.deptinc);
+                Button deptdec=(Button)dialog.findViewById(R.id.deptdec);
+
+                sposition=0;
+                dposition=0;
+                seminc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(sposition !=items.length){
+                            sposition++;
+                            dropdownsem.setSelection(sposition);
+
+                        }
+
+                    }
+                });
+
+                semdec.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(sposition !=0){
+                            sposition--;
+                            dropdownsem.setSelection(sposition);
+
+                        }
+                    }
+                });
+
+                deptdec.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(dposition !=0){
+                            dposition--;
+                            dropdowndept.setSelection(dposition);
+
+                        }
+
+                    }
+                });
+
+                deptinc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(dposition !=items1.length){
+                            dposition++;
+                            dropdowndept.setSelection(dposition);
+
+                        }
+                    }
+                });
 
                 Button fil = (Button) dialog.findViewById(R.id.filter);
 
@@ -373,6 +437,7 @@ RelativeLayout top;
                         if (check == 0) {
                             stopAnim();
                             dialog.dismiss();
+                            top.setVisibility(View.INVISIBLE);
                         } else {
 
 
@@ -381,6 +446,7 @@ RelativeLayout top;
                             resultlist.setAdapter(EventList);
 
                             dialog.dismiss();
+                            top.setVisibility(View.INVISIBLE);
 
                             resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
