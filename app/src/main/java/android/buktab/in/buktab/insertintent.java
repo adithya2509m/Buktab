@@ -118,7 +118,7 @@ public class insertintent extends AppCompatActivity {
 
                     if (price.getText().toString().length() == 0) {
                         price.setError("Set Price");
-                    } else if (sem.length() == 0) {
+                    } else if (sem.equals("Sem")) {
 
                         Toast.makeText(insertintent.this, "Select Sem", Toast.LENGTH_LONG).show();
                     } else {
