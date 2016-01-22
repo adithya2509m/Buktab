@@ -118,6 +118,9 @@ RelativeLayout draw;
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1),true,"" + Splash.bookcount));
         // Photos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+
         // Communities, Will add a counter here
        /* navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
         // Pages
@@ -208,7 +211,7 @@ RelativeLayout draw;
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayView(99);
+                displayView(2);
 
             }
         });
@@ -325,9 +328,9 @@ RelativeLayout draw;
                 title.setText(navMenuTitles[position]);
                 mDrawerLayout.closeDrawer(draw);
             }else{
-                mDrawerList.setItemChecked(1, true);
-                mDrawerList.setSelection(1);
-                setTitle(navMenuTitles[1]);
+                mDrawerList.setItemChecked(2, true);
+                mDrawerList.setSelection(2);
+                setTitle(navMenuTitles[2]);
                 title.setText("Add Book");
                 mDrawerLayout.closeDrawer(draw);
 

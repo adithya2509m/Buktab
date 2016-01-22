@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
  * Created by root on 9/8/15.
  */
 public class InsertFragment extends Fragment {
-
+    RelativeLayout top;
     EditText search ,price;
    // Button searchbutton;
     ListView resultlist ;
@@ -59,7 +61,9 @@ public class InsertFragment extends Fragment {
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
 
 
+        top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
+        isFirstTime();
        search.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -233,6 +237,35 @@ public class InsertFragment extends Fragment {
 
 
 
+    public boolean isFirstTime()
+    {
+
+
+
+        top.setVisibility(View.VISIBLE);
+        top.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                top.setVisibility(View.INVISIBLE);
+                return false;
+            }
+
+        });
+        search.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                top.setVisibility(View.INVISIBLE);
+
+                return false;
+            }
+        });
+
+
+        return true;
+
+
+    }
 
 
 

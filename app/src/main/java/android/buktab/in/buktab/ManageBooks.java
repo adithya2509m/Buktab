@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -48,7 +49,7 @@ public class ManageBooks extends Fragment {
 RelativeLayout top;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.manage_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.manage_fragment, container, false);
         jasonauthor = new ArrayList<String>();
         jasonbook = new ArrayList<String>();
         jasonsem = new ArrayList<String>();
@@ -111,6 +112,8 @@ RelativeLayout top;
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new InsertFragment()).commit();
 
+
+
             }});
 
 
@@ -157,5 +160,7 @@ if(Splash.bookcount==0) {
 
 
     }
+
+
 
     }
