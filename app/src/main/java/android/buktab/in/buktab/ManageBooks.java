@@ -111,6 +111,7 @@ RelativeLayout top;
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new InsertFragment()).commit();
+                MainMenu.title.setText("Post Ads");
 
 
 

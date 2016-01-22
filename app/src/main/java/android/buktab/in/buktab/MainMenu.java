@@ -61,7 +61,7 @@ RelativeLayout draw;
     // slide menu items
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
-    TextView title;
+    static  TextView title;
 
 
      static ArrayList<NavDrawerItem> navDrawerItems;
@@ -418,4 +418,7 @@ RelativeLayout draw;
         float density = getApplicationContext().getResources().getDisplayMetrics().density;
         return Math.round((float)dp * density);
     }
+
+
+
 }
