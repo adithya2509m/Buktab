@@ -45,7 +45,7 @@ public class insertintent extends AppCompatActivity {
     String sem,id;
     TextView bn,an,dn;
     String posturl="http://52.10.251.227:3000/postBook";
-
+    double latitude = 10,longitude=10;
 
     @Override
     protected void onPause() {
@@ -68,12 +68,23 @@ public class insertintent extends AppCompatActivity {
         TextView uname=(TextView)findViewById(R.id.uname);
         uname.setText(Login.username);
 
+        if(gps.canGetLocation()) {
+
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
+        }else{
+
+            gps.showSettingsAlert();
+        }
+
+
+
         bn.setText(getIntent().getExtras().getString("bookname").trim());
         an.setText(getIntent().getExtras().getString("author").trim());
         dn.setText(getIntent().getExtras().getString("dept").trim());
 
-        ImageView uicon=(ImageView)findViewById(R.id.uicon);
-        scaleImage(uicon, 125);
+        //ImageView uicon=(ImageView)findViewById(R.id.uicon);
+        //scaleImage(uicon, 125);
 
         price=(EditText)findViewById(R.id.price);
         spinner=(Spinner)findViewById(R.id.sem_spinner);
@@ -160,15 +171,8 @@ public class insertintent extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... args){
 
-            double latitude = 10,longitude=10;
-            if(gps.canGetLocation()) {
 
-                latitude = gps.getLatitude();
-                longitude = gps.getLongitude();
-            }else{
 
-                gps.showSettingsAlert();
-            }
 
             JSONObject jsonobject;
             final JSONParser jParser2 = new JSONParser();

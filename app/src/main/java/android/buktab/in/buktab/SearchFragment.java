@@ -3,6 +3,7 @@ package android.buktab.in.buktab;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +55,7 @@ public class SearchFragment extends Fragment {
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
 
 
-
+RelativeLayout top;
 
 
     String searchurl="http://52.10.251.227:3000/getAds/byName/";
@@ -61,6 +64,8 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
          rootView = inflater.inflate(R.layout.search_fagment, container, false);
         search = (EditText) rootView.findViewById(R.id.search);
+
+        top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
         jasonbook= new ArrayList<String>();
         jasonauthor= new ArrayList<String>();
@@ -74,9 +79,12 @@ public class SearchFragment extends Fragment {
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
         filter=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
+        isFirstTime();
 
         resultlist.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int mLastFirstVisibleItem;
+
+
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -473,12 +481,14 @@ public class SearchFragment extends Fragment {
                 if(jsonobject!=null){
 
                     String result=jsonobject.getString("success");
+                    String message=jsonobject.getString("message");
 
-                    if(result.equals("true"))
+                    if(result.equals("true")&& !message.equals("No Books match your Search Condition"))
                     {
 
 
-                        JSONArray jsonArray=jsonobject.getJSONArray("result");objectcount=jsonArray.length();
+                        JSONArray jsonArray=jsonobject.getJSONArray("result");
+                        objectcount=jsonArray.length();
                         int len=jsonArray.length();
                         jasonbook.clear();
                         jasonauthor.clear();
@@ -506,6 +516,7 @@ public class SearchFragment extends Fragment {
 
                     else{
                         no=1;
+                        return false;
                        // Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                     }
 
@@ -533,9 +544,15 @@ public class SearchFragment extends Fragment {
            // nDialog.dismiss();
             if(!th){
                 if(no==0)
+
                 Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
-                else
+                else {
+                    stopAnim();
                     Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                    top.setVisibility(View.VISIBLE);
+                    TextView m=(TextView)rootView.findViewById(R.id.message);
+                    m.setText("No Books match your Search Condition");
+                }
             }else{
 
                 ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
@@ -577,7 +594,35 @@ public class SearchFragment extends Fragment {
 
 
 
+    public boolean isFirstTime()
+    {
 
+
+
+            top.setVisibility(View.VISIBLE);
+            top.setOnTouchListener(new View.OnTouchListener() {
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    top.setVisibility(View.INVISIBLE);
+                    return false;
+                }
+
+            });
+            search.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    top.setVisibility(View.INVISIBLE);
+
+                    return false;
+                }
+            });
+
+
+        return true;
+
+
+    }
 
 
 }

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_layout" >
+
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -63,8 +70,40 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="8dp"
+
             >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#88666666"
+                android:id="@+id/top_layout"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Search for Books by name, author or publisher "
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:id="@+id/message"
+                    />
+                <!--
+
+                <ImageView
+                    android:id="@+id/ivInstruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingTop="25dp"
+                    android:layout_marginRight="15dp"
+                    android:clickable="false"
+                    android:paddingLeft="20dip"
+                    android:scaleType="center"
+                    android:src="@drawable/pointing-arrow-703750" />
+        -->
+            </RelativeLayout>
 
             <com.wang.avi.AVLoadingIndicatorView
                 android:id="@+id/avloadingIndicatorView"
@@ -108,3 +147,5 @@
     </LinearLayout>
 
     </LinearLayout>
+
+    </FrameLayout>

@@ -200,7 +200,7 @@ RelativeLayout draw;
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
         TextView uname=(TextView)findViewById(R.id.uname);
          bcnt=(TextView)findViewById(R.id.bookcount);
-        ImageView uicon=(ImageView)findViewById(R.id.uicon);
+       // ImageView uicon=(ImageView)findViewById(R.id.uicon);
         Button add=(Button)findViewById(R.id.addbook);
 
 
@@ -213,7 +213,7 @@ RelativeLayout draw;
             }
         });
 
-        scaleImage(uicon, 125);
+        //scaleImage(uicon, 125);
 
         setSupportActionBar(mToolbar);
        // getSupportActionBar().setHomeButtonEnabled(true);

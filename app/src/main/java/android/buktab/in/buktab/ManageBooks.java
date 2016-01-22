@@ -10,12 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -43,7 +45,7 @@ public class ManageBooks extends Fragment {
     String url="http://52.10.251.227:3000/manageBooks";
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid;
     android.support.design.widget.FloatingActionButton add;
-
+RelativeLayout top;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.manage_fragment, container, false);
@@ -67,6 +69,9 @@ public class ManageBooks extends Fragment {
         lay = (ListView)rootView.findViewById(R.id.list);
 
         add=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
+
+        top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
+        isFirstTime();
 
         lay.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int mLastFirstVisibleItem;
@@ -117,5 +122,40 @@ public class ManageBooks extends Fragment {
 
         }
 
+
+    public boolean isFirstTime()
+    {
+
+if(Splash.bookcount==0) {
+
+    top.setVisibility(View.VISIBLE);
+}
+        else{
+    top.setVisibility(View.INVISIBLE);
+
+}
+        top.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                top.setVisibility(View.INVISIBLE);
+                return false;
+            }
+
+        });
+        add.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                top.setVisibility(View.INVISIBLE);
+
+                return false;
+            }
+        });
+
+
+        return true;
+
+
+    }
 
     }

@@ -41,11 +41,12 @@
                     android:id="@+id/deptsearch"
                     android:layout_width="150dp"
 
-                    android:layout_height="40dp"
+
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:background="#80ffffff"
                     android:layout_margin="10dp"
-
+                    style="@style/spinnerStyle"
 
 
                     />
@@ -54,11 +55,11 @@
                     android:id="@+id/semsearch"
                     android:layout_width="150dp"
 
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:background="#80ffffff"
                     android:layout_margin="10dp"
-
+                    android:padding="5dp"
 
 
                     />
@@ -76,8 +77,38 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="8dp"
+
             >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#88666666"
+                android:id="@+id/top_layout"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Enter Depatment and sem to get all books available"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:id="@+id/message"
+                    />
+                <!--
+
+                <ImageView
+                    android:id="@+id/ivInstruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingTop="25dp"
+                    android:layout_marginRight="15dp"
+                    android:clickable="false"
+                    android:paddingLeft="20dip"
+                    android:scaleType="center"
+                    android:src="@drawable/pointing-arrow-703750" />
+        -->
+            </RelativeLayout>
 
 
             <com.wang.avi.AVLoadingIndicatorView

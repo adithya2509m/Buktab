@@ -63,8 +63,8 @@ public class InsertFragment extends Fragment {
        search.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                if(count<3){
-                    count++;
+                if(search.getText().length() < 3){
+
 
                 }
                 else{

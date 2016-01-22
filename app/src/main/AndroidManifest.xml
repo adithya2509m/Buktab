@@ -30,7 +30,9 @@
     android:windowSoftInputMode="adjustPan"
     />
         <activity android:name=".Register"/>
-        <activity android:name=".Searchintent"/>
+        <activity android:name=".Searchintent">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainMenu"/>
+        </activity>
 
 
 </application>

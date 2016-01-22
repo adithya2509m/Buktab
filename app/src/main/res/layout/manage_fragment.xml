@@ -10,13 +10,46 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="8dp"
+
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#88666666"
+            android:id="@+id/top_layout"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="You dont have any Bokks yet.add by clicking on the +"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                />
+
+
+            <ImageView
+                android:id="@+id/ivInstruction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:paddingTop="25dp"
+                android:layout_marginRight="15dp"
+                android:clickable="false"
+                android:paddingLeft="20dip"
+                android:scaleType="center"
+                android:src="@drawable/pointingarrow703750" />
+
+        </RelativeLayout>
+
 
         <ListView
             android:focusable="false"
             android:id="@+id/list"
+            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
