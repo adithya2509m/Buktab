@@ -128,7 +128,7 @@ public class InsertFragment extends Fragment {
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();*/
-            Toast.makeText(getActivity().getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(getActivity().getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
         }
 
         @Override

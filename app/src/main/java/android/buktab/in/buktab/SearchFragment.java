@@ -385,7 +385,7 @@ RelativeLayout top;
                             resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                                    Toast.makeText(getActivity().getApplicationContext(), "Heloo", Toast.LENGTH_SHORT).show();
+                                 //   Toast.makeText(getActivity().getApplicationContext(), "Heloo", Toast.LENGTH_SHORT).show();
                                     final Dialog dialog1 = new Dialog(getActivity(), R.style.NewDialog);
 
                                     dialog1.setContentView(R.layout.search_dialog);
@@ -462,7 +462,7 @@ RelativeLayout top;
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
             nDialog.show();*/
-            Toast.makeText(getActivity().getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(getActivity().getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -548,7 +548,7 @@ RelativeLayout top;
                 Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
                 else {
                     stopAnim();
-                    Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                 //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                     top.setVisibility(View.VISIBLE);
                     TextView m=(TextView)rootView.findViewById(R.id.message);
                     m.setText("No Books match your Search Condition");
@@ -563,7 +563,7 @@ RelativeLayout top;
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                        Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
 
 
                         Intent i=new Intent(getActivity(),Searchintent.class);

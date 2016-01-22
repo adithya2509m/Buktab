@@ -131,7 +131,7 @@ public class DeptSearchFragment  extends Fragment {
 
                             else{
                                 stopAnim();
-                                Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                                 top.setVisibility(View.VISIBLE);
                                 TextView m=(TextView)rootView.findViewById(R.id.message);
                                 //m.setText(message);
@@ -162,7 +162,7 @@ public class DeptSearchFragment  extends Fragment {
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                            Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
 
 
                             Intent i=new Intent(getActivity(),Searchintent.class);
@@ -253,7 +253,7 @@ public class DeptSearchFragment  extends Fragment {
 
                             else{
                                 stopAnim();
-                                Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                                 top.setVisibility(View.VISIBLE);
                                 TextView m=(TextView)rootView.findViewById(R.id.message);
                                 //m.setText(message);
@@ -284,7 +284,7 @@ public class DeptSearchFragment  extends Fragment {
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                            Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
+                         //  Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
 
 
                             Intent i=new Intent(getActivity(),Searchintent.class);

@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             @Override public void onAnimationEnd(int nextItemPosition) {
-                Toast.makeText(MainActivity.this,"hello",Toast.LENGTH_LONG);
+             //   Toast.makeText(MainActivity.this,"hello",Toast.LENGTH_LONG);
             }
         });
 
