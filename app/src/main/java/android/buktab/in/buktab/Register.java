@@ -58,17 +58,18 @@ public class Register extends AppCompatActivity {
 
                                                 if (!hasFocus) {
 
-                                                    if (Runame.getText().equals("")) {
+                                                    if (Runame.getText().toString().equals("")) {
                                                         Runame.setError("Please enter username");
 
-                                                    } else {
+                                                    } else if (Runame.getText().length() < 4){
 
-                                                        if (Runame.getText().length() < 4) {
+
 
                                                             Runame.setError("Username should have more than 4 characters");
 
 
                                                         }
+                                                    else{
 
                                                         final ConnectionDetector cd = new ConnectionDetector(Register.this);
                                                         if (cd.isConnectingToInternet()) {
