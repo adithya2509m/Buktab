@@ -71,7 +71,7 @@ RelativeLayout draw;
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
-    static TextView bcnt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,20 +201,9 @@ RelativeLayout draw;
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
-        TextView uname=(TextView)findViewById(R.id.uname);
-         bcnt=(TextView)findViewById(R.id.bookcount);
-       // ImageView uicon=(ImageView)findViewById(R.id.uicon);
-        Button add=(Button)findViewById(R.id.addbook);
 
 
-        bcnt.setText("" + Splash.bookcount);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayView(2);
 
-            }
-        });
 
         //scaleImage(uicon, 125);
 
@@ -224,7 +213,7 @@ RelativeLayout draw;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mToolBarTextView.setText("Buktab");
-        uname.setText(Login.username);
+
     }
 
     @Override

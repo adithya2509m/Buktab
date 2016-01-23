@@ -23,9 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Created by Arunkumar on 1/21/2016.
  */
-public class insertintent extends AppCompatActivity {
+public class ManageIntent extends AppCompatActivity {
 
     GPSTracker gps;
 
@@ -44,7 +44,7 @@ public class insertintent extends AppCompatActivity {
     Spinner spinner;
     String sem,id;
     TextView bn,an,dn;
-    String posturl="http://52.10.251.227:3000/postBook";
+    String posturl="http://52.10.251.227:3000/update";
     double latitude = 10,longitude=10;
 
     @Override
@@ -60,7 +60,7 @@ public class insertintent extends AppCompatActivity {
 
         Toolbar mtoolbar =(Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(mtoolbar);
-        gps = new GPSTracker(insertintent.this);
+        gps = new GPSTracker(ManageIntent.this);
          id=getIntent().getExtras().getString("id");
          bn=(TextView)findViewById(R.id.bname);
          an=(TextView)findViewById(R.id.aname);
@@ -88,12 +88,14 @@ public class insertintent extends AppCompatActivity {
         price=(EditText)findViewById(R.id.price);
         spinner=(Spinner)findViewById(R.id.sem_spinner);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(insertintent.this,
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ManageIntent.this,
                 R.array.sem_array, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
+        spinner.setSelection(Integer.parseInt(getIntent().getExtras().getString("sem").toString()));
+        price.setText(getIntent().getExtras().getString("price").toString());
 
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -107,25 +109,26 @@ public class insertintent extends AppCompatActivity {
 
 
         Button insert=(Button)findViewById(R.id.insert);
+        insert.setText("Update");
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ConnectionDetector cd = new ConnectionDetector(insertintent.this);
+                ConnectionDetector cd = new ConnectionDetector(ManageIntent.this);
                 if (cd.isConnectingToInternet()) {
 
                     if (price.getText().toString().length() == 0) {
                         price.setError("Set Price");
                     } else if (sem.equals("Sem")) {
 
-                        Toast.makeText(insertintent.this, "Select Sem", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ManageIntent.this, "Select Sem", Toast.LENGTH_LONG).show();
                     } else {
 
                         new Insert().execute();
                     }
                 } else {
-                    Toast.makeText(insertintent.this, "No Internet Connection", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ManageIntent.this, "No Internet Connection", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -179,7 +182,7 @@ public class insertintent extends AppCompatActivity {
             params2.add(new BasicNameValuePair("price", price.getText().toString()));
             params2.add(new BasicNameValuePair("sem",sem));
 
-            params2.add(new BasicNameValuePair("bookid",id));
+            params2.add(new BasicNameValuePair("id",id));
             params2.add(new BasicNameValuePair("lat", String.valueOf(latitude)));
             params2.add(new BasicNameValuePair("long", String.valueOf(longitude)));
 
@@ -194,17 +197,26 @@ public class insertintent extends AppCompatActivity {
 
                     if(result.equals("true"))
                     {
+                        int pos=getIntent().getExtras().getInt("position");
+                        Splash.jasonbook.remove(pos);
+                        Splash.jasonauthor.remove(pos);
+                        Splash.jasonsem.remove(pos);
+                        Splash.jasonprice.remove(pos);
+                        Splash.jsondept.remove(pos);
+                        //Splash.jsonid.remove(pos);
+
+
                         Splash.jasonbook.add(bn.getText().toString());
                         Splash.jasonauthor.add(an.getText().toString());
                         Splash.jasonsem.add(sem);
                         Splash.jasonprice.add(price.getText().toString());
                         Splash.jsondept.add(dn.getText().toString());
-                        Splash.jsonid.add(jsonobject.getJSONObject("post").getString("_id"));
-                        return true;
+                        //Splash.jsonid.add(jsonobject.getJSONObject("post").getString("_id"));
+                        return false;
                     }
 
                     else{
-                        return false;
+                        return true;
                     }
 
 
@@ -230,16 +242,16 @@ public class insertintent extends AppCompatActivity {
             // nDialog.dismiss();
             if(!th){
 
-                Toast.makeText(insertintent.this, "Insert Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(ManageIntent.this, "Updated Successful", Toast.LENGTH_LONG).show();
 
-            }else{
 
-                Toast.makeText(insertintent.this, "Insert Successful", Toast.LENGTH_LONG).show();
-                Splash.bookcount++;
-
-                Intent i=new Intent(insertintent.this,MainMenu.class);
+                Intent i=new Intent(ManageIntent.this,MainMenu.class);
                 MainMenu.man=1;
                 startActivity(i);
+
+            }else{
+                Toast.makeText(ManageIntent.this, "Update Failed", Toast.LENGTH_LONG).show();
+
             }
 
 

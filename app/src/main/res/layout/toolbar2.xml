@@ -9,7 +9,8 @@
     android:background="?attr/colorPrimary">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 <!--
     <android.buktab.in.buktab.RoundImage
         android:layout_width="50dp"
@@ -20,31 +21,26 @@
     -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="2"
-        android:paddingLeft="10dp">
+        android:paddingLeft="10dp"
+        android:gravity="center"
+        android:layout_gravity="center">
 
     <TextView
         android:id="@+id/text_view_toolbar_title"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
+        android:layout_gravity="center"
         android:layout_height="match_parent"
         android:textColor="@color/textColorPrimary"
         android:text="Post Ad"
+
         android:textStyle="bold"
         android:textSize="@dimen/tool_bar_text_size"
-        android:gravity="left" />
-        <TextView
-            android:id="@+id/uname"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/textColorSecondary"
-            android:text="Addy"
-            android:paddingLeft="9dp"
-            android:textSize="14dp"
-            android:gravity="left" />
+        android:gravity="center_vertical" />
+
     </LinearLayout>
 
 

@@ -20,7 +20,7 @@
    -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="2"
         android:paddingLeft="10dp">
@@ -35,62 +35,7 @@
         android:text="Buktab"
         android:textStyle="bold"
         android:textSize="@dimen/tool_bar_text_size"
-        android:gravity="left" />
-        <TextView
-            android:id="@+id/uname"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/textColorSecondary"
-            android:text="Addy"
-            android:paddingLeft="9dp"
-            android:textSize="14dp"
-            android:gravity="left" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_weight="4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textColorPrimary"
-            android:gravity="center"
-            android:text="Your Books"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:id="@+id/bookcount"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:text="2"
-                android:textColor="@color/textColorPrimary"
-                android:background="@drawable/ovalbg"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/circlebg"
-                android:text="+"
-                android:id="@+id/addbook"
-                android:textSize="10dp"/>
-        </LinearLayout>
+        android:gravity="center_vertical" />
 
     </LinearLayout>
 

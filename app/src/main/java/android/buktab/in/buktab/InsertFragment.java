@@ -172,6 +172,7 @@ public class InsertFragment extends Fragment {
 
                     else{
                         no=1;
+                        return false;
                       //  Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                     }
 
@@ -200,9 +201,13 @@ public class InsertFragment extends Fragment {
 
                 if(no==0)
                 Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
-
+                else {
+                    //Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                    stopAnim();
+                    top.setVisibility(View.VISIBLE);
+                    TextView m=(TextView)rootView.findViewById(R.id.message);
+                    m.setText("No Such Book");
+                }
             }else{
 
                 ListAdapter EventList= new customlist(getActivity(),jasonbook,jasondept,jasonauthor,jasonprice);

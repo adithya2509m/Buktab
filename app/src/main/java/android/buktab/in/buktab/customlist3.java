@@ -3,6 +3,7 @@ package android.buktab.in.buktab;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -103,7 +104,7 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG).show();
+               // Toast.makeText(context, "delete " + position, Toast.LENGTH_LONG).show();
 
                      pos=position;
 
@@ -127,7 +128,18 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "manage " + position, Toast.LENGTH_LONG).show();
+
+
+                Intent i = new Intent(context, ManageIntent.class);
+                i.putExtra("bookname",books.get(position));
+                i.putExtra("author",authors.get(position));
+                i.putExtra("dept",dept.get(position));
+                i.putExtra("id",id.get(position));
+                i.putExtra("price",prices.get(position));
+                i.putExtra("sem",sems.get(position));
+                i.putExtra("position",position);
+                context.startActivity(i);
+              //  Toast.makeText(context, "manage " + position, Toast.LENGTH_LONG).show();
                 //notifyDataSetChanged();
             }
         });
@@ -145,13 +157,13 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            nDialog = new ProgressDialog(context);
+         /*   nDialog = new ProgressDialog(context);
             nDialog.setTitle("Fetching data from server");
             nDialog.setMessage("Please Wait..");
             nDialog.setIndeterminate(false);
             nDialog.setCancelable(true);
-            nDialog.show();
-            Toast.makeText(context.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+            nDialog.show();*/
+          //  Toast.makeText(context.getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -218,7 +230,7 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
                 nDialog.dismiss();}
                 else{
                     Toast.makeText(context, "Success failed", Toast.LENGTH_LONG).show();
-                    nDialog.dismiss();
+                 //   nDialog.dismiss();
 
                 }
 
@@ -226,10 +238,10 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
                 notifyDataSetChanged();
                 Toast.makeText(context, "Delete Successful", Toast.LENGTH_LONG).show();
 
-                nDialog.dismiss();
+              //  nDialog.dismiss();
 
                 Splash.bookcount--;
-                MainMenu.bcnt.setText("" + Splash.bookcount);
+
                 MainMenu.navDrawerItems.get(1).setCount("" + Splash.bookcount);
             }
         }

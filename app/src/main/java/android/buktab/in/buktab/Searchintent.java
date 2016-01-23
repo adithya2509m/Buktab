@@ -80,8 +80,7 @@ public class Searchintent extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         TextView title =(TextView)findViewById(R.id.text_view_toolbar_title);
         title.setText("Ad Details");
-        TextView uname=(TextView)findViewById(R.id.uname);
-        uname.setText(Login.username);
+
 
     }
 

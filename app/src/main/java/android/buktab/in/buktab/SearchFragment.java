@@ -120,7 +120,7 @@ RelativeLayout top;
        search.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-
+                    top.setVisibility(View.INVISIBLE);
 
                     if (search.getText().length() < 3) {
 
@@ -547,9 +547,9 @@ RelativeLayout top;
                 if(jsonobject!=null){
 
                     String result=jsonobject.getString("success");
-                    String message=jsonobject.getString("message");
+                    //String message=jsonobject.getString("message");
 
-                    if(result.equals("true")&& !message.equals("No Books match your Search Condition"))
+                    if(result.equals("true"))
                     {
 
 
