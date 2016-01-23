@@ -126,7 +126,7 @@ public class Register extends AppCompatActivity {
 
                 if (!hasFocus) {
 
-                    if(Rpword.getText().equals("")){
+                    if(Rpword.getText().toString().equals("")){
 
                         Rpword.setError("Please enter password");
 
@@ -144,7 +144,7 @@ public class Register extends AppCompatActivity {
 
                 if (!hasFocus) {
 
-                    if (Remail.getText().equals("")) {
+                    if (Remail.getText().toString().equals("")) {
 
                         Remail.setError("Please enter emailid");
 
@@ -168,17 +168,18 @@ public class Register extends AppCompatActivity {
 
                 if (!hasFocus) {
 
-                    if (Rphone.getText().equals("")) {
+                    if (Rphone.getText().toString().equals("")) {
 
                         Rphone.setError("Please enter the phone number");
 
                     } else {
 
                         String MobilePattern = "[0-9]{10}";
+                        String inbuilt="^+91[0-9]{10}$";
 
-                        if (!Rphone.getText().toString().matches(MobilePattern)) {
+                        if (!Rphone.getText().toString().matches(MobilePattern)&&!Rphone.getText().toString().matches(inbuilt)) {
 
-                            Rphone.setError("Enter a valid phone number with 10 digits");
+                            Rphone.setError("Enter a valid phone number");
 
                         } else {
 
