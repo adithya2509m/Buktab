@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.buktab.in.buktab" >
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:screenOrientation="portrait" >
+         >
         <activity
             android:name=".Splash"
+            android:screenOrientation="portrait"
              >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,19 +26,25 @@
         </activity>
 
 
-        <activity android:name=".Login"/>
-        <activity android:name=".insertintent">
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".insertintent"
+            android:screenOrientation="portrait">
 
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainMenu"/>
         </activity>
 <activity android:name=".MainMenu"
     android:windowSoftInputMode="adjustPan"
+    android:screenOrientation="portrait"
     />
-        <activity android:name=".Register"/>
-        <activity android:name=".Searchintent">
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Searchintent"
+            android:screenOrientation="portrait">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainMenu"/>
         </activity>
-        <activity android:name=".ManageIntent">
+        <activity android:name=".ManageIntent"
+            android:screenOrientation="portrait">
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainMenu"/>
         </activity>
 

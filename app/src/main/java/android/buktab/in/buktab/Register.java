@@ -1,5 +1,7 @@
 package android.buktab.in.buktab;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -36,7 +39,14 @@ public class Register extends AppCompatActivity {
         final EditText Runame=(EditText) findViewById(R.id.Runame);
         final EditText Rpword=(EditText) findViewById(R.id.Rpword);
         final EditText Remail=(EditText) findViewById(R.id.Remail);
+
         final EditText Rphone=(EditText) findViewById(R.id.Rphone);
+
+        Remail.setText(getEmail(Register.this));
+
+        TelephonyManager tMgr = (TelephonyManager)Register.this.getSystemService(Context.TELEPHONY_SERVICE);
+        String mPhoneNumber = tMgr.getLine1Number();
+        Rphone.setText(mPhoneNumber);
 
         final CircularProgressButton circularButton2 = (CircularProgressButton) findViewById(R.id.circularButton2);
         circularButton2.setIndeterminateProgressMode(true);
@@ -339,5 +349,27 @@ public class Register extends AppCompatActivity {
             );
         }
 
+    static String getEmail(Context context) {
+        AccountManager accountManager = AccountManager.get(context);
+        Account account = getAccount(accountManager);
 
+        if (account == null) {
+            return null;
+        } else {
+
+            return account.name;
+
+        }
+    }
+
+    private static Account getAccount(AccountManager accountManager) {
+        Account[] accounts = accountManager.getAccountsByType("com.google");
+        Account account;
+        if (accounts.length > 0) {
+            account = accounts[0];
+        } else {
+            account = null;
+        }
+        return account;
+    }
     }
