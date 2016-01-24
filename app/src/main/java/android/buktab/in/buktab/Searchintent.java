@@ -34,7 +34,7 @@ public class Searchintent extends AppCompatActivity {
 
         bname=getIntent().getExtras().getString("book");
 
-        final TextView bookname,authorname,bookprice,oname,ophone,oemail;
+        final TextView bookname,authorname,bookprice,oname,ophone,oemail,pub;
 
         ImageButton call=(ImageButton)findViewById(R.id.call);
         ImageButton mail=(ImageButton)findViewById(R.id.mail);
@@ -44,6 +44,7 @@ public class Searchintent extends AppCompatActivity {
         oname=(TextView)findViewById(R.id.name);
         ophone=(TextView)findViewById(R.id.phone);
         oemail=(TextView)findViewById(R.id.email);
+        pub=(TextView)findViewById(R.id.pname);
 
         bookname.setText(getIntent().getExtras().getString("book").trim());
         authorname.setText(getIntent().getExtras().getString("author").trim());
@@ -51,6 +52,7 @@ public class Searchintent extends AppCompatActivity {
         oname.setText(getIntent().getExtras().getString("name").trim());
         ophone.setText(getIntent().getExtras().getString("phone").trim());
         oemail.setText(getIntent().getExtras().getString("email").trim());
+        pub.setText(getIntent().getExtras().getString("pub").trim());
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override

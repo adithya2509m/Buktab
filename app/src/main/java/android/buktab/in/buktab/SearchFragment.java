@@ -54,7 +54,7 @@ public class SearchFragment extends Fragment {
 
     android.support.design.widget.FloatingActionButton filter;
 
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub;
 
 
 RelativeLayout top;
@@ -77,6 +77,7 @@ RelativeLayout top;
         jsonph= new ArrayList<String>();
         jsonmail= new ArrayList<String>();
         jsondept= new ArrayList<String>();
+        jsonpub= new ArrayList<String>();
 
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
@@ -574,9 +575,11 @@ RelativeLayout top;
                             jasonsem.add(temp.getString("Semester"));
                             jasonprice.add(temp.getString("Price"));
                             jsondept.add(temp2.getString("Department"));
+                            jsonpub.add(temp2.getString("Publisher"));
                             jsonmail.add(temp3.getString("email"));
                             jsonph.add(temp3.getString("phoneNo"));
                             jsonname.add(temp3.getString("username"));
+
 
                         }}
 
@@ -641,6 +644,7 @@ RelativeLayout top;
                         i.putExtra("sem",jasonsem.get(position));
                         i.putExtra("dept",jsondept.get(position));
                         i.putExtra("price",jasonprice.get(position));
+                        i.putExtra("pub",jsonpub.get(position));
                         startActivity(i);
 
 
