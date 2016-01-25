@@ -38,7 +38,7 @@ public class DeptSearchFragment  extends Fragment {
     String url="http://52.10.251.227:3000/getAds/byDeptAndSem";
     ListView resultlist;
     String sem,dept;
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub;
     View rootView;
     RelativeLayout top;
 
@@ -53,6 +53,7 @@ public class DeptSearchFragment  extends Fragment {
         jsonph= new ArrayList<String>();
         jsonmail= new ArrayList<String>();
         jsondept= new ArrayList<String>();
+        jsonpub= new ArrayList<String>();
 
         top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
@@ -123,6 +124,7 @@ public class DeptSearchFragment  extends Fragment {
                                     jasonsem.add(temp.getString("Semester"));
                                     jasonprice.add(temp.getString("Price"));
                                     jsondept.add(temp2.getString("Department"));
+                                    jsonpub.add(temp2.getString("Publisher"));
                                     jsonmail.add(temp3.getString("email"));
                                     jsonph.add(temp3.getString("phoneNo"));
                                     jsonname.add(temp3.getString("username"));
@@ -174,6 +176,7 @@ public class DeptSearchFragment  extends Fragment {
                             i.putExtra("sem",jasonsem.get(position));
                             i.putExtra("dept",jsondept.get(position));
                             i.putExtra("price",jasonprice.get(position));
+                            i.putExtra("pub",jsonpub.get(position));
                             startActivity(i);
 
 
@@ -245,6 +248,7 @@ public class DeptSearchFragment  extends Fragment {
                                     jasonsem.add(temp.getString("Semester"));
                                     jasonprice.add(temp.getString("Price"));
                                     jsondept.add(temp2.getString("Department"));
+                                    jsonpub.add(temp2.getString("Publisher"));
                                     jsonmail.add(temp3.getString("email"));
                                     jsonph.add(temp3.getString("phoneNo"));
                                     jsonname.add(temp3.getString("username"));
@@ -296,6 +300,7 @@ public class DeptSearchFragment  extends Fragment {
                             i.putExtra("sem",jasonsem.get(position));
                             i.putExtra("dept",jsondept.get(position));
                             i.putExtra("price",jasonprice.get(position));
+                            i.putExtra("pub",jsonpub.get(position));
                             startActivity(i);
 
 
