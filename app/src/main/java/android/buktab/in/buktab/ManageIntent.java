@@ -43,7 +43,7 @@ public class ManageIntent extends AppCompatActivity {
     EditText price;
     Spinner spinner;
     String sem,id;
-    TextView bn,an,dn;
+    TextView bn,an,dn,rs;
     String posturl="http://52.10.251.227:3000/update";
     double latitude = 10,longitude=10;
 
@@ -66,8 +66,12 @@ public class ManageIntent extends AppCompatActivity {
          bn=(TextView)findViewById(R.id.bname);
          an=(TextView)findViewById(R.id.aname);
          dn=(TextView)findViewById(R.id.dept);
+
         EditText location=(EditText)findViewById(R.id.location);
         location.setVisibility(View.GONE);
+        rs=(TextView)findViewById(R.id.rs);
+        rs.setText("\u20B9");
+
 
 
         if(gps.canGetLocation()) {
