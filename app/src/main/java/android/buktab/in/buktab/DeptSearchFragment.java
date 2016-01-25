@@ -74,7 +74,62 @@ public class DeptSearchFragment  extends Fragment {
          sem = semsearch.getSelectedItem().toString();
          dept = deptsearch.getSelectedItem().toString();
 
-        isFirstTime();
+     //   isFirstTime();
+
+
+        ListAdapter EventList = new customlist2(getActivity(), Splash.resbook, Splash.ressem, Splash.resauthor, Splash.resprice, Splash.resdept);
+        top.setVisibility(View.INVISIBLE);
+        resultlist.setAdapter(EventList);
+
+
+
+
+        resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                //   Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
+
+
+                Intent i = new Intent(getActivity(), Searchintent.class);
+                i.putExtra("name", Splash.resname.get(position));
+                i.putExtra("phone", Splash.resphone.get(position));
+                i.putExtra("email", Splash.resemail.get(position));
+                i.putExtra("book", Splash.resbook.get(position));
+                i.putExtra("author", Splash.resauthor.get(position));
+                i.putExtra("sem", Splash.ressem.get(position));
+                i.putExtra("dept", Splash.resdept.get(position));
+                i.putExtra("price", Splash.resprice.get(position));
+                i.putExtra("pub", Splash.respub.get(position));
+                startActivity(i);    }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         deptsearch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {

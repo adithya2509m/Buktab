@@ -11,8 +11,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -27,8 +29,9 @@ import java.util.List;
 public class Splash extends Activity {
 
     /** Duration of wait **/
-    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid;
+    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid,resbook,resauthor,ressem,resprice,resdept,resid,respub,resphone,resname,resemail;
     String url="http://52.10.251.227:3000/manageBooks";
+    String resurl="http://52.10.251.227:3000/recent";
     String token;
     int log=0;
     static int  bookcount=0;
@@ -51,13 +54,23 @@ public class Splash extends Activity {
         jasonsem = new ArrayList<String>();
         jasonprice = new ArrayList<String>();
         jsondept = new ArrayList<String>();
-        jsonid=new ArrayList<String>();
+        jsonid = new ArrayList<String>();
+        resbook=new ArrayList<String>();
+        resauthor=new ArrayList<String>();
+        resdept=new ArrayList<String>();
+        ressem=new ArrayList<String>();
+        resprice=new ArrayList<String>();
+        respub=new ArrayList<String>();
+        resemail=new ArrayList<String>();
+        resphone=new ArrayList<String>();
+        resname=new ArrayList<String>();
+        resid=new ArrayList<String>();
 
         startAnim();
 
         final ConnectionDetector cd = new ConnectionDetector(Splash.this);
         if (cd.isConnectingToInternet()) {
-            new splashmanage().execute();
+            new splashres().execute();
         } else {
             Toast.makeText(Splash.this, "No Internet Connection", Toast.LENGTH_LONG).show();
         }
@@ -71,6 +84,174 @@ public class Splash extends Activity {
     void stopAnim(){
         findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
+
+
+
+    private class splashres extends AsyncTask<String,String,Boolean>
+    {
+        private ProgressDialog nDialog;
+        EditText temp;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+           /* nDialog = new ProgressDialog(getActivity());
+            nDialog.setTitle("Fetching data from server");
+            nDialog.setMessage("Please Wait..");
+            nDialog.setIndeterminate(false);
+            nDialog.setCancelable(true);
+            nDialog.show();*/
+            //  Toast.makeText(getActivity().getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+
+
+            JSONObject jsonobject;
+            final JSONParser jParser2 = new JSONParser();
+            List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+
+
+            SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            String islogged=pref.getString("isloggedin",null);
+            if(islogged!=null && islogged.equals("true")){
+                token=pref.getString("Token",null);}
+
+            else
+            {
+
+                return false;
+            }
+
+
+            params2.add(new BasicNameValuePair("token", token));
+
+            jsonobject = jParser2.makeHttpRequest(resurl, "GET", params2);
+
+            try{
+                if(jsonobject!=null){
+
+                    String result=jsonobject.getString("success");
+                    //String message=jsonobject.getString("message");
+
+                    if(result.equals("true"))
+                    {
+
+
+                        JSONArray jsonArray=jsonobject.getJSONArray("result");
+
+                        int len=jsonArray.length();
+                        resbook.clear();
+                        resauthor.clear();
+                        ressem.clear();
+                        resprice.clear();
+                        resdept.clear();
+                        resemail.clear();
+                        resphone.clear();
+                        resname.clear();
+                        resid.clear();
+
+                        for(int i =0;i<jsonArray.length();i++) {
+                            JSONObject temp = jsonArray.getJSONObject(i);
+                            JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
+                            JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);
+                            resbook.add(temp2.getString("Name"));
+                            resauthor.add(temp2.getString("Author"));
+                            ressem.add(temp.getString("Semester"));
+                            resprice.add(temp.getString("Price"));
+                            resdept.add(temp2.getString("Department"));
+                            respub.add(temp2.getString("Publisher"));
+                            resemail.add(temp3.getString("email"));
+                            resphone.add(temp3.getString("phoneNo"));
+                            resname.add(temp3.getString("username"));
+
+
+                        }}
+
+                    else{
+                        return true;
+                        // Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                    }
+
+
+
+                    return true; }
+
+                else{
+                    // Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
+                    return false;
+                }}
+
+
+
+            catch (JSONException e){
+
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+            // nDialog.dismiss();
+            if(!th){
+
+                    Toast.makeText(Splash.this, "No response from server", Toast.LENGTH_LONG).show();
+
+            }else{
+                new splashmanage().execute();
+
+            }
+
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private class splashmanage extends AsyncTask<String,String,Boolean>
     {
