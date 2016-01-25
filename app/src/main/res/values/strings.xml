@@ -28,14 +28,14 @@
 
     <string-array name="sem_super">
         <item>Sem</item>
-        <item>1st Sem</item>
-        <item>2nd Sem</item>
-        <item>3rd Sem</item>
-        <item>4th Sem</item>
-        <item>5th Sem</item>
-        <item>6th Sem</item>
-        <item>7th Sem</item>
-        <item>8th Sem</item>
+        <item>1<sup>st</sup> Sem</item>
+        <item>2<sup>nd</sup> Sem</item>
+        <item>3<sup>rd</sup> Sem</item>
+        <item>4<sup>th</sup> Sem</item>
+        <item>5<sup>th</sup> Sem</item>
+        <item>6<sup>th</sup> Sem</item>
+        <item>7<sup>th</sup> Sem</item>
+        <item>8<sup>th</sup> Sem</item>
 
     </string-array>
 

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -84,11 +86,8 @@
         android:textColor="#ffffff"
         android:background="@color/primary_dark"
         android:layout_height="wrap_content"
-        android:text="filter"/>
-
-
-
-
+        android:text="filter"
+        />
 
 
 

@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -153,11 +154,12 @@ public class GPSTracker extends Service implements LocationListener {
     public void showSettingsAlert(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
+
         // Setting Dialog Title
         alertDialog.setTitle("GPS is settings");
 
         // Setting Dialog Message
-        alertDialog.setMessage("We use your location to provide results near you.GPS is not enabled.You may choose not to share your location. Do you want to go to settings menu?");
+        alertDialog.setMessage("We use your location to enter you ad location.GPS is not enabled.You may choose not to share your location and enter it manually. Do you want to go to settings menu?");
 
         // On pressing Settings button
         alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
@@ -173,7 +175,19 @@ public class GPSTracker extends Service implements LocationListener {
                 dialog.cancel();
             }
         });
+        alertDialog.setNeutralButton("Never", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+                SharedPreferences pref = mContext.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor  editor = pref.edit();
+               // token=jsonobject.getString("token");
+
+                editor.putString("GPS","false" );
+                editor.commit();
+
+            }
+        });
         // Showing Alert Message
         alertDialog.show();
     }

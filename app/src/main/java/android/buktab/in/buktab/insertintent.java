@@ -1,11 +1,15 @@
 package android.buktab.in.buktab;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -29,8 +33,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Arunkumar on 1/21/2016.
@@ -40,12 +46,13 @@ public class insertintent extends AppCompatActivity {
     GPSTracker gps;
 
 
-    EditText price;
+    EditText price,location;
     Spinner spinner;
     String sem,id;
     TextView bn,an,dn,rs;
     String posturl="http://52.10.251.227:3000/postBook";
-    double latitude = 10,longitude=10;
+
+    double latitude = 0,longitude=0;
 
     @Override
     protected void onPause() {
@@ -66,6 +73,7 @@ public class insertintent extends AppCompatActivity {
          an=(TextView)findViewById(R.id.aname);
          dn=(TextView)findViewById(R.id.dept);
          rs=(TextView)findViewById(R.id.rs);
+        location=(EditText)findViewById(R.id.location);
         rs.setText("\u20B9");
 
         if(gps.canGetLocation()) {
@@ -73,8 +81,37 @@ public class insertintent extends AppCompatActivity {
             latitude = gps.getLatitude();
             longitude = gps.getLongitude();
         }else{
+            SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            String isGPS=pref.getString("GPS", null);
+            if(isGPS==null)
+                gps.showSettingsAlert();
+            else if(!isGPS.equals("false"))
+                gps.showSettingsAlert();
+        }
 
-            gps.showSettingsAlert();
+        if(gps.canGetLocation()){
+            Geocoder geocoder;
+            List<Address> addresses = null;
+            geocoder = new Geocoder(insertintent.this, Locale.getDefault());
+
+            try {
+
+                if(latitude!=0&&longitude!=0) {
+                    addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                    String city = addresses.get(0).getLocality();
+
+                    location.setText(city);
+                }// Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            } catch (IOException e) {
+                e.printStackTrace();
+            }catch (ArrayIndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
+
+//            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+
+
         }
 
 
@@ -181,8 +218,13 @@ public class insertintent extends AppCompatActivity {
             params2.add(new BasicNameValuePair("sem",sem));
 
             params2.add(new BasicNameValuePair("bookid",id));
-            params2.add(new BasicNameValuePair("lat", String.valueOf(latitude)));
-            params2.add(new BasicNameValuePair("long", String.valueOf(longitude)));
+
+
+
+
+
+            params2.add(new BasicNameValuePair("location", location.getText().toString()));
+            //params2.add(new BasicNameValuePair("long", String.valueOf(longitude)));
 
             params2.add(new BasicNameValuePair("token", Login.token));
 
