@@ -296,6 +296,9 @@ RelativeLayout draw;
             case 2:
                 fragment = new InsertFragment();
                 break;
+            case 3:
+                fragment=new Logout();
+                break;
             case 99:
                 fragment = new InsertFragment();
                 break;

@@ -187,15 +187,16 @@ public class Splash extends Activity {
                        handler.postDelayed(new Runnable() {
                            @Override
                            public void run() {
+                               Intent mainIntent = new Intent(Splash.this, Login.class);
+                               stopAnim();
+                               Splash.this.startActivity(mainIntent);
+                               Splash.this.finish();
                                // Do something after 5s = 5000ms
 
 
                            }
                        }, 3000);
-                       Intent mainIntent = new Intent(Splash.this,Login.class);
-                       stopAnim();
-                       Splash.this.startActivity(mainIntent);
-                       Splash.this.finish();
+
 
                    }
 
