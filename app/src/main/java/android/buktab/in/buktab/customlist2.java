@@ -1,6 +1,7 @@
 package android.buktab.in.buktab;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,9 +72,10 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
 
         b.setText(books.get(position).trim());
         a.setText(sems.get(position).trim());
-       p.setText(prices.get(position).trim());
+      //  p.setText("20"+"\u20B9");
+      p.setText(prices.get(position).trim()+"\u20B9");
         dep.setText(dept.get(position).trim());
-        au.setText(authors.get(position).trim());
+        au.setText("  by "+authors.get(position).trim());
 
 
 
