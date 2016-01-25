@@ -50,7 +50,7 @@ public class Searchintent extends AppCompatActivity {
         authorname.setText(getIntent().getExtras().getString("author").trim());
         bookprice.setText(getIntent().getExtras().getString("price").trim());
         oname.setText(getIntent().getExtras().getString("name").trim());
-        ophone.setText(getIntent().getExtras().getString("phone").trim());
+        ophone.setText("\u20B9"+getIntent().getExtras().getString("phone").trim());
         oemail.setText(getIntent().getExtras().getString("email").trim());
         pub.setText(getIntent().getExtras().getString("pub").trim());
 

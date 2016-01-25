@@ -96,9 +96,9 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
 
         b.setText(books.get(position).trim());
         a.setText(sems.get(position).trim());
-        p.setText(prices.get(position).trim());
+        p.setText("\u20B9"+prices.get(position).trim());
         dep.setText(dept.get(position).trim());
-        au.setText(authors.get(position).trim());
+        au.setText(" by "+authors.get(position).trim());
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
