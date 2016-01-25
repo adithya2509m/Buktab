@@ -56,8 +56,8 @@ public class SearchFragment extends Fragment {
 
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub;
 
-
-RelativeLayout top;
+    TextView listHeader ;
+//RelativeLayout top;
 
 
     String searchurl="http://52.10.251.227:3000/getAds/byName/";
@@ -67,7 +67,7 @@ RelativeLayout top;
          rootView = inflater.inflate(R.layout.search_fagment, container, false);
         search = (EditText) rootView.findViewById(R.id.search);
 
-        top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
+      //  top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
         jasonbook= new ArrayList<String>();
         jasonauthor= new ArrayList<String>();
@@ -81,11 +81,17 @@ RelativeLayout top;
 
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
+        listHeader = new TextView(getContext());
+        listHeader.setText("Recent Books");
+        //listHeader.setTextColor(0xcccccc);
+        listHeader.setTextSize(16);
+        resultlist.addHeaderView(listHeader);
+        resultlist.addHeaderView(listHeader);
         filter=(android.support.design.widget.FloatingActionButton)rootView.findViewById(R.id.fab);
        // isFirstTime();
 
         ListAdapter EventList = new customlist2(getActivity(), Splash.resbook, Splash.ressem, Splash.resauthor, Splash.resprice, Splash.resdept);
-        top.setVisibility(View.INVISIBLE);
+       // top.setVisibility(View.INVISIBLE);
         resultlist.setAdapter(EventList);
 
 
@@ -153,7 +159,7 @@ RelativeLayout top;
                    search.addTextChangedListener(new TextWatcher() {
 
                        public void afterTextChanged(Editable s) {
-                           top.setVisibility(View.INVISIBLE);
+                           //top.setVisibility(View.INVISIBLE);
 
                            if (search.getText().length() < 3) {
 
@@ -186,7 +192,7 @@ RelativeLayout top;
                    filter.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
-                           top.setVisibility(View.VISIBLE);
+                       //    top.setVisibility(View.VISIBLE);
                            TextView m = (TextView) rootView.findViewById(R.id.message);
                            m.setText("");
 
@@ -199,7 +205,7 @@ RelativeLayout top;
                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                @Override
                                public void onDismiss(DialogInterface dialog) {
-                                   top.setVisibility(View.INVISIBLE);
+                      //             top.setVisibility(View.INVISIBLE);
                                }
                            });
 
@@ -442,7 +448,7 @@ RelativeLayout top;
                                    if (check == 0) {
                                        stopAnim();
                                        dialog.dismiss();
-                                       top.setVisibility(View.INVISIBLE);
+                                     //  top.setVisibility(View.INVISIBLE);
                                    } else {
 
 
@@ -451,7 +457,7 @@ RelativeLayout top;
                                        resultlist.setAdapter(EventList);
 
                                        dialog.dismiss();
-                                       top.setVisibility(View.INVISIBLE);
+                                    //   top.setVisibility(View.INVISIBLE);
 
                                        resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                            @Override
@@ -612,9 +618,9 @@ RelativeLayout top;
                            else {
                                stopAnim();
                                //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
-                               top.setVisibility(View.VISIBLE);
-                               TextView m = (TextView) rootView.findViewById(R.id.message);
-                               m.setText("No Books match your Search Condition");
+                               //top.setVisibility(View.VISIBLE);
+                               //TextView m = (TextView) rootView.findViewById(R.id.message);
+                               listHeader.setText("No Books match your Search Condition");
                            }
                        } else {
 
@@ -650,7 +656,7 @@ RelativeLayout top;
 
                    }
                }
-
+/*
 
                public boolean isFirstTime() {
 
@@ -680,5 +686,6 @@ RelativeLayout top;
 
                }
 
+*/
 
            }

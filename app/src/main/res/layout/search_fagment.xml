@@ -74,36 +74,6 @@
             >
 
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#88666666"
-                android:id="@+id/top_layout"
-                android:layout_gravity="center">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Search for Books by name, author or publisher "
-                    android:textColor="#ffffff"
-                    android:gravity="center"
-                    android:id="@+id/message"
-                    />
-                <!--
-
-                <ImageView
-                    android:id="@+id/ivInstruction"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:paddingTop="25dp"
-                    android:layout_marginRight="15dp"
-                    android:clickable="false"
-                    android:paddingLeft="20dip"
-                    android:scaleType="center"
-                    android:src="@drawable/pointing-arrow-703750" />
-        -->
-            </RelativeLayout>
 
             <com.wang.avi.AVLoadingIndicatorView
                 android:id="@+id/avloadingIndicatorView"
@@ -120,7 +90,7 @@
 
             <ListView
                 android:id="@+id/resultlist"
-                android:paddingTop="15dp"
+                android:paddingTop="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"

@@ -72,6 +72,8 @@ public class InsertFragment extends Fragment {
 
                 }
                 else{
+                    top.setVisibility(View.INVISIBLE);
+
                     startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
                     if (cd.isConnectingToInternet()) {
