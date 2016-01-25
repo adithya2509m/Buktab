@@ -60,11 +60,14 @@ public class ManageIntent extends AppCompatActivity {
 
         Toolbar mtoolbar =(Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(mtoolbar);
+
         gps = new GPSTracker(ManageIntent.this);
          id=getIntent().getExtras().getString("id");
          bn=(TextView)findViewById(R.id.bname);
          an=(TextView)findViewById(R.id.aname);
          dn=(TextView)findViewById(R.id.dept);
+        EditText location=(EditText)findViewById(R.id.location);
+        location.setVisibility(View.GONE);
 
 
         if(gps.canGetLocation()) {

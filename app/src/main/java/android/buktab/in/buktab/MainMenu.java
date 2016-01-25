@@ -120,6 +120,7 @@ RelativeLayout draw;
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
 
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 
         // Communities, Will add a counter here
        /* navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
@@ -296,13 +297,15 @@ RelativeLayout draw;
             case 2:
                 fragment = new InsertFragment();
                 break;
-            case 3:
+            case 4:
                 fragment=new Logout();
                 break;
             case 99:
                 fragment = new InsertFragment();
                 break;
-
+            case 3:
+                fragment=new ManageProfile();
+                break;
             default:
                 break;
         }

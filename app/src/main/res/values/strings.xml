@@ -64,7 +64,7 @@
 
         <item >Manage</item>
         <item >Post Ads</item>
-
+<item>Manage Profile</item>
         <item >Logout</item>
 
     </string-array>
