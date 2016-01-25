@@ -73,7 +73,7 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
         b.setText(books.get(position).trim());
         a.setText(sems.get(position).trim());
       //  p.setText("20"+"\u20B9");
-      p.setText(prices.get(position).trim()+"\u20B9");
+      p.setText("\u20B9"+prices.get(position).trim());
         dep.setText(dept.get(position).trim());
         au.setText("  by "+authors.get(position).trim());
 
