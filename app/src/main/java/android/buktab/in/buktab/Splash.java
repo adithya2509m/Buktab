@@ -32,12 +32,20 @@ public class Splash extends Activity {
     String token;
     int log=0;
     static int  bookcount=0;
+    static String[] stringsuper;
+
+
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.splashscreen);
+
+        stringsuper = getResources().getStringArray(R.array.sem_super);
+
+
+
         jasonauthor = new ArrayList<String>();
         jasonbook = new ArrayList<String>();
         jasonsem = new ArrayList<String>();

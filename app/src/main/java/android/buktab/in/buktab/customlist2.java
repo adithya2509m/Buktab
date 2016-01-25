@@ -71,7 +71,7 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
         TextView dep=(TextView)custom_list.findViewById(R.id.dept);
 
         b.setText(books.get(position).trim());
-        a.setText(sems.get(position).trim());
+        a.setText(Splash.stringsuper[Integer.parseInt(sems.get(position))]);
       //  p.setText("20"+"\u20B9");
       p.setText("\u20B9"+prices.get(position).trim());
         dep.setText(dept.get(position).trim());

@@ -95,7 +95,8 @@ public class customlist3 extends BaseAdapter implements ListAdapter {
         Button manage=(Button)view.findViewById(R.id.update);
 
         b.setText(books.get(position).trim());
-        a.setText(sems.get(position).trim());
+      //  a.setText(sems.get(position).trim());
+        a.setText(Splash.stringsuper[Integer.parseInt(sems.get(position))]);
         p.setText("\u20B9"+prices.get(position).trim());
         dep.setText(dept.get(position).trim());
         au.setText(" by "+authors.get(position).trim());
