@@ -33,6 +33,7 @@ public class Login extends ActionBarActivity {
 
     final String loginurl="http://52.10.251.227:3000/login";
     String url="http://52.10.251.227:3000/manageBooks";
+    String resurl="http://52.10.251.227:3000/recent";
     static String token="";
     static String username="";
      CircularProgressButton circularButton1;
@@ -120,7 +121,8 @@ public class Login extends ActionBarActivity {
 
                                 final ConnectionDetector cd1 = new ConnectionDetector(Login.this);
                                 if (cd.isConnectingToInternet()) {
-                                    new loginmanage().execute();
+
+                                    new loginres().execute();
                                 } else {
                                     Toast.makeText(Login.this, "No Internet Connection", Toast.LENGTH_LONG).show();
                                     circularButton1.setProgress(-1);
@@ -373,6 +375,132 @@ public class Login extends ActionBarActivity {
         }
     }
 
+
+
+
+
+    private class loginres extends AsyncTask<String,String,Boolean>
+    {
+        private ProgressDialog nDialog;
+        EditText temp;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+           /* nDialog = new ProgressDialog(getActivity());
+            nDialog.setTitle("Fetching data from server");
+            nDialog.setMessage("Please Wait..");
+            nDialog.setIndeterminate(false);
+            nDialog.setCancelable(true);
+            nDialog.show();*/
+            //  Toast.makeText(getActivity().getApplicationContext(),"fetching results",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Boolean doInBackground(String... args){
+
+
+            JSONObject jsonobject;
+            final JSONParser jParser2 = new JSONParser();
+            List<NameValuePair> params2 = new ArrayList<NameValuePair>();
+
+
+            SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            String islogged=pref.getString("isloggedin",null);
+            if(islogged!=null && islogged.equals("true")){
+                token=pref.getString("Token",null);}
+
+            else
+            {
+
+                return true;
+            }
+
+
+            params2.add(new BasicNameValuePair("token", token));
+
+            jsonobject = jParser2.makeHttpRequest(resurl, "GET", params2);
+
+            try{
+                if(jsonobject!=null){
+
+                    String result=jsonobject.getString("success");
+                    //String message=jsonobject.getString("message");
+
+                    if(result.equals("true"))
+                    {
+
+
+                        JSONArray jsonArray=jsonobject.getJSONArray("result");
+
+                        int len=jsonArray.length();
+                        Splash.resbook.clear();
+                        Splash.resauthor.clear();
+                        Splash.ressem.clear();
+                        Splash.resprice.clear();
+                        Splash.resdept.clear();
+                        Splash.resemail.clear();
+                        Splash.resphone.clear();
+                        Splash.resname.clear();
+                        Splash.resid.clear();
+
+                        for(int i =0;i<jsonArray.length();i++) {
+                            JSONObject temp = jsonArray.getJSONObject(i);
+                            JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
+                            JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);
+                            Splash.resbook.add(temp2.getString("Name"));
+                            Splash.resauthor.add(temp2.getString("Author"));
+                            Splash.ressem.add(temp.getString("Semester"));
+                            Splash.resprice.add(temp.getString("Price"));
+                            Splash.resdept.add(temp2.getString("Department"));
+                            Splash.respub.add(temp2.getString("Publisher"));
+                            Splash.resemail.add(temp3.getString("email"));
+                            Splash.resphone.add(temp3.getString("phoneNo"));
+                            Splash.reslocation.add(temp.getString("location"));
+                            Splash.resname.add(temp3.getString("username"));
+
+
+                        }}
+
+                    else{
+                        return true;
+                        // Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
+                    }
+
+
+
+                    return true; }
+
+                else{
+                    // Toast.makeText(getActivity(), "No response from server", Toast.LENGTH_LONG).show();
+                    return false;
+                }}
+
+
+
+            catch (JSONException e){
+
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return false;
+
+        }
+        @Override
+        protected void onPostExecute(Boolean th){
+            // nDialog.dismiss();
+            if(!th){
+
+                Toast.makeText(Login.this, "No response from server", Toast.LENGTH_LONG).show();
+
+            }else{
+                new loginmanage().execute();
+
+            }
+
+
+        }
+    }
 
 
 

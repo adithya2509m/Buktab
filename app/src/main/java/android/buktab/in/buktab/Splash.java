@@ -118,7 +118,7 @@ public class Splash extends Activity {
             final JSONParser jParser2 = new JSONParser();
             List<NameValuePair> params2 = new ArrayList<NameValuePair>();
 
-/*
+
             SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
             String islogged=pref.getString("isloggedin",null);
             if(islogged!=null && islogged.equals("true")){
@@ -127,10 +127,10 @@ public class Splash extends Activity {
             else
             {
 
-                return false;
+                return true;
             }
 
-*/
+
             params2.add(new BasicNameValuePair("token", token));
 
             jsonobject = jParser2.makeHttpRequest(resurl, "GET", params2);
