@@ -310,6 +310,10 @@ public class Login extends ActionBarActivity {
                            Splash.jasonprice.add(temp.getString("Price"));
                            Splash.jsondept.add(temp2.getString("Department"));
 
+                            Splash.jsonid.add(temp.getString("_id"));
+
+
+
 
                         }
 

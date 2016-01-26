@@ -100,6 +100,17 @@ public class SearchFragment extends Fragment {
         resultlist.setAdapter(EventList);
 
 
+        jasonbook= Splash.resbook;
+        jasonauthor= Splash.resauthor;
+        jasonsem= Splash.ressem;
+        jasonprice= Splash.resprice;
+        jsonname= Splash.resname;
+        jsonph= Splash.resphone;
+        jsonmail= Splash.resemail;
+        jsondept= Splash.resdept;
+        jsonpub= Splash.respub;
+        jsonlocation=Splash.reslocation;
+
 
 
         resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -328,7 +339,70 @@ public class SearchFragment extends Fragment {
 
 
                                    if (filtersem.equals("Sem") && filterdept.equals("ALL")) {
+                                       if(!locfilter)
                                        check = 0;
+
+                                       else{
+
+                                           Iterator<String> iterator1 = jasonbook.iterator();
+                                           Iterator<String> iterator2 = jasonauthor.iterator();
+                                           Iterator<String> iterator3 = jasonsem.iterator();
+                                           Iterator<String> iterator4 = jasonprice.iterator();
+                                           Iterator<String> iterator5 = jsonname.iterator();
+                                           Iterator<String> iterator6 = jsonph.iterator();
+                                           Iterator<String> iterator7 = jsonmail.iterator();
+                                           Iterator<String> iterator8 = jsondept.iterator();
+                                           Iterator<String> iterator9 = jsonlocation.iterator();
+                                           Iterator<String> iterator10 = jsonpub.iterator();
+
+                                           while (iterator3.hasNext()) {
+
+                                               String string = iterator9.next();
+
+
+                                               if ( loc.equals(string)) {
+                                                   jasonbookf.add(iterator1.next());
+                                                   jasonauthorf.add(iterator2.next());
+                                                   jasonsemf.add(iterator3.next());
+                                                   jasonpricef.add(iterator4.next());
+                                                   jsonnamef.add(iterator5.next());
+                                                   jsonphf.add(iterator6.next());
+                                                   jsonmailf.add(iterator7.next());
+                                                   jsondeptf.add(iterator8.next());
+                                                   jsonlocationf.add(string);
+                                                   jsonpubf.add(iterator10.next());
+
+
+                                 /*   iterator1.remove();
+
+                                    iterator2.remove();
+                                    iterator3.remove();
+                                    iterator4.remove();
+                                    iterator5.remove();
+                                    iterator6.remove();
+                                    iterator7.remove();
+                                    iterator8.remove();
+                                */
+
+
+                                               } else {
+
+                                                   iterator1.next();
+                                                   iterator2.next();
+                                                   iterator3.next();
+                                                   iterator4.next();
+                                                   iterator5.next();
+                                                   iterator6.next();
+                                                   iterator7.next();
+                                                   iterator8.next();
+                                                   iterator10.next();
+                                                   // iterator9.next();
+
+                                               }
+                                           }
+
+
+                                       }
 
                                    }
 

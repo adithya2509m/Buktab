@@ -47,7 +47,7 @@ public class ManageProfile extends Fragment {
         mpphone=(TextView)rootView.findViewById(R.id.mpphone);
         mpmail=(TextView)rootView.findViewById(R.id.mpemail);
         mppass=(EditText)rootView.findViewById(R.id.mppass);
-        ename=(ImageButton)rootView.findViewById(R.id.nameeidt);
+        //ename=(ImageButton)rootView.findViewById(R.id.nameeidt);
         ephone=(ImageButton)rootView.findViewById(R.id.phoneedit);
         email=(ImageButton)rootView.findViewById(R.id.mailedit);
         save=(Button)rootView.findViewById(R.id.editprof);
@@ -55,8 +55,8 @@ public class ManageProfile extends Fragment {
 
 
         mpname.setText(Login.username);
-        mpphone.setText("9566099932");
-        mpmail.setText("Tusnade@naruto.com");
+        mpphone.setHint("Enter New Phone");
+        mpmail.setHint("Enter New E-Mail");
 
 
 
@@ -66,13 +66,6 @@ public class ManageProfile extends Fragment {
 
 
 
-
-        ename.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         ephone.setOnClickListener(new View.OnClickListener() {
             @Override
