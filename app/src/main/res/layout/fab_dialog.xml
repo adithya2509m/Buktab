@@ -34,7 +34,7 @@
 
     android:id="@+id/increase">
     <Button
-        android:layout_width="50dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
         android:background="@drawable/decrease"
         android:id="@+id/semdec"/>
@@ -46,7 +46,7 @@
 
         />
     <Button
-        android:layout_width="50dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
         android:id="@+id/seminc"
         android:background="@drawable/increase"/>
@@ -59,7 +59,7 @@
         android:gravity="center"
         >
         <Button
-            android:layout_width="50dp"
+            android:layout_width="28dp"
             android:layout_height="28dp"
             android:background="@drawable/decrease"
             android:id="@+id/deptdec"
@@ -74,7 +74,7 @@
         />
 
     <Button
-        android:layout_width="50dp"
+        android:layout_width="28dp"
         android:layout_height="28dp"
         android:id="@+id/deptinc"
         android:background="@drawable/increase"/>
