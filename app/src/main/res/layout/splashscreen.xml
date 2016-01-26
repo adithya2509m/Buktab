@@ -22,7 +22,7 @@
             android:layout_height="fill_parent"
             android:src="@drawable/splashtop"
             android:layout_gravity="center"
-            android:layout_centerVertical="true"
+            android:layout_centerVertical="false"
             android:layout_centerHorizontal="true"/>
 
     <com.wang.avi.AVLoadingIndicatorView
