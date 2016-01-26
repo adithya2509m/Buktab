@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +34,7 @@ public class Logout extends Fragment {
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
-                Intent mainIntent = new Intent(getActivity(), Login.class);
+                Intent mainIntent = new Intent(getActivity(), Splash.class);
                 stopAnim();
                 getActivity().startActivity(mainIntent);
 

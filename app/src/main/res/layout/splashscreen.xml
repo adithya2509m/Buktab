@@ -12,10 +12,18 @@
 
     <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:src="@drawable/splashfinal"
+        android:src="@drawable/splash_final"
         android:layout_gravity="center"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
+
+
+        <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:src="@drawable/splashtop"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/avloadingIndicatorView"
