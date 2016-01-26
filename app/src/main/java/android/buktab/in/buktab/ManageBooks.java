@@ -1,5 +1,6 @@
 package android.buktab.in.buktab;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -73,6 +75,12 @@ RelativeLayout top;
 
         top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
         isFirstTime();
+
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
 
         lay.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int mLastFirstVisibleItem;

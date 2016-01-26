@@ -2,6 +2,7 @@ package android.buktab.in.buktab;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,7 +38,8 @@ import java.util.ArrayList;
  * Created by root on 9/8/15.
  */
 public class InsertFragment extends Fragment {
-    RelativeLayout top;
+   // RelativeLayout top;
+    TextView listheader;
     EditText search ,price;
    // Button searchbutton;
     ListView resultlist ;
@@ -60,10 +63,17 @@ public class InsertFragment extends Fragment {
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
         resultlist = (ListView) rootView.findViewById(R.id.resultlist);
 
+        listheader=(TextView)rootView.findViewById(R.id.message);
 
-        top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
+      //  top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
-        isFirstTime();
+       // isFirstTime();
+
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
        search.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -72,7 +82,7 @@ public class InsertFragment extends Fragment {
 
                 }
                 else{
-                    top.setVisibility(View.INVISIBLE);
+        //            top.setVisibility(View.INVISIBLE);
 
                     startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
@@ -206,14 +216,15 @@ public class InsertFragment extends Fragment {
                 else {
                     //Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                     stopAnim();
-                    top.setVisibility(View.VISIBLE);
-                    TextView m=(TextView)rootView.findViewById(R.id.message);
-                    m.setText("No Such Book");
+                   // top.setVisibility(View.VISIBLE);
+                    //TextView m=(TextView)rootView.findViewById(R.id.message);
+                    listheader.setText("No Such Book");
                 }
             }else{
 
                 ListAdapter EventList= new customlist(getActivity(),jasonbook,jasondept,jasonauthor,jasonprice);
                 stopAnim();
+                listheader.setText("Select book to set price and post");
                 resultlist.setAdapter(EventList);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -244,35 +255,6 @@ public class InsertFragment extends Fragment {
 
 
 
-    public boolean isFirstTime()
-    {
-
-
-
-        top.setVisibility(View.VISIBLE);
-        top.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                top.setVisibility(View.INVISIBLE);
-                return false;
-            }
-
-        });
-        search.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                top.setVisibility(View.INVISIBLE);
-
-                return false;
-            }
-        });
-
-
-        return true;
-
-
-    }
 
 
 

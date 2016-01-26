@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -36,16 +37,21 @@ public class ManageProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.manageprofile, container, false);
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
 
-
-        final TextView mpname,mpphone,mpmail;
+        final EditText mpphone,mpmail;
+        TextView mpname;
         ImageButton ename,ephone,email;
         final EditText mppass;
         Button save;
 
         mpname=(TextView)rootView.findViewById(R.id.mpname);
-        mpphone=(TextView)rootView.findViewById(R.id.mpphone);
-        mpmail=(TextView)rootView.findViewById(R.id.mpemail);
+        mpphone=(EditText)rootView.findViewById(R.id.mpphone);
+        mpmail=(EditText)rootView.findViewById(R.id.mpemail);
         mppass=(EditText)rootView.findViewById(R.id.mppass);
         //ename=(ImageButton)rootView.findViewById(R.id.nameeidt);
         ephone=(ImageButton)rootView.findViewById(R.id.phoneedit);
@@ -70,6 +76,7 @@ public class ManageProfile extends Fragment {
         ephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });
