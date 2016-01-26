@@ -23,8 +23,9 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
     private final ArrayList<String> authors ;
     private final ArrayList<String> prices ;
     private final ArrayList<String> dept ;
+    private final ArrayList<String> location ;
 
-    public customlist2(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept) {
+    public customlist2(Context context, ArrayList<String> books, ArrayList<String> sems, ArrayList<String> authors, ArrayList<String> prices,ArrayList<String> dept,ArrayList<String> location) {
 
 
 
@@ -34,6 +35,7 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
         this.prices = prices;
         this.sems=sems;
         this.dept=dept;
+        this.location=location;
     }
 
 
@@ -69,6 +71,7 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
         TextView p = (TextView) custom_list.findViewById(R.id.price);
         TextView au = (TextView) custom_list.findViewById(R.id.author);
         TextView dep=(TextView)custom_list.findViewById(R.id.dept);
+        TextView loc=(TextView)custom_list.findViewById(R.id.location);
 
         b.setText(books.get(position).trim());
         a.setText(Splash.stringsuper[Integer.parseInt(sems.get(position))]);
@@ -76,6 +79,7 @@ public class customlist2 extends BaseAdapter implements ListAdapter {
       p.setText("\u20B9"+prices.get(position).trim());
         dep.setText(dept.get(position).trim());
         au.setText("  by "+authors.get(position).trim());
+        loc.setText(location.get(position));
 
 
 

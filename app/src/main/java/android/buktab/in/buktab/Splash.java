@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -29,13 +31,13 @@ import java.util.List;
 public class Splash extends Activity {
 
     /** Duration of wait **/
-    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid,resbook,resauthor,ressem,resprice,resdept,resid,respub,resphone,resname,resemail;
+    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid,resbook,resauthor,ressem,resprice,resdept,resid,respub,resphone,resname,resemail,reslocation;
     String url="http://52.10.251.227:3000/manageBooks";
     String resurl="http://52.10.251.227:3000/recent";
     String token;
     int log=0;
     static int  bookcount=0;
-    static String[] stringsuper;
+    static Spanned[] stringsuper;
 
 
 
@@ -45,12 +47,16 @@ public class Splash extends Activity {
         super.onCreate(icicle);
         setContentView(R.layout.splashscreen);
 
-        stringsuper = getResources().getStringArray(R.array.sem_super);
+        String superscript[] = getResources().getStringArray(R.array.sem_super);
+    stringsuper=new Spanned[superscript.length];
+        for(int i=0;i<superscript.length;i++)
+        stringsuper[i]=Html.fromHtml((i) + "<sup><small>" + superscript[i] + "</small></sup> Sem");
 
 
 
         jasonauthor = new ArrayList<String>();
         jasonbook = new ArrayList<String>();
+        reslocation = new ArrayList<String>();
         jasonsem = new ArrayList<String>();
         jasonprice = new ArrayList<String>();
         jsondept = new ArrayList<String>();
@@ -164,6 +170,7 @@ public class Splash extends Activity {
                             respub.add(temp2.getString("Publisher"));
                             resemail.add(temp3.getString("email"));
                             resphone.add(temp3.getString("phoneNo"));
+                            reslocation.add(temp.getString("location"));
                             resname.add(temp3.getString("username"));
 
 
@@ -314,7 +321,9 @@ public class Splash extends Activity {
                             jasonsem.add(temp.getString("Semester"));
                             jasonprice.add(temp.getString("Price"));
                             jsondept.add(temp2.getString("Department"));
+
                             jsonid.add(temp.getString("_id"));
+
 
                         }
 

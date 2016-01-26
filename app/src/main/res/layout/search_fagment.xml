@@ -86,6 +86,23 @@
                 android:layout_alignBottom="@+id/splashscreen"
                 app:indicator_color="#000000"
                 />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recent Posts"
+                android:textSize="16dp"
+                android:id="@+id/message"
+                />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="1dp"
+                    android:background="@color/primary_dark" />
 
 
             <ListView
@@ -94,9 +111,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
-                android:layout_margin="8dp">
+                >
 
             </ListView>
+            </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"

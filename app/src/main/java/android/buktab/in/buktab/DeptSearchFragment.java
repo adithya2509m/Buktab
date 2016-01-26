@@ -38,9 +38,10 @@ public class DeptSearchFragment  extends Fragment {
     String url="http://52.10.251.227:3000/getAds/byDeptAndSem";
     ListView resultlist;
     String sem,dept;
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub,jsonlocation;
     View rootView;
     RelativeLayout top;
+    TextView listheader;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,13 +55,17 @@ public class DeptSearchFragment  extends Fragment {
         jsonmail= new ArrayList<String>();
         jsondept= new ArrayList<String>();
         jsonpub= new ArrayList<String>();
+        jsonlocation=new ArrayList<String>();
 
-        top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
+      //  top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
 
         deptsearch=(Spinner)rootView.findViewById(R.id.deptsearch);
         semsearch=(Spinner)rootView.findViewById(R.id.semsearch);
         resultlist=(ListView)rootView.findViewById(R.id.resultlist);
+
+        listheader=(TextView)rootView.findViewById(R.id.message);
+
         String[] items1= getResources().getStringArray(R.array.dept_array);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items1);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -77,9 +82,10 @@ public class DeptSearchFragment  extends Fragment {
      //   isFirstTime();
 
 
-        ListAdapter EventList = new customlist2(getActivity(), Splash.resbook, Splash.ressem, Splash.resauthor, Splash.resprice, Splash.resdept);
-        top.setVisibility(View.INVISIBLE);
+        ListAdapter EventList = new customlist2(getActivity(), Splash.resbook, Splash.ressem, Splash.resauthor, Splash.resprice, Splash.resdept,Splash.reslocation);
+       // top.setVisibility(View.INVISIBLE);
         resultlist.setAdapter(EventList);
+        listheader.setText("Recent Posts");
 
 
 
@@ -102,6 +108,7 @@ public class DeptSearchFragment  extends Fragment {
                 i.putExtra("dept", Splash.resdept.get(position));
                 i.putExtra("price", Splash.resprice.get(position));
                 i.putExtra("pub", Splash.respub.get(position));
+                i.putExtra("location",Splash.reslocation.get(position));
                 startActivity(i);    }
         });
 
@@ -169,6 +176,7 @@ public class DeptSearchFragment  extends Fragment {
                                 jsonmail.clear();
                                 jsonph.clear();
                                 jsonname.clear();
+                                jsonlocation.clear();
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
@@ -183,14 +191,16 @@ public class DeptSearchFragment  extends Fragment {
                                     jsonmail.add(temp3.getString("email"));
                                     jsonph.add(temp3.getString("phoneNo"));
                                     jsonname.add(temp3.getString("username"));
+                                    jsonlocation.add(temp.getString("location"));
 
                                 }}
 
                             else{
                                 stopAnim();
                              //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
-                                top.setVisibility(View.VISIBLE);
-                                TextView m=(TextView)rootView.findViewById(R.id.message);
+                             //   top.setVisibility(View.VISIBLE);
+                              //  TextView m=(TextView)rootView.findViewById(R.id.message);
+                                listheader.setText("No Books Available");
                                 //m.setText(message);
                             }
 
@@ -213,9 +223,10 @@ public class DeptSearchFragment  extends Fragment {
 
 
 
-                    ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                    ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
                     stopAnim();
                  resultlist.setAdapter(EventList);
+                    listheader.setText("Search Result");
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -232,6 +243,7 @@ public class DeptSearchFragment  extends Fragment {
                             i.putExtra("dept",jsondept.get(position));
                             i.putExtra("price",jasonprice.get(position));
                             i.putExtra("pub",jsonpub.get(position));
+                            i.putExtra("location",jsonlocation.get(position));
                             startActivity(i);
 
 
@@ -293,6 +305,7 @@ public class DeptSearchFragment  extends Fragment {
                                 jsonmail.clear();
                                 jsonph.clear();
                                 jsonname.clear();
+                                jsonlocation.clear();
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
@@ -307,13 +320,14 @@ public class DeptSearchFragment  extends Fragment {
                                     jsonmail.add(temp3.getString("email"));
                                     jsonph.add(temp3.getString("phoneNo"));
                                     jsonname.add(temp3.getString("username"));
+                                    jsonlocation.add(temp.getString("location"));
 
                                 }}
 
                             else{
                                 stopAnim();
                              //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
-                                top.setVisibility(View.VISIBLE);
+                            //    top.setVisibility(View.VISIBLE);
                                 TextView m=(TextView)rootView.findViewById(R.id.message);
                                 //m.setText(message);
                             }
@@ -337,9 +351,10 @@ public class DeptSearchFragment  extends Fragment {
 
 
 
-                    ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept);
+                    ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
                     stopAnim();
                     resultlist.setAdapter(EventList);
+                    listheader.setText("Search Result");
                     resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -356,6 +371,7 @@ public class DeptSearchFragment  extends Fragment {
                             i.putExtra("dept",jsondept.get(position));
                             i.putExtra("price",jasonprice.get(position));
                             i.putExtra("pub",jsonpub.get(position));
+                            i.putExtra("location",jsonlocation.get(position));
                             startActivity(i);
 
 
@@ -407,43 +423,6 @@ public class DeptSearchFragment  extends Fragment {
     }
 
 
-    public boolean isFirstTime()
-    {
-
-
-
-        top.setVisibility(View.VISIBLE);
-        top.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                top.setVisibility(View.INVISIBLE);
-                return false;
-            }
-
-        });
-        deptsearch.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                top.setVisibility(View.INVISIBLE);
-
-                return false;
-            }
-        });
-        semsearch.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                top.setVisibility(View.INVISIBLE);
-
-                return false;
-            }
-        });
-
-
-        return true;
-
-
-    }
 
 
 
