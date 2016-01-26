@@ -302,6 +302,9 @@ public class SearchFragment extends Fragment {
 
                                    int[] index = new int[objectcount];
 
+
+
+
                                    if (filtersem.equals("Sem") && filterdept.equals("ALL")) {
                                        check = 0;
 
@@ -514,6 +517,9 @@ public class SearchFragment extends Fragment {
                                            }
                                        });
                                    }
+
+
+
 
 
                                }

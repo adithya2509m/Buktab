@@ -79,6 +79,12 @@
         android:id="@+id/deptinc"
         android:background="@drawable/decrease"/>
 </LinearLayout>
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location"/>
+
     <Button
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
