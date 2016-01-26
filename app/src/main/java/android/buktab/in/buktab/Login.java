@@ -36,6 +36,9 @@ public class Login extends ActionBarActivity {
     String resurl="http://52.10.251.227:3000/recent";
     static String token="";
     static String username="";
+    static String mail="";
+    static String phone="";
+    static String gender="";
      CircularProgressButton circularButton1;
 
 
@@ -55,6 +58,9 @@ public class Login extends ActionBarActivity {
         if(islogged!=null && islogged.equals("true")){
             token=pref.getString("Token",null);
             username=pref.getString("User",null);
+            mail=pref.getString("mail",null);
+            phone=pref.getString("phone",null);
+            gender=pref.getString("gender",null);
             Intent i=new Intent(Login.this,MainMenu.class);
             startActivity(i);
 
@@ -105,18 +111,25 @@ public class Login extends ActionBarActivity {
                         if(jsonobject!=null){
 
                             String result=jsonobject.getString("success");
+                            String message=jsonobject.getString("message");
 
-                            if(result.equals("true"))
-                            {
+                            if(result.equals("true")) {
+                                if(message.equals("Successfully Logged in ")){
                                 SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor  editor = pref.edit();
-                                token=jsonobject.getString("token");
-                                username=user;
-                                editor.putString("Token",token );
-                                editor.putString("User",username );
+                                SharedPreferences.Editor editor = pref.edit();
+                                token = jsonobject.getString("token");
+                                mail = jsonobject.getString("email");
+                                phone = jsonobject.getString("phoneNo");
+                                gender=jsonobject.getString("sex");
+                                username = user;
+                                editor.putString("Token", token);
+                                editor.putString("User", username);
+                                editor.putString("mail", mail);
+                                editor.putString("phone", phone);
+                                editor.putString("gender", gender);
+
                                 editor.putString("isloggedin", "true");
                                 editor.commit();
-
 
 
                                 final ConnectionDetector cd1 = new ConnectionDetector(Login.this);
@@ -142,9 +155,24 @@ public class Login extends ActionBarActivity {
 
 
 
+                            }else {
+                                    Toast.makeText(Login.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                                    circularButton1.setProgress(-1);
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // Do something after 5s = 5000ms
+                                            circularButton1.setProgress(0);
+                                            circularButton1.setIndeterminateProgressMode(true);
 
-                                Intent i=new Intent(Login.this,MainMenu.class);
-                                startActivity(i);
+
+                                        }
+                                    }, 3000);
+
+
+
+                                }
                             }
 
                             else{
@@ -339,7 +367,7 @@ public class Login extends ActionBarActivity {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
-            return false;
+            return true;
 
         }
         @Override
@@ -486,8 +514,9 @@ public class Login extends ActionBarActivity {
 
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
+
             }
-            return false;
+            return true;
 
         }
         @Override

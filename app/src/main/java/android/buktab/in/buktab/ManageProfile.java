@@ -32,6 +32,7 @@ import java.util.List;
 public class ManageProfile extends Fragment {
 
     View rootView;
+    EditText mpphone,mpmail,mppass;
     String url="http://52.10.251.227/:3000/updateProfile";
 
     @Override
@@ -43,10 +44,10 @@ public class ManageProfile extends Fragment {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
-        final EditText mpphone,mpmail;
+
         TextView mpname;
         ImageButton ename,ephone,email;
-        final EditText mppass;
+
         Button save;
 
         mpname=(TextView)rootView.findViewById(R.id.mpname);
@@ -76,7 +77,7 @@ public class ManageProfile extends Fragment {
         ephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mpphone.setKeyListener(null);
 
             }
         });

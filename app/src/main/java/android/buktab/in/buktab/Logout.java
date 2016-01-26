@@ -18,6 +18,7 @@ public class Logout extends Fragment {
     View rootView;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
@@ -36,6 +37,7 @@ public class Logout extends Fragment {
                 // Do something after 5s = 5000ms
                 Intent mainIntent = new Intent(getActivity(), Splash.class);
                 stopAnim();
+                getActivity().finish();
                 getActivity().startActivity(mainIntent);
 
 

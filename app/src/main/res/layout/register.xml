@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:float="http://schemas.android.com/apk/res-auto"
@@ -18,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/Runame"
+            android:singleLine="true"
 
             android:drawableLeft="@drawable/ic_person_black_24dp"
 
@@ -35,6 +40,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/Rpword"
             android:hint="Password"
+            android:singleLine="true"
             android:drawableLeft="@drawable/ic_more_horiz_black_24dp"
             android:inputType="textPassword" />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -49,6 +55,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/Remail"
             android:hint="Email"
+            android:singleLine="true"
             android:drawableLeft="@drawable/ic_email_black_24dp"
              />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -65,9 +72,47 @@
             android:id="@+id/Rphone"
             android:hint="Phone Number"
             android:inputType="number"
+            android:singleLine="true"
+            android:nextFocusForward="@+id/circularButton2"
             android:drawableLeft="@drawable/ic_phone_black_24dp"
             />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Your Display Icon"
+        android:layout_marginTop="10dp"
+        android:textSize="16dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="1dp"
+        android:background="@color/primary_dark"
+        android:layout_marginBottom="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="122dp"
+            android:layout_height="163dp"
+            android:src="@drawable/usermale"
+            android:id="@+id/maleimage"
+            android:background="#000000"
+            android:padding="1dp"/>
+
+        <ImageView
+            android:layout_width="144dp"
+            android:layout_height="166dp"
+            android:src="@drawable/userfemale"
+            android:id="@+id/femaleimage"
+            android:padding="1dp"/>
+    </LinearLayout>
 
     <com.dd.CircularProgressButton
         android:id="@+id/circularButton2"
@@ -82,3 +127,4 @@
         app:cpb_iconError="@drawable/ic_cancel_black_24dp"
         app:cpb_textIdle="Register" />
 </LinearLayout>
+</ScrollView>

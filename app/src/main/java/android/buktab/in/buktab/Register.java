@@ -11,10 +11,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ import java.util.List;
 public class Register extends AppCompatActivity {
 
     String Regsiterurl="http://52.10.251.227:3000/save";
+    String gender="M";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,27 @@ public class Register extends AppCompatActivity {
         final EditText Remail=(EditText) findViewById(R.id.Remail);
 
         final EditText Rphone=(EditText) findViewById(R.id.Rphone);
+        final ImageView male,female;
+        male=(ImageView)findViewById(R.id.maleimage);
+        female=(ImageView)findViewById(R.id.femaleimage);
+
+        male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                male.setBackgroundColor(Color.rgb(0, 0, 0));
+                female.setBackgroundColor(Color.rgb(255,255, 255));
+                gender="M";
+            }
+        });
+
+        female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                female.setBackgroundColor(Color.rgb(0, 0, 0));
+                male.setBackgroundColor(Color.rgb(255,255, 255));
+                gender="F";
+            }
+        });
 
         Remail.setText(getEmail(Register.this));
 
@@ -84,7 +108,7 @@ public class Register extends AppCompatActivity {
                                                             final JSONParser jParser3 = new JSONParser();
                                                             List<NameValuePair> params3 = new ArrayList<NameValuePair>();
 
-                                                            String url = "http://52.10.251.227:3000/validate/username/" + Runame.getText();
+                                                            String url = "http://52.10.251.227:3000/validate/username/" + Runame.getText().toString().replaceAll("\\s","");
 
                                                             jsonobject3 = jParser3.makeHttpRequest(url, "GET", params3);
 
@@ -274,6 +298,7 @@ public class Register extends AppCompatActivity {
                     params2.add(new BasicNameValuePair("password", rpass));
                     params2.add(new BasicNameValuePair("username", ruser));
                     params2.add(new BasicNameValuePair("phoneNo", rphone));
+                    params2.add(new BasicNameValuePair("sex",gender));
 
 
                     jsonobject = jParser2.makeHttpRequest(Regsiterurl, "POST", params2);
