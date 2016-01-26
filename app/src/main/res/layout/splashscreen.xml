@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"/>
 
 
-        <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
+        <ImageView android:id="@+id/splashscreen1" android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:src="@drawable/splashtop"
             android:layout_gravity="center"

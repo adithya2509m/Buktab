@@ -142,6 +142,25 @@ public class DeptSearchFragment  extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 dept = parent.getItemAtPosition(pos).toString();
 
+                jasonbook.clear();
+                jasonauthor.clear();
+                jasonsem.clear();
+                jasonprice.clear();
+                jsondept.clear();
+                jsonmail.clear();
+                jsonph.clear();
+                jsonname.clear();
+                jsonlocation.clear();
+
+
+                ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
+                stopAnim();
+                resultlist.setAdapter(EventList);
+                listheader.setText("No Result");
+
+
+
+
 
                 if(!sem.equals("Sem")&&!dept.equals("ALL")){
 
@@ -223,7 +242,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
 
-                    ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
+                     EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
                     stopAnim();
                  resultlist.setAdapter(EventList);
                     listheader.setText("Search Result");
@@ -269,6 +288,22 @@ public class DeptSearchFragment  extends Fragment {
         semsearch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 sem = parent.getItemAtPosition(pos).toString();
+
+                jasonbook.clear();
+                jasonauthor.clear();
+                jasonsem.clear();
+                jasonprice.clear();
+                jsondept.clear();
+                jsonmail.clear();
+                jsonph.clear();
+                jsonname.clear();
+                jsonlocation.clear();
+
+
+                ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
+                stopAnim();
+                resultlist.setAdapter(EventList);
+                listheader.setText("No Result");
 
 
                 if(!sem.equals("Sem")&&!dept.equals("ALL")){
@@ -351,7 +386,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
 
-                    ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
+                     EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
                     stopAnim();
                     resultlist.setAdapter(EventList);
                     listheader.setText("Search Result");

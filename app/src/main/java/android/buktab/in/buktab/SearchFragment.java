@@ -162,6 +162,8 @@ public class SearchFragment extends Fragment {
                     }
                 });
 
+        search.setSingleLine();
+
 
                    search.addTextChangedListener(new TextWatcher() {
 
