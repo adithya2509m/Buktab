@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -35,8 +36,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by root on 9/8/15.
@@ -55,8 +58,10 @@ public class SearchFragment extends Fragment {
     android.support.design.widget.FloatingActionButton filter;
 
     ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub,jsonlocation;
+    ArrayList<String> jasonbookf, jasonauthorf, jasonsemf, jasonpricef, jsonnamef, jsonphf, jsonmailf, jsondeptf, jsonlocationf,jsonpubf;
 
     TextView listHeader ;
+    AutoCompleteTextView location;
 //RelativeLayout top;
 
 
@@ -115,8 +120,9 @@ public class SearchFragment extends Fragment {
                 i.putExtra("dept", Splash.resdept.get(position));
                 i.putExtra("price", Splash.resprice.get(position));
                 i.putExtra("pub", Splash.respub.get(position));
-                i.putExtra("location",Splash.reslocation.get(position));
-                startActivity(i);    }
+                i.putExtra("location", Splash.reslocation.get(position));
+                startActivity(i);
+            }
         });
 
 
@@ -128,33 +134,33 @@ public class SearchFragment extends Fragment {
 
 
                 resultlist.setOnScrollListener(new AbsListView.OnScrollListener() {
-                       private int mLastFirstVisibleItem;
+                    private int mLastFirstVisibleItem;
 
 
-                       @Override
-                       public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    @Override
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-                       }
+                    }
 
-                       @Override
-                       public void onScroll(AbsListView view, int firstVisibleItem,
-                                            int visibleItemCount, int totalItemCount) {
+                    @Override
+                    public void onScroll(AbsListView view, int firstVisibleItem,
+                                         int visibleItemCount, int totalItemCount) {
 
-                           if (mLastFirstVisibleItem < firstVisibleItem) {
-                               Log.i("SCROLLING DOWN", "TRUE");
-                               filter.hide();
+                        if (mLastFirstVisibleItem < firstVisibleItem) {
+                            Log.i("SCROLLING DOWN", "TRUE");
+                            filter.hide();
 
-                               //Toast.makeText(getContext(),"scroll down",Toast.LENGTH_SHORT).show();
-                           }
-                           if (mLastFirstVisibleItem > firstVisibleItem) {
-                               Log.i("SCROLLING UP", "TRUE");
-                               filter.show();
-                               //Toast.makeText(getContext(),"scroll up",Toast.LENGTH_SHORT).show();
-                           }
-                           mLastFirstVisibleItem = firstVisibleItem;
+                            //Toast.makeText(getContext(),"scroll down",Toast.LENGTH_SHORT).show();
+                        }
+                        if (mLastFirstVisibleItem > firstVisibleItem) {
+                            Log.i("SCROLLING UP", "TRUE");
+                            filter.show();
+                            //Toast.makeText(getContext(),"scroll up",Toast.LENGTH_SHORT).show();
+                        }
+                        mLastFirstVisibleItem = firstVisibleItem;
 
-                       }
-                   });
+                    }
+                });
 
 
                    search.addTextChangedListener(new TextWatcher() {
@@ -193,7 +199,7 @@ public class SearchFragment extends Fragment {
                    filter.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
-                       //    top.setVisibility(View.VISIBLE);
+                           //    top.setVisibility(View.VISIBLE);
                            TextView m = (TextView) rootView.findViewById(R.id.message);
                            m.setText("");
 
@@ -206,7 +212,7 @@ public class SearchFragment extends Fragment {
                            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                @Override
                                public void onDismiss(DialogInterface dialog) {
-                      //             top.setVisibility(View.INVISIBLE);
+                                   //             top.setVisibility(View.INVISIBLE);
                                }
                            });
 
@@ -228,6 +234,13 @@ public class SearchFragment extends Fragment {
                            Button semdec = (Button) dialog.findViewById(R.id.semdec);
                            Button deptinc = (Button) dialog.findViewById(R.id.deptinc);
                            Button deptdec = (Button) dialog.findViewById(R.id.deptdec);
+
+                            location = (AutoCompleteTextView) dialog.findViewById(R.id.location);
+                           Set<String> unique = new HashSet<String>(jsonlocation);
+                           String[] locationlist=unique.toArray(new String[unique.size()]);
+                           ArrayAdapter<String> adapterl = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,locationlist);
+                           location.setAdapter(adapterl);
+                           location.setThreshold(1);
 
                            sposition = 0;
                            dposition = 0;
@@ -284,7 +297,7 @@ public class SearchFragment extends Fragment {
                                @Override
                                public void onClick(View v) {
                                    startAnim();
-                                   ArrayList<String> jasonbookf, jasonauthorf, jasonsemf, jasonpricef, jsonnamef, jsonphf, jsonmailf, jsondeptf,jsonlocationf;
+
                                    jasonbookf = new ArrayList<String>();
                                    jasonauthorf = new ArrayList<String>();
                                    jasonsemf = new ArrayList<String>();
@@ -293,16 +306,23 @@ public class SearchFragment extends Fragment {
                                    jsonphf = new ArrayList<String>();
                                    jsonmailf = new ArrayList<String>();
                                    jsondeptf = new ArrayList<String>();
-                                   jsonlocationf=new ArrayList<String>();
+                                   jsonlocationf = new ArrayList<String>();
+                                   jsonpubf= new ArrayList<String>();
 
                                    String filtersem = dropdownsem.getSelectedItem().toString();
                                    String filterdept = dropdowndept.getSelectedItem().toString();
+                                   String loc = location.getText().toString();
+                                   boolean locfilter = true;
+                                   if (loc.equals("")) {
+                                       locfilter = false;
+
+                                   }
+
+
                                    int check = -1;
 
 
                                    int[] index = new int[objectcount];
-
-
 
 
                                    if (filtersem.equals("Sem") && filterdept.equals("ALL")) {
@@ -321,12 +341,14 @@ public class SearchFragment extends Fragment {
                                        Iterator<String> iterator7 = jsonmail.iterator();
                                        Iterator<String> iterator8 = jsondept.iterator();
                                        Iterator<String> iterator9 = jsonlocation.iterator();
+                                       Iterator<String> iterator10 = jsonpub.iterator();
 
                                        while (iterator3.hasNext()) {
                                            String string = iterator3.next();
+                                           String string2 = iterator9.next();
 
 
-                                           if (string.equals(filtersem)) {
+                                           if (string.equals(filtersem) && (locfilter ? loc.equals(string2):true)) {
                                                jasonbookf.add(iterator1.next());
                                                jasonauthorf.add(iterator2.next());
                                                jasonsemf.add(string);
@@ -335,8 +357,8 @@ public class SearchFragment extends Fragment {
                                                jsonphf.add(iterator6.next());
                                                jsonmailf.add(iterator7.next());
                                                jsondeptf.add(iterator8.next());
-                                               jsonlocationf.add(iterator9.next());
-
+                                               jsonlocationf.add(string2);
+                                               jsonpubf.add(iterator10.next());
 
 
                                  /*   iterator1.remove();
@@ -360,7 +382,8 @@ public class SearchFragment extends Fragment {
                                                iterator6.next();
                                                iterator7.next();
                                                iterator8.next();
-                                               iterator9.next();
+                                               iterator10.next();
+                                              // iterator9.next();
 
                                            }
                                        }
@@ -377,12 +400,14 @@ public class SearchFragment extends Fragment {
                                        Iterator<String> iterator7 = jsonmail.iterator();
                                        Iterator<String> iterator8 = jsondept.iterator();
                                        Iterator<String> iterator9 = jsonlocation.iterator();
+                                       Iterator<String> iterator10 = jsonpub.iterator();
 
                                        while (iterator8.hasNext()) {
                                            String string = iterator8.next();
+                                           String string2 = iterator9.next();
 
 
-                                           if (string.equals(filterdept)) {
+                                           if (string.equals(filterdept)&& (locfilter ? loc.equals(string2):true)) {
 
 
                                                jasonbookf.add(iterator1.next());
@@ -393,7 +418,8 @@ public class SearchFragment extends Fragment {
                                                jsonphf.add(iterator6.next());
                                                jsonmailf.add(iterator7.next());
                                                jsondeptf.add(string);
-                                               jsonlocationf.add(iterator9.next());
+                                               jsonlocationf.add(string2);
+                                               jsonpubf.add(iterator10.next());
 
 
                                            } else {
@@ -405,7 +431,7 @@ public class SearchFragment extends Fragment {
                                                iterator6.next();
                                                iterator7.next();
                                                iterator3.next();
-                                               iterator9.next();
+                                               iterator10.next();
 
                                            }
                                        }
@@ -422,14 +448,15 @@ public class SearchFragment extends Fragment {
                                        Iterator<String> iterator7 = jsonmail.iterator();
                                        Iterator<String> iterator8 = jsondept.iterator();
                                        Iterator<String> iterator9 = jsonlocation.iterator();
-
+                                       Iterator<String> iterator10 = jsonpub.iterator();
 
                                        while (iterator3.hasNext()) {
                                            String string1 = iterator3.next();
                                            String string2 = iterator8.next();
+                                           String string3 = iterator9.next();
 
 
-                                           if (string1.equals(filtersem) && string2.equals(filterdept)) {
+                                           if (string1.equals(filtersem) && string2.equals(filterdept)&& (locfilter ? loc.equals(string3):true)) {
 
 
                                                jasonbookf.add(iterator1.next());
@@ -440,7 +467,8 @@ public class SearchFragment extends Fragment {
                                                jsonphf.add(iterator6.next());
                                                jsonmailf.add(iterator7.next());
                                                jsondeptf.add(string2);
-                                                jsonlocationf.add(iterator9.next());
+                                               jsonlocationf.add(string3);
+                                               jsonpubf.add(iterator10.next());
 
                                            } else {
 
@@ -450,7 +478,7 @@ public class SearchFragment extends Fragment {
                                                iterator5.next();
                                                iterator6.next();
                                                iterator7.next();
-                                               iterator9.next();
+                                               iterator10.next();
 
 
                                            }
@@ -462,64 +490,44 @@ public class SearchFragment extends Fragment {
                                    if (check == 0) {
                                        stopAnim();
                                        dialog.dismiss();
-                                     //  top.setVisibility(View.INVISIBLE);
+                                       //  top.setVisibility(View.INVISIBLE);
                                    } else {
 
 
-                                       ListAdapter EventList = new customlist2(getActivity(), jasonbookf, jasonsemf, jasonauthorf, jasonpricef, jsondeptf,jsonlocationf);
+                                       ListAdapter EventList = new customlist2(getActivity(), jasonbookf, jasonsemf, jasonauthorf, jasonpricef, jsondeptf, jsonlocationf);
                                        stopAnim();
                                        resultlist.setAdapter(EventList);
                                        listHeader.setText("Search Results");
 
                                        dialog.dismiss();
-                                    //   top.setVisibility(View.INVISIBLE);
+                                       //   top.setVisibility(View.INVISIBLE);
+
 
                                        resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
                                            @Override
                                            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                                               //   Toast.makeText(getActivity().getApplicationContext(), "Heloo", Toast.LENGTH_SHORT).show();
-                                               final Dialog dialog1 = new Dialog(getActivity(), R.style.NewDialog);
+                                               //   Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
 
-                                               dialog1.setContentView(R.layout.search_dialog);
-                                               // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                                               dialog1.setTitle("Get it from...");
 
-                                               dialog1.show();
-
-                                               TextView bname = (TextView) dialog1.findViewById(R.id.bname);
-                                               TextView aname = (TextView) dialog1.findViewById(R.id.aname);
-                                               TextView sname = (TextView) dialog1.findViewById(R.id.sname);
-
-                                               Button dismiss = (Button) dialog1.findViewById(R.id.dismiss);
-                                               Button insert = (Button) dialog1.findViewById(R.id.insert);
-                                               bname.setText(jsonname1[position]);
-                                               aname.setText(jsonph1[position]);
-                                               sname.setText(jsonmail1[position]);
-                                               dismiss.setOnClickListener(new View.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(View view) {
-                                                       dialog1.dismiss();
-                                                   }
-                                               });
-
-                                               insert.setOnClickListener(new View.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(View view) {
-
-                                                       dialog1.dismiss();
-                                                       String numberToDial = "tel:" + jsonph.get(position);
-                                                       startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numberToDial)));
-
-                                                   }
-                                               });
+                                               Intent i = new Intent(getActivity(), Searchintent.class);
+                                               i.putExtra("name", jsonnamef.get(position));
+                                               i.putExtra("phone", jsonphf.get(position));
+                                               i.putExtra("email", jsonmailf.get(position));
+                                               i.putExtra("book", jasonbookf.get(position));
+                                               i.putExtra("author", jasonauthorf.get(position));
+                                               i.putExtra("sem", jasonsemf.get(position));
+                                               i.putExtra("dept", jsondeptf.get(position));
+                                               i.putExtra("price", jasonpricef.get(position));
+                                               i.putExtra("pub", jsonpubf.get(position));
+                                               i.putExtra("location", jsonlocationf.get(position));
+                                               startActivity(i);
 
 
                                            }
                                        });
                                    }
-
-
-
 
 
                                }
