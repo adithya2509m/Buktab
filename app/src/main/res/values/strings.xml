@@ -73,8 +73,11 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_search_black_24dp</item>
-        <item>@drawable/ic_phone_android_black_24dp</item>
+        <item>@drawable/ic_drawer</item>
+        <item>@drawable/ic_add_black_24dp</item>
         <item>@drawable/ic_person_black_24dp</item>
+        <item>@drawable/logout</item>
+
 
     </array>
 

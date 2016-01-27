@@ -4,14 +4,12 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
-import android.text.Editable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +55,7 @@ public class Register extends AppCompatActivity {
         male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                male.setBackgroundColor(Color.rgb(0, 0, 0));
+                male.setBackgroundColor(Color.rgb(81, 45, 168));
                 female.setBackgroundColor(Color.rgb(255,255, 255));
                 gender="M";
             }
@@ -66,7 +64,7 @@ public class Register extends AppCompatActivity {
         female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                female.setBackgroundColor(Color.rgb(0, 0, 0));
+                female.setBackgroundColor(Color.rgb(81, 45, 168));
                 male.setBackgroundColor(Color.rgb(255,255, 255));
                 gender="F";
             }

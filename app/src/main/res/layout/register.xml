@@ -100,15 +100,15 @@
 
         <ImageView
             android:layout_width="122dp"
-            android:layout_height="163dp"
+            android:layout_height="122dp"
             android:src="@drawable/usermale"
             android:id="@+id/maleimage"
-            android:background="#000000"
+            android:background="#512da8"
             android:padding="1dp"/>
 
         <ImageView
-            android:layout_width="144dp"
-            android:layout_height="166dp"
+            android:layout_width="122dp"
+            android:layout_height="122dp"
             android:src="@drawable/userfemale"
             android:id="@+id/femaleimage"
             android:padding="1dp"/>
