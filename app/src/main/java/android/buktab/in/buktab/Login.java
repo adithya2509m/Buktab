@@ -475,6 +475,7 @@ public class Login extends ActionBarActivity {
                         Splash.resphone.clear();
                         Splash.resname.clear();
                         Splash.resid.clear();
+                        Splash.resgender.clear();
 
                         for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
@@ -490,6 +491,7 @@ public class Login extends ActionBarActivity {
                             Splash.resphone.add(temp3.getString("phoneNo"));
                             Splash.reslocation.add(temp.getString("location"));
                             Splash.resname.add(temp3.getString("username"));
+                            Splash.resgender.add(temp3.getString("sex"));
 
 
                         }}

@@ -59,8 +59,8 @@ public class SearchFragment extends Fragment {
 
     android.support.design.widget.FloatingActionButton filter;
 
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub,jsonlocation;
-    ArrayList<String> jasonbookf, jasonauthorf, jasonsemf, jasonpricef, jsonnamef, jsonphf, jsonmailf, jsondeptf, jsonlocationf,jsonpubf;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub,jsonlocation,jsongender;
+    ArrayList<String> jasonbookf, jasonauthorf, jasonsemf, jasonpricef, jsonnamef, jsonphf, jsonmailf, jsondeptf, jsonlocationf,jsonpubf,jsongenderf;
 
     TextView listHeader ;
     AutoCompleteTextView location;
@@ -86,6 +86,7 @@ public class SearchFragment extends Fragment {
         jsondept= new ArrayList<String>();
         jsonpub= new ArrayList<String>();
         jsonlocation=new ArrayList<String>();
+        jsongender=new ArrayList<String>();
 
 
        // searchbutton = (Button) rootView.findViewById(R.id.searchbutton);
@@ -118,6 +119,7 @@ public class SearchFragment extends Fragment {
         jsondept= Splash.resdept;
         jsonpub= Splash.respub;
         jsonlocation=Splash.reslocation;
+        jsongender=Splash.resgender;
 
 
 
@@ -331,6 +333,7 @@ public class SearchFragment extends Fragment {
                                    jsondeptf = new ArrayList<String>();
                                    jsonlocationf = new ArrayList<String>();
                                    jsonpubf= new ArrayList<String>();
+                                   jsongenderf=new ArrayList<String>();
 
                                    String filtersem = dropdownsem.getSelectedItem().toString();
                                    String filterdept = dropdowndept.getSelectedItem().toString();
@@ -364,7 +367,7 @@ public class SearchFragment extends Fragment {
                                            Iterator<String> iterator8 = jsondept.iterator();
                                            Iterator<String> iterator9 = jsonlocation.iterator();
                                            Iterator<String> iterator10 = jsonpub.iterator();
-
+                                           Iterator<String> iterator11 = jsongender.iterator();
                                            while (iterator3.hasNext()) {
 
                                                String string = iterator9.next();
@@ -381,6 +384,7 @@ public class SearchFragment extends Fragment {
                                                    jsondeptf.add(iterator8.next());
                                                    jsonlocationf.add(string);
                                                    jsonpubf.add(iterator10.next());
+                                                   jsongenderf.add(iterator11.next());
 
 
                                  /*   iterator1.remove();
@@ -406,7 +410,7 @@ public class SearchFragment extends Fragment {
                                                    iterator7.next();
                                                    iterator8.next();
                                                    iterator10.next();
-                                                   // iterator9.next();
+                                                   iterator11.next();
 
                                                }
                                            }
@@ -428,7 +432,7 @@ public class SearchFragment extends Fragment {
                                        Iterator<String> iterator8 = jsondept.iterator();
                                        Iterator<String> iterator9 = jsonlocation.iterator();
                                        Iterator<String> iterator10 = jsonpub.iterator();
-
+                                       Iterator<String> iterator11 = jsongender.iterator();
                                        while (iterator3.hasNext()) {
                                            String string = iterator3.next();
                                            String string2 = iterator9.next();
@@ -445,7 +449,7 @@ public class SearchFragment extends Fragment {
                                                jsondeptf.add(iterator8.next());
                                                jsonlocationf.add(string2);
                                                jsonpubf.add(iterator10.next());
-
+                                                jsongenderf.add(iterator11.next());
 
                                  /*   iterator1.remove();
 
@@ -469,7 +473,7 @@ public class SearchFragment extends Fragment {
                                                iterator7.next();
                                                iterator8.next();
                                                iterator10.next();
-                                              // iterator9.next();
+                                               iterator11.next();
 
                                            }
                                        }
@@ -487,6 +491,7 @@ public class SearchFragment extends Fragment {
                                        Iterator<String> iterator8 = jsondept.iterator();
                                        Iterator<String> iterator9 = jsonlocation.iterator();
                                        Iterator<String> iterator10 = jsonpub.iterator();
+                                       Iterator<String> iterator11 = jsongender.iterator();
 
                                        while (iterator8.hasNext()) {
                                            String string = iterator8.next();
@@ -506,6 +511,7 @@ public class SearchFragment extends Fragment {
                                                jsondeptf.add(string);
                                                jsonlocationf.add(string2);
                                                jsonpubf.add(iterator10.next());
+                                               jsongenderf.add(iterator11.next());
 
 
                                            } else {
@@ -518,6 +524,7 @@ public class SearchFragment extends Fragment {
                                                iterator7.next();
                                                iterator3.next();
                                                iterator10.next();
+                                               iterator11.next();
 
                                            }
                                        }
@@ -535,6 +542,7 @@ public class SearchFragment extends Fragment {
                                        Iterator<String> iterator8 = jsondept.iterator();
                                        Iterator<String> iterator9 = jsonlocation.iterator();
                                        Iterator<String> iterator10 = jsonpub.iterator();
+                                       Iterator<String> iterator11 = jsongender.iterator();
 
                                        while (iterator3.hasNext()) {
                                            String string1 = iterator3.next();
@@ -555,6 +563,7 @@ public class SearchFragment extends Fragment {
                                                jsondeptf.add(string2);
                                                jsonlocationf.add(string3);
                                                jsonpubf.add(iterator10.next());
+                                               jsongenderf.add(iterator11.next());
 
                                            } else {
 
@@ -565,6 +574,7 @@ public class SearchFragment extends Fragment {
                                                iterator6.next();
                                                iterator7.next();
                                                iterator10.next();
+                                               iterator11.next();
 
 
                                            }
@@ -608,6 +618,7 @@ public class SearchFragment extends Fragment {
                                                i.putExtra("price", jasonpricef.get(position));
                                                i.putExtra("pub", jsonpubf.get(position));
                                                i.putExtra("location", jsonlocationf.get(position));
+                                               i.putExtra("gender",jsongenderf.get(position));
                                                startActivity(i);
 
 
@@ -683,6 +694,7 @@ public class SearchFragment extends Fragment {
                                    jsonph.clear();
                                    jsonname.clear();
                                    jsonlocation.clear();
+                                   jsongender.clear();
 
                                    for (int i = 0; i < jsonArray.length(); i++) {
                                        JSONObject temp = jsonArray.getJSONObject(i);
@@ -698,6 +710,7 @@ public class SearchFragment extends Fragment {
                                        jsonph.add(temp3.getString("phoneNo"));
                                        jsonname.add(temp3.getString("username"));
                                        jsonlocation.add(temp.getString("location"));
+                                       jsongender.add(temp3.getString("sex"));
 
 
                                    }
@@ -761,6 +774,7 @@ public class SearchFragment extends Fragment {
                                    i.putExtra("price", jasonprice.get(position));
                                    i.putExtra("pub", jsonpub.get(position));
                                    i.putExtra("location",jsonlocation.get(position));
+                                   i.putExtra("gender",jsongender.get(position));
                                    startActivity(i);
 
 

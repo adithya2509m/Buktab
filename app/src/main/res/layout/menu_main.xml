@@ -53,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/male_user"
+                android:src="@drawable/usermale"
                 android:id="@+id/profimage"
 
 

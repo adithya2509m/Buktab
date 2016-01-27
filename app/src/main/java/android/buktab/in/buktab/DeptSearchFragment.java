@@ -40,7 +40,7 @@ public class DeptSearchFragment  extends Fragment {
     String url="http://52.10.251.227:3000/getAds/byDeptAndSem";
     ListView resultlist;
     String sem,dept;
-    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub,jsonlocation;
+    ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsonname,jsonph,jsonmail,jsondept,jsonpub,jsonlocation,jsongender;
     View rootView;
     RelativeLayout top;
     TextView listheader;
@@ -58,6 +58,7 @@ public class DeptSearchFragment  extends Fragment {
         jsondept= new ArrayList<String>();
         jsonpub= new ArrayList<String>();
         jsonlocation=new ArrayList<String>();
+        jsongender=new ArrayList<String>();
 
       //  top=(RelativeLayout)rootView.findViewById(R.id.top_layout);
 
@@ -157,6 +158,7 @@ public class DeptSearchFragment  extends Fragment {
                 jsonph.clear();
                 jsonname.clear();
                 jsonlocation.clear();
+                jsongender.clear();
 
 
                 ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
@@ -202,6 +204,7 @@ public class DeptSearchFragment  extends Fragment {
                                 jsonph.clear();
                                 jsonname.clear();
                                 jsonlocation.clear();
+                                jsongender.clear();
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
@@ -217,6 +220,7 @@ public class DeptSearchFragment  extends Fragment {
                                     jsonph.add(temp3.getString("phoneNo"));
                                     jsonname.add(temp3.getString("username"));
                                     jsonlocation.add(temp.getString("location"));
+                                    jsongender.add(temp3.getString("sex"));
 
                                 }}
 
@@ -269,6 +273,7 @@ public class DeptSearchFragment  extends Fragment {
                             i.putExtra("price",jasonprice.get(position));
                             i.putExtra("pub",jsonpub.get(position));
                             i.putExtra("location",jsonlocation.get(position));
+                            i.putExtra("gender",jsongender.get(position));
                             startActivity(i);
 
 
@@ -304,6 +309,7 @@ public class DeptSearchFragment  extends Fragment {
                 jsonph.clear();
                 jsonname.clear();
                 jsonlocation.clear();
+                jsongender.clear();
 
 
                 ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
@@ -347,6 +353,7 @@ public class DeptSearchFragment  extends Fragment {
                                 jsonph.clear();
                                 jsonname.clear();
                                 jsonlocation.clear();
+                                jsongender.clear();
 
                                 for(int i =0;i<jsonArray.length();i++) {
                                     JSONObject temp = jsonArray.getJSONObject(i);
@@ -362,6 +369,7 @@ public class DeptSearchFragment  extends Fragment {
                                     jsonph.add(temp3.getString("phoneNo"));
                                     jsonname.add(temp3.getString("username"));
                                     jsonlocation.add(temp.getString("location"));
+                                    jsongender.add(temp3.getString("sex"));
 
                                 }}
 
@@ -413,6 +421,7 @@ public class DeptSearchFragment  extends Fragment {
                             i.putExtra("price",jasonprice.get(position));
                             i.putExtra("pub",jsonpub.get(position));
                             i.putExtra("location",jsonlocation.get(position));
+                            i.putExtra("gender",jsongender.get(position));
                             startActivity(i);
 
 

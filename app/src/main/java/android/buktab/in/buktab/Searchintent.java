@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -46,6 +47,16 @@ public class Searchintent extends AppCompatActivity {
         oemail=(TextView)findViewById(R.id.email);
         pub=(TextView)findViewById(R.id.pname);
         loc=(TextView)findViewById(R.id.location);
+
+        ImageView profpic=(ImageView)findViewById(R.id.profimage);
+        // scaleImage(profpic, 125);
+        if(getIntent().getExtras().getString("gender").equals("M")){
+            profpic.setImageResource(R.drawable.usermale);
+
+        }else{
+            profpic.setImageResource(R.drawable.userfemale);
+
+        }
 
         bookname.setText(getIntent().getExtras().getString("book").trim());
         authorname.setText(getIntent().getExtras().getString("author").trim());

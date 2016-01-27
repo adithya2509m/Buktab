@@ -31,7 +31,7 @@ import java.util.List;
 public class Splash extends Activity {
 
     /** Duration of wait **/
-    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid,resbook,resauthor,ressem,resprice,resdept,resid,respub,resphone,resname,resemail,reslocation;
+    static ArrayList<String> jasonbook,jasonauthor,jasonsem,jasonprice,jsondept,jsonid,resbook,resauthor,ressem,resprice,resdept,resid,respub,resphone,resname,resemail,reslocation,resgender;
     String url="http://52.10.251.227:3000/manageBooks";
     String resurl="http://52.10.251.227:3000/recent";
     String token;
@@ -62,6 +62,8 @@ public class Splash extends Activity {
         jsondept = new ArrayList<String>();
         jsonid = new ArrayList<String>();
         resbook=new ArrayList<String>();
+        resgender=new ArrayList<String>();
+
         resauthor=new ArrayList<String>();
         resdept=new ArrayList<String>();
         ressem=new ArrayList<String>();
@@ -149,6 +151,7 @@ public class Splash extends Activity {
 
                         int len=jsonArray.length();
                         resbook.clear();
+                        resgender.clear();
                         resauthor.clear();
                         ressem.clear();
                         resprice.clear();
@@ -170,6 +173,7 @@ public class Splash extends Activity {
                             respub.add(temp2.getString("Publisher"));
                             resemail.add(temp3.getString("email"));
                             resphone.add(temp3.getString("phoneNo"));
+                            resgender.add(temp3.getString("sex"));
                             reslocation.add(temp.getString("location"));
                             resname.add(temp3.getString("username"));
 

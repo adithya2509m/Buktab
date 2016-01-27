@@ -80,8 +80,15 @@ RelativeLayout draw;
 
         initToolbar();
         title=(TextView)findViewById(R.id.text_view_toolbar_title);
-       // ImageView profpic=(ImageView)findViewById(R.id.profimage);
+        ImageView profpic=(ImageView)findViewById(R.id.profimage);
        // scaleImage(profpic, 125);
+        if(Login.gender.equals("M")){
+            profpic.setImageResource(R.drawable.usermale);
+
+        }else{
+            profpic.setImageResource(R.drawable.userfemale);
+
+        }
         draw=(RelativeLayout)findViewById(R.id.draw);
         mTitle = mDrawerTitle = getTitle();
         Button share=(Button)findViewById(R.id.share);
