@@ -11,12 +11,11 @@ import android.os.Handler;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -87,6 +86,26 @@ public class Splash extends Activity {
 
     void startAnim(){
         findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+        final ImageView iv = (ImageView) findViewById(R.id.splashscreen1);
+        final Animation an = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
+
+        iv.startAnimation(an);
+        an.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     void stopAnim(){
