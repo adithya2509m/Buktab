@@ -1,26 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About us"
-        android:id="@+id/textView"
-        android:gravity="center"
-        android:textSize="16pt"
-        android:layout_gravity="center_horizontal" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:layout_gravity="center_horizontal" >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Something about us"/>
+            android:text="@string/aboutus"
+            android:textColor="#000000"
+            android:padding="25dp" />
 
-    </ScrollView>
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Our Crew"
+            android:textSize="10pt"
+            android:textColor="#000000"
+
+            android:padding="15dp"
+            android:layout_gravity="center"/>
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/usermale"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adithya"
+
+        android:padding="15dp"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/usermale"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Karthic"
+
+        android:padding="15dp"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/usermale"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arun"
+
+        android:padding="15dp"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/userfemale"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Srideepika"
+
+        android:padding="15dp"
+        android:layout_gravity="center"/>
+
 </LinearLayout>
+
+</ScrollView>

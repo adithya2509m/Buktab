@@ -102,6 +102,7 @@ RelativeLayout draw;
                 Fragment fragment;
                 fragment = new AboutUs();
                 FragmentManager fragmentManager = getSupportFragmentManager();
+                title.setText("About us");
                 fragmentManager.beginTransaction().replace(R.id.container,fragment).commit();
             }
         });
