@@ -179,10 +179,14 @@ public class Splash extends Activity {
                         resname.clear();
                         resid.clear();
 
-                        for(int i =2;i<jsonArray.length();i++) {
+                        for(int i =0;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
                             JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
-                            JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);
+                            JSONArray temp4=temp.getJSONArray("_creator");
+                            if(temp4.length()==0)
+                                continue;
+                            JSONObject temp3=temp4.getJSONObject(0);
+
                             resbook.add(temp2.getString("Name"));
                             resauthor.add(temp2.getString("Author"));
                             ressem.add(temp.getString("Semester"));

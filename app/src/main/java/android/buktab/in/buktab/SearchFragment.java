@@ -24,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -56,6 +57,7 @@ public class SearchFragment extends Fragment {
     View rootView;
     private jasonsearch searchquery;
     int sposition =0,dposition=0;
+    boolean isfiltered=false;
 
     android.support.design.widget.FloatingActionButton filter;
 
@@ -260,6 +262,52 @@ public class SearchFragment extends Fragment {
                            Button semdec = (Button) dialog.findViewById(R.id.semdec);
                            Button deptinc = (Button) dialog.findViewById(R.id.deptinc);
                            Button deptdec = (Button) dialog.findViewById(R.id.deptdec);
+                           ImageButton remfil=(ImageButton)dialog.findViewById(R.id.removefilter);
+
+                           if(isfiltered)
+                               remfil.setVisibility(View.VISIBLE);
+                           else
+                                remfil.setVisibility(View.GONE);
+
+                           remfil.setOnClickListener(new View.OnClickListener() {
+                               @Override
+                               public void onClick(View v) {
+                                   isfiltered=false;
+
+                                   ListAdapter EventList = new customlist2(getActivity(), jasonbook, jasonsem, jasonauthor, jasonprice, jsondept,jsonlocation);
+                                   stopAnim();
+                                   resultlist.setAdapter(EventList);
+                                   listHeader.setText("Search Results");
+                                   resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+                                       @Override
+                                       public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                                           //   Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
+
+
+                                           Intent i = new Intent(getActivity(), Searchintent.class);
+                                           i.putExtra("name", jsonname.get(position));
+                                           i.putExtra("phone", jsonph.get(position));
+                                           i.putExtra("email", jsonmail.get(position));
+                                           i.putExtra("book", jasonbook.get(position));
+                                           i.putExtra("author", jasonauthor.get(position));
+                                           i.putExtra("sem", jasonsem.get(position));
+                                           i.putExtra("dept", jsondept.get(position));
+                                           i.putExtra("price", jasonprice.get(position));
+                                           i.putExtra("pub", jsonpub.get(position));
+                                           i.putExtra("location",jsonlocation.get(position));
+                                           i.putExtra("gender",jsongender.get(position));
+                                           startActivity(i);
+
+
+                                       }
+                                   });
+                                   dialog.dismiss();
+
+                               }
+                           });
+
 
                             location = (AutoCompleteTextView) dialog.findViewById(R.id.location);
                            Set<String> unique = new HashSet<String>(jsonlocation);
@@ -325,6 +373,7 @@ public class SearchFragment extends Fragment {
                                public void onClick(View v) {
                                    startAnim();
 
+
                                    jasonbookf = new ArrayList<String>();
                                    jasonauthorf = new ArrayList<String>();
                                    jasonsemf = new ArrayList<String>();
@@ -358,7 +407,7 @@ public class SearchFragment extends Fragment {
                                        check = 0;
 
                                        else{
-
+                                           isfiltered=true;
                                            Iterator<String> iterator1 = jasonbook.iterator();
                                            Iterator<String> iterator2 = jasonauthor.iterator();
                                            Iterator<String> iterator3 = jasonsem.iterator();
@@ -424,6 +473,7 @@ public class SearchFragment extends Fragment {
 
 
                                    if (!filtersem.equals("Sem") && filterdept.equals("ALL")) {
+                                       isfiltered=true;
                                        Iterator<String> iterator1 = jasonbook.iterator();
                                        Iterator<String> iterator2 = jasonauthor.iterator();
                                        Iterator<String> iterator3 = jasonsem.iterator();
@@ -482,6 +532,7 @@ public class SearchFragment extends Fragment {
 
 
                                    } else if (filtersem.equals("Sem") && !filterdept.equals("ALL")) {
+                                       isfiltered=true;
 
                                        Iterator<String> iterator1 = jasonbook.iterator();
                                        Iterator<String> iterator2 = jasonauthor.iterator();
@@ -533,6 +584,7 @@ public class SearchFragment extends Fragment {
 
 
                                    } else if (!filtersem.equals("Sem") && !filterdept.equals("ALL")) {
+                                       isfiltered=true;
 
                                        Iterator<String> iterator1 = jasonbook.iterator();
                                        Iterator<String> iterator2 = jasonauthor.iterator();
@@ -701,7 +753,10 @@ public class SearchFragment extends Fragment {
                                    for (int i = 0; i < jsonArray.length(); i++) {
                                        JSONObject temp = jsonArray.getJSONObject(i);
                                        JSONObject temp2 = temp.getJSONArray("bookDetails").getJSONObject(0);
-                                       JSONObject temp3 = temp.getJSONArray("_creator").getJSONObject(0);
+                                       JSONArray temp4=temp.getJSONArray("_creator");
+                                       if(temp4.length()==0)
+                                           continue;
+                                       JSONObject temp3=temp4.getJSONObject(0);
                                        jasonbook.add(temp2.getString("Name"));
                                        jasonauthor.add(temp2.getString("Author"));
                                        jasonsem.add(temp.getString("Semester"));
