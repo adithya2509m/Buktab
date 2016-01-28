@@ -141,6 +141,7 @@ public class SearchFragment extends Fragment {
                 i.putExtra("dept", Splash.resdept.get(position));
                 i.putExtra("price", Splash.resprice.get(position));
                 i.putExtra("pub", Splash.respub.get(position));
+                i.putExtra("gender",Splash.resgender.get(position));
                 i.putExtra("location", Splash.reslocation.get(position));
                 startActivity(i);
             }
