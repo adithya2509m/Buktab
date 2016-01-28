@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -85,7 +84,7 @@ public class Splash extends Activity {
     }
 
     void startAnim(){
-        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+//        /* findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);*//
         final ImageView iv = (ImageView) findViewById(R.id.splashscreen1);
         final Animation an = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
 
@@ -109,7 +108,7 @@ public class Splash extends Activity {
     }
 
     void stopAnim(){
-        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+        //findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
 
 
@@ -180,7 +179,7 @@ public class Splash extends Activity {
                         resname.clear();
                         resid.clear();
 
-                        for(int i =0;i<jsonArray.length();i++) {
+                        for(int i =2;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
                             JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
                             JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);
