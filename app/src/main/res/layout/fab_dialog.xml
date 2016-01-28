@@ -85,6 +85,8 @@
         android:layout_height="wrap_content"
         android:hint="Location"
         android:id="@+id/location"
+        android:dropDownHeight="175dp"
+
         android:ems="10"
         android:completionThreshold="2"/>
 

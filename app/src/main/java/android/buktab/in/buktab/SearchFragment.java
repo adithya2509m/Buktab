@@ -264,7 +264,8 @@ public class SearchFragment extends Fragment {
                             location = (AutoCompleteTextView) dialog.findViewById(R.id.location);
                            Set<String> unique = new HashSet<String>(jsonlocation);
                            String[] locationlist=unique.toArray(new String[unique.size()]);
-                           ArrayAdapter<String> adapterl = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,locationlist);
+
+                           ArrayAdapter adapterl = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,locationlist);
                            location.setAdapter(adapterl);
                            location.setThreshold(1);
 

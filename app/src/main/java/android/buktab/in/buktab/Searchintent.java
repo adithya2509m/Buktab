@@ -83,7 +83,7 @@ public class Searchintent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
+                intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL, oemail.getText());
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Willing to purchase " + bookname.getText());
                 intent.putExtra(Intent.EXTRA_TEXT, "Hi I am " + Login.username + " ,I would like Purchase your book '" + bookname.getText() + "' .");

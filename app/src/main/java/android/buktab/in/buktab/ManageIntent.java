@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class ManageIntent extends AppCompatActivity {
 
-    GPSTracker gps;
+    //GPSTracker gps;
 
 
     EditText price;
@@ -45,7 +45,7 @@ public class ManageIntent extends AppCompatActivity {
     String sem,id;
     TextView bn,an,dn,rs;
     String posturl="http://52.10.251.227:3000/update";
-    double latitude = 10,longitude=10;
+    //double latitude = 10,longitude=10;
 
     @Override
     protected void onPause() {
@@ -61,11 +61,12 @@ public class ManageIntent extends AppCompatActivity {
         Toolbar mtoolbar =(Toolbar)findViewById(R.id.toolbar2);
         setSupportActionBar(mtoolbar);
 
-        gps = new GPSTracker(ManageIntent.this);
+        //gps = new GPSTracker(ManageIntent.this);
          id=getIntent().getExtras().getString("id");
          bn=(TextView)findViewById(R.id.bname);
          an=(TextView)findViewById(R.id.aname);
          dn=(TextView)findViewById(R.id.dept);
+
 
         EditText location=(EditText)findViewById(R.id.location);
         location.setVisibility(View.GONE);
@@ -73,7 +74,7 @@ public class ManageIntent extends AppCompatActivity {
         rs.setText("\u20B9");
 
 
-
+/*
         if(gps.canGetLocation()) {
 
             latitude = gps.getLatitude();
@@ -83,7 +84,7 @@ public class ManageIntent extends AppCompatActivity {
             gps.showSettingsAlert();
         }
 
-
+*/
 
         bn.setText(getIntent().getExtras().getString("bookname").trim());
         an.setText(getIntent().getExtras().getString("author").trim());
@@ -190,8 +191,8 @@ public class ManageIntent extends AppCompatActivity {
             params2.add(new BasicNameValuePair("sem",sem));
 
             params2.add(new BasicNameValuePair("id",id));
-            params2.add(new BasicNameValuePair("lat", String.valueOf(latitude)));
-            params2.add(new BasicNameValuePair("long", String.valueOf(longitude)));
+          //  params2.add(new BasicNameValuePair("lat", String.valueOf(latitude)));
+          //  params2.add(new BasicNameValuePair("long", String.valueOf(longitude)));
 
             params2.add(new BasicNameValuePair("token", Login.token));
 

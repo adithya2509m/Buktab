@@ -477,7 +477,7 @@ public class Login extends ActionBarActivity {
                         Splash.resid.clear();
                         Splash.resgender.clear();
 
-                        for(int i =1;i<jsonArray.length();i++) {
+                        for(int i =2;i<jsonArray.length();i++) {
                             JSONObject temp = jsonArray.getJSONObject(i);
                             JSONObject temp2=temp.getJSONArray("bookDetails").getJSONObject(0);
                             JSONObject temp3=temp.getJSONArray("_creator").getJSONObject(0);

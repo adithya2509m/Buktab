@@ -196,6 +196,13 @@
 
 
     </LinearLayout>
+
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/priceseek"
+            android:max="2000"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
