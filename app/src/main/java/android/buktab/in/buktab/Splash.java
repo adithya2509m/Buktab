@@ -330,9 +330,13 @@ public class Splash extends Activity {
                 if(jsonobject!=null){
 
                     String result=jsonobject.getString("success");
+                    String message=jsonobject.getString("message");
 
                     if(result.equals("true"))
                     {
+
+                        if(message.equals("Oops! You have not Posted any Book"))
+                            return true;
 
 
                         JSONArray jsonArray=jsonobject.getJSONArray("result");

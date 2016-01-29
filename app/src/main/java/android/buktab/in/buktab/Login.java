@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,7 +66,7 @@ public class Login extends ActionBarActivity {
             startActivity(i);
 
         }
-
+//initToolbar();
 
         register.setOnClickListener(new View.OnClickListener() {
 
@@ -320,9 +321,11 @@ public class Login extends ActionBarActivity {
                 if(jsonobject!=null){
 
                     String result=jsonobject.getString("success");
-
+                    String message=jsonobject.getString("message");
                     if(result.equals("true"))
                     {
+                        if(message.equals("Oops! You have not Posted any Book"))
+                            return true;
 
 
                         JSONArray jsonArray=jsonobject.getJSONArray("result");
@@ -543,7 +546,25 @@ public class Login extends ActionBarActivity {
 
 
 
+    private void initToolbar() {
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
 
+
+
+
+        //scaleImage(uicon, 125);
+
+        setSupportActionBar(mToolbar);
+         // getSupportActionBar().setHomeButtonEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        mToolBarTextView.setText("Login");
+         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+
+    }
 
 
 

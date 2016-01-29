@@ -237,7 +237,7 @@ public class InsertFragment extends Fragment {
                         i.putExtra("author",jasonauthor[position]);
                         i.putExtra("dept",jasondept[position]);
                         i.putExtra("id",jsonid[pos]);
-
+                        //getActivity().finish();
                         startActivity(i);
 
 

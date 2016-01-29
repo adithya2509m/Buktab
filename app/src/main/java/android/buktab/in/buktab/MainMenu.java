@@ -104,6 +104,9 @@ RelativeLayout draw;
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 title.setText("About us");
                 fragmentManager.beginTransaction().replace(R.id.container,fragment).commit();
+                mDrawerLayout.closeDrawer(draw);
+
+
             }
         });
         TextView uname=(TextView)findViewById(R.id.username);
@@ -358,6 +361,13 @@ RelativeLayout draw;
      * When using the ActionBarDrawerToggle, you must call it during
      * onPostCreate() and onConfigurationChanged()...
      */
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

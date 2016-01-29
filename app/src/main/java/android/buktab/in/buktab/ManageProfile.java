@@ -5,17 +5,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -32,9 +36,11 @@ import java.util.List;
 public class ManageProfile extends Fragment {
 
     View rootView;
-    EditText mpphone,mpmail,mppass;
+    EditText mpphone,mpmail,mppass,edmail,edphone;
+    boolean e=false,p=false;
     String url="http://52.10.251.227/:3000/updateProfile";
 
+    ViewAnimator viewAnimator1,viewAnimator2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.manageprofile, container, false);
@@ -45,8 +51,23 @@ public class ManageProfile extends Fragment {
         }
 
 
+        viewAnimator1 = (ViewAnimator) rootView.findViewById(R.id.viewAnimator1);
+        viewAnimator2=(ViewAnimator)rootView.findViewById(R.id.viewAnimator2);
+
+        final Animation inAnim = AnimationUtils.loadAnimation(getActivity(),android.R.anim.slide_in_left);
+        final Animation outAnim = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_out_right);
+
+        viewAnimator1.setInAnimation(inAnim);
+        viewAnimator1.setOutAnimation(outAnim);
+
+        viewAnimator2.setInAnimation(inAnim);
+        viewAnimator2.setOutAnimation(outAnim);
+
+
+
+
         TextView mpname;
-        ImageButton ename,ephone,email;
+        final ImageButton ename,ephone,email;
 
         Button save;
 
@@ -59,11 +80,16 @@ public class ManageProfile extends Fragment {
         email=(ImageButton)rootView.findViewById(R.id.mailedit);
         save=(Button)rootView.findViewById(R.id.editprof);
 
+        edmail=(EditText)rootView.findViewById(R.id.empemail);
+        edphone=(EditText)rootView.findViewById(R.id.empphone);
+
 
 
         mpname.setText(Login.username);
-        mpphone.setHint("Enter New Phone");
-        mpmail.setHint("Enter New E-Mail");
+        mpphone.setText(Login.phone);
+        mpmail.setText(Login.mail);
+
+
 
 
 
@@ -77,8 +103,86 @@ public class ManageProfile extends Fragment {
         ephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mpphone.setKeyListener(null);
+                if (!p) {
+                    viewAnimator1.showNext();
+                    ephone.setImageResource(R.drawable.ic_check_black_24dp);
+                    p=true;
+                } else {
+                    //viewAnimator1.showPrevious();
+                    //ephone.setImageResource(R.drawable.ic_edit_black_24dp);
+                    String MobilePattern = "[0-9]{10}";
+                    String inbuilt = "^+91[0-9]{10}$";
+                    if (edphone.getText().toString().equals("")) {
 
+                        Toast.makeText(getActivity(), "Enter Valid Phone Number", Toast.LENGTH_LONG).show();
+
+                    } else if (!edphone.getText().toString().matches(MobilePattern) && !edphone.getText().toString().matches(inbuilt))
+
+                        Toast.makeText(getActivity(), "Enter Valid Phone Number", Toast.LENGTH_LONG).show();
+
+
+                    else {
+
+                        final ConnectionDetector cd = new ConnectionDetector(getActivity());
+                        if (cd.isConnectingToInternet()) {
+
+                            JSONObject jsonobject4;
+                            final JSONParser jParser4 = new JSONParser();
+                            List<NameValuePair> params4 = new ArrayList<NameValuePair>();
+
+                            String url = "http://52.10.251.227:3000/validate/phoneNo/" + edphone.getText();
+                           // startAnim();
+                            jsonobject4 = jParser4.makeHttpRequest(url, "GET", params4);
+
+                            try {
+                                if (jsonobject4 != null) {
+
+                                    String result2 = jsonobject4.getString("success");
+
+                                    if (result2.equals("false")) {
+
+                                        Toast.makeText(getActivity(), "Phone Number Taken", Toast.LENGTH_LONG).show();
+
+
+
+                                    } else {
+                                        viewAnimator1.showPrevious();
+                                        ephone.setImageResource(R.drawable.ic_edit_black_24dp);
+                                        mpphone.setText(edphone.getText().toString());
+                                        p=false;
+
+                                        View v = getActivity().getCurrentFocus();
+                                        if (v != null) {
+                                            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                                        }
+
+                                    }
+
+                                } else {
+                                    Toast.makeText(getActivity(), "No Response From Server", Toast.LENGTH_LONG).show();
+
+
+                                }
+
+
+                            } catch (Exception e) {
+                                Log.e("Error", e.getMessage());
+                                e.printStackTrace();
+                            }
+
+                        } else {
+
+                            Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                            //  circularButton2.setProgress(-1);
+
+                        }
+
+
+                    }
+
+
+                }
             }
         });
 
@@ -86,6 +190,38 @@ public class ManageProfile extends Fragment {
             @Override
             public void onClick(View view) {
 
+                if (!e) {
+                    viewAnimator2.showNext();
+                    email.setImageResource(R.drawable.ic_check_black_24dp);
+                    e=true;
+                } else {
+                    if (edmail.getText().toString().equals("")) {
+
+                        Toast.makeText(getActivity(), "Enter Mail ID", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edmail.getText()).matches()) {
+
+                            Toast.makeText(getActivity(), "Invalid Mail", Toast.LENGTH_LONG).show();
+
+                        }
+
+
+                    }
+                    viewAnimator2.showPrevious();
+                    email.setImageResource(R.drawable.ic_edit_black_24dp);
+                    mpmail.setText(edmail.getText().toString());
+
+                    e=false;
+
+                    View v = getActivity().getCurrentFocus();
+                    if (v != null) {
+                        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+
+                }
             }
         });
 
@@ -94,17 +230,15 @@ public class ManageProfile extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mppass.getText().equals("password")){
+                if (!mppass.getText().equals("")) {
 
 
                     new manage().execute();
 
 
-                }
+                } else {
 
-                else {
-
-                    Toast.makeText(getContext().getApplicationContext(),"fetching results", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext().getApplicationContext(), "Enter Your Password to Update", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -149,12 +283,14 @@ private class manage extends AsyncTask<String,String,Boolean>
 
 
         params2.add(new BasicNameValuePair("token",Login.token));
-        params2.add(new BasicNameValuePair("password",Login.token));
-        params2.add(new BasicNameValuePair("phonenumber",Login.token));
-        params2.add(new BasicNameValuePair("email",Login.token));
+        params2.add(new BasicNameValuePair("password",mppass.getText().toString()));
+        params2.add(new BasicNameValuePair("phonenumber",mpphone.getText().toString()));
+        params2.add(new BasicNameValuePair("email",mpmail.getText().toString()));
 
 
         jsonobject = jParser2.makeHttpRequest(url, "POST", params2);
+
+
 
         try{
             if(jsonobject!=null){
@@ -198,10 +334,29 @@ private class manage extends AsyncTask<String,String,Boolean>
             Toast.makeText(getContext().getApplicationContext(), "Edit Failed", Toast.LENGTH_LONG).show();
 
         }else{
-            Toast.makeText(getContext().getApplicationContext(), "Edit Successfull", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext().getApplicationContext(), "Edit Successful", Toast.LENGTH_LONG).show();
+            Login.mail=mpmail.getText().toString();
+            Login.phone=mpphone.getText().toString();
+
+
+
+            SharedPreferences pref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+
+
+
+            editor.putString("mail", Login.mail);
+            editor.putString("phone", Login.phone);
+            editor.commit();
+
+
 
         }
 
 
     }
-}}
+}
+
+
+
+}
