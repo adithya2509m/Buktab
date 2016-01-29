@@ -207,14 +207,14 @@ public class ManageIntent extends AppCompatActivity {
 
 
     }
-  /*  @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
 
 
@@ -310,9 +310,10 @@ public class ManageIntent extends AppCompatActivity {
                 Toast.makeText(ManageIntent.this, "Updated Successful", Toast.LENGTH_LONG).show();
 
 
-                Intent i=new Intent(ManageIntent.this,MainMenu.class);
+               // Intent i=new Intent(ManageIntent.this,MainMenu.class);
                 MainMenu.man=1;
-                startActivity(i);
+                //startActivity(i);
+                NavUtils.navigateUpFromSameTask(ManageIntent.this);
 
             }else{
                 Toast.makeText(ManageIntent.this, "Update Failed", Toast.LENGTH_LONG).show();
@@ -367,10 +368,9 @@ public class ManageIntent extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // your code.
-        Intent i= new Intent(ManageIntent.this,MainMenu.class);
-        startActivity(i);
+        NavUtils.navigateUpFromSameTask(this);
     }
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -379,7 +379,7 @@ public class ManageIntent extends AppCompatActivity {
                 break;
         }
         return true;
-    }
+    }*/
 
 
 }

@@ -374,7 +374,7 @@ RelativeLayout draw;
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+        //finish();
     }
 
 

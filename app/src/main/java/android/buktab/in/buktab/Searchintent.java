@@ -3,6 +3,7 @@ package android.buktab.in.buktab;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -106,10 +107,9 @@ public class Searchintent extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // your code.
-       Intent i= new Intent(Searchintent.this,MainMenu.class);
-        startActivity(i);
+        NavUtils.navigateUpFromSameTask(this);
     }
-  @Override
+/*  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
           case android.R.id.home:
@@ -119,7 +119,7 @@ public class Searchintent extends AppCompatActivity {
       }
       return true;
   }
-
+*/
 
 
 }

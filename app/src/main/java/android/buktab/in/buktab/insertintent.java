@@ -242,14 +242,14 @@ public class insertintent extends AppCompatActivity {
 
 
     }
-  /*  @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
 
 
@@ -345,9 +345,10 @@ public class insertintent extends AppCompatActivity {
                 Toast.makeText(insertintent.this, "Insert Successful", Toast.LENGTH_LONG).show();
                 Splash.bookcount++;
 
-                Intent i=new Intent(insertintent.this,MainMenu.class);
+                //Intent i=new Intent(insertintent.this,MainMenu.class);
                 MainMenu.man=1;
-                startActivity(i);
+                NavUtils.navigateUpFromSameTask(insertintent.this);
+               // startActivity(i);
             }
 
 
@@ -398,19 +399,9 @@ public class insertintent extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // your code.
-        Intent i= new Intent(insertintent.this,MainMenu.class);
-        startActivity(i);
+        NavUtils.navigateUpFromSameTask(this);
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent i= new Intent(insertintent.this,MainMenu.class);
-                startActivity(i);
-                break;
-        }
-        return true;
-    }
+
 
 
 }
