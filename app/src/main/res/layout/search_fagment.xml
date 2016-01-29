@@ -52,8 +52,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:id="@+id/search"
-                android:hint="search"
-                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:hint="Search"
+                android:drawableLeft="@drawable/search"
 
                 />
 
