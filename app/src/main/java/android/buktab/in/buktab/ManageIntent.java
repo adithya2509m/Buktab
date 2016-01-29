@@ -205,14 +205,14 @@ public class ManageIntent extends AppCompatActivity {
 
 
     }
-    @Override
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 
 
@@ -362,7 +362,22 @@ public class ManageIntent extends AppCompatActivity {
         view.setLayoutParams(params);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        // your code.
+        Intent i= new Intent(ManageIntent.this,MainMenu.class);
+        startActivity(i);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i= new Intent(ManageIntent.this,MainMenu.class);
+                startActivity(i);
+                break;
+        }
+        return true;
+    }
 
 
 }

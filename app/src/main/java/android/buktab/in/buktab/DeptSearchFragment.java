@@ -170,7 +170,7 @@ public class DeptSearchFragment  extends Fragment {
 
 
 
-                if(!sem.equals("Sem")&&!dept.equals("ALL")){
+                if(!sem.equals("Sem")&&!dept.equals("DEPT")){
 
 
                     startAnim();
@@ -321,7 +321,7 @@ public class DeptSearchFragment  extends Fragment {
                 listheader.setText("No Result");
 
 
-                if(!sem.equals("Sem")&&!dept.equals("ALL")){
+                if(!sem.equals("Sem")&&!dept.equals("DEPT")){
 
 
 

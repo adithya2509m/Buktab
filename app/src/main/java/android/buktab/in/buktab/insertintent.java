@@ -90,6 +90,7 @@ public class insertintent extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 progress = progresValue;
                 price.setText("" + progress);
+                price.setSelection(price.getText().length());
                 //Toast.makeText(getApplicationContext(), "Changing seekbar's progress", Toast.LENGTH_SHORT).show();
             }
 
@@ -101,6 +102,7 @@ public class insertintent extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 price.setText("" + progress);
+                price.setSelection(price.getText().length());
                 // Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
             }
         });
@@ -240,14 +242,14 @@ public class insertintent extends AppCompatActivity {
 
 
     }
-    @Override
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 
 
@@ -393,7 +395,22 @@ public class insertintent extends AppCompatActivity {
         view.setLayoutParams(params);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        // your code.
+        Intent i= new Intent(insertintent.this,MainMenu.class);
+        startActivity(i);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i= new Intent(insertintent.this,MainMenu.class);
+                startActivity(i);
+                break;
+        }
+        return true;
+    }
 
 
 }

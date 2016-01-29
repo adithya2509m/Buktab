@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Arunkumar on 1/21/2016.
@@ -83,7 +85,9 @@ public class Searchintent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("message/rfc822");
+
+                intent.setData(Uri.parse("mailto:"));
+                intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_EMAIL, oemail.getText());
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Willing to purchase " + bookname.getText());
                 intent.putExtra(Intent.EXTRA_TEXT, "Hi I am " + Login.username + " ,I would like Purchase your book '" + bookname.getText() + "' .");
@@ -99,7 +103,22 @@ public class Searchintent extends AppCompatActivity {
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        // your code.
+       Intent i= new Intent(Searchintent.this,MainMenu.class);
+        startActivity(i);
+    }
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+      switch (item.getItemId()) {
+          case android.R.id.home:
+              Intent i= new Intent(Searchintent.this,MainMenu.class);
+              startActivity(i);
+              break;
+      }
+      return true;
+  }
 
 
 

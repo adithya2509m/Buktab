@@ -41,7 +41,7 @@
 
 
     <string-array name="dept_array">
-        <item>ALL</item>
+        <item>DEPT</item>
         <item>AUT</item>
         <item>BIO</item>
         <item>CHE</item>
