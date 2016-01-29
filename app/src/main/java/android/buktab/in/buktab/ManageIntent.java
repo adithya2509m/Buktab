@@ -109,6 +109,7 @@ public class ManageIntent extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 progress = progresValue;
                 price.setText("" + progress);
+                price.setSelection(price.getText().length());
                 //Toast.makeText(getApplicationContext(), "Changing seekbar's progress", Toast.LENGTH_SHORT).show();
             }
 
@@ -120,6 +121,7 @@ public class ManageIntent extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 price.setText("" + progress);
+                price.setSelection(price.getText().length());
                 // Toast.makeText(getApplicationContext(), "Stopped tracking seekbar", Toast.LENGTH_SHORT).show();
             }
         });

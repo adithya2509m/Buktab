@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/Runame"
             android:singleLine="true"
+            android:inputType="textNoSuggestions"
 
             android:drawableLeft="@drawable/ic_person_black_24dp"
 

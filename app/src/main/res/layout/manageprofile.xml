@@ -203,7 +203,7 @@
         android:textSize="18dp"
         android:editable="false"
         android:textColor="@color/primary_dark"
-        android:text="Confirm Password"/>
+        android:text="Enter Passsword to Update"/>
 
 
     <View
