@@ -219,7 +219,9 @@
         android:id="@+id/insert"
         android:layout_gravity="center"
         android:text="Insert"
+        android:textColor="@color/textColorPrimary"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button"
         />
 
 
