@@ -388,7 +388,7 @@ public class SearchFragment extends Fragment {
 
                                    String filtersem = dropdownsem.getSelectedItem().toString();
                                    String filterdept = dropdowndept.getSelectedItem().toString();
-                                   String loc = location.getText().toString();
+                                   String loc = location.getText().toString().trim();
                                    boolean locfilter = true;
                                    if (loc.equals("")) {
                                        locfilter = false;
@@ -402,7 +402,7 @@ public class SearchFragment extends Fragment {
                                    int[] index = new int[objectcount];
 
 
-                                   if (filtersem.equals("Sem") && filterdept.equals("ALL")) {
+                                   if (filtersem.equals("Sem") && filterdept.equals("DEPT")) {
                                        if(!locfilter)
                                        check = 0;
 
@@ -419,6 +419,7 @@ public class SearchFragment extends Fragment {
                                            Iterator<String> iterator9 = jsonlocation.iterator();
                                            Iterator<String> iterator10 = jsonpub.iterator();
                                            Iterator<String> iterator11 = jsongender.iterator();
+
                                            while (iterator3.hasNext()) {
 
                                                String string = iterator9.next();
@@ -472,7 +473,7 @@ public class SearchFragment extends Fragment {
                                    }
 
 
-                                   if (!filtersem.equals("Sem") && filterdept.equals("ALL")) {
+                                   if (!filtersem.equals("Sem") && filterdept.equals("DEPT")) {
                                        isfiltered=true;
                                        Iterator<String> iterator1 = jasonbook.iterator();
                                        Iterator<String> iterator2 = jasonauthor.iterator();
@@ -531,7 +532,7 @@ public class SearchFragment extends Fragment {
                                        }
 
 
-                                   } else if (filtersem.equals("Sem") && !filterdept.equals("ALL")) {
+                                   } else if (filtersem.equals("Sem") && !filterdept.equals("DEPT")) {
                                        isfiltered=true;
 
                                        Iterator<String> iterator1 = jasonbook.iterator();
@@ -583,7 +584,7 @@ public class SearchFragment extends Fragment {
                                        }
 
 
-                                   } else if (!filtersem.equals("Sem") && !filterdept.equals("ALL")) {
+                                   } else if (!filtersem.equals("Sem") && !filterdept.equals("DEPT")) {
                                        isfiltered=true;
 
                                        Iterator<String> iterator1 = jasonbook.iterator();
