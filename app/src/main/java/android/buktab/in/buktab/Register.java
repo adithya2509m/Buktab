@@ -472,11 +472,16 @@ public class Register extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
+    @Override
+    public void onBackPressed() {
+        // your code.
+        Intent i= new Intent(Register.this,Login.class);
+        this.finish();
+        startActivity(i);
+    }
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+
     }
 }

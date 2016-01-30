@@ -87,7 +87,7 @@ public class Login extends ActionBarActivity {
             startActivity(i);
 
         }
-//initToolbar();
+initToolbar();
 
         register.setOnClickListener(new View.OnClickListener() {
 
@@ -278,13 +278,15 @@ public class Login extends ActionBarActivity {
         super.onPause();
         finish();
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -300,7 +302,7 @@ public class Login extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
 
 
 

@@ -39,16 +39,14 @@ public class Terms extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // your code.
-        Intent i= new Intent(Terms.this,Register.class);
-        startActivity(i);
+        NavUtils.navigateUpFromSameTask(this);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent i= new Intent(Terms.this,Register.class);
-                startActivity(i);
+                NavUtils.navigateUpFromSameTask(this);
                 break;
         }
         return true;
