@@ -49,7 +49,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:singleLine="true"
             android:id="@+id/Uname"
 
             android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
@@ -70,7 +70,8 @@
             android:id="@+id/Pword"
             android:hint="Password"
             android:drawableLeft="@drawable/ic_more_horiz_black_24dp"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"/>
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
 
@@ -80,7 +81,7 @@
         android:layout_height="50dp"
         android:textColor="@color/cpb_white"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="100dp"
+        android:layout_gravity="center"
         android:textSize="18dp"
         app:cpb_cornerRadius="48dp"
         app:cpb_iconComplete="@drawable/ic_check_black_24dp"
@@ -94,7 +95,7 @@
         android:textSize="15dp"
         android:text="New to Buktab?"
         android:id="@+id/register"
-        android:layout_marginLeft="110dp"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         />
 

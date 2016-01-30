@@ -87,6 +87,8 @@
         android:hint="Location"
         android:id="@+id/location"
         android:dropDownHeight="200dp"
+        android:imeOptions="actionDone"
+        android:inputType="text"
 
         android:ems="10"
         android:completionThreshold="2"/>

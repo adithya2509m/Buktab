@@ -87,6 +87,7 @@
             android:singleLine="true"
             android:nextFocusForward="@+id/circularButton2"
             android:drawableLeft="@drawable/ic_phone_black_24dp"
+            android:imeOptions="actionDone"
             />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
@@ -125,6 +126,17 @@
             android:id="@+id/femaleimage"
             android:padding="1dp"/>
     </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="By signing up you accept the terms and conditions "
+            android:id="@+id/terms"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            />
+
 
     <com.dd.CircularProgressButton
         android:id="@+id/circularButton2"

@@ -13,10 +13,12 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -365,7 +367,7 @@ public class SearchFragment extends Fragment {
                                }
                            });
 
-                           Button fil = (Button) dialog.findViewById(R.id.filter);
+                           final Button fil = (Button) dialog.findViewById(R.id.filter);
 
 
                            fil.setOnClickListener(new View.OnClickListener() {
@@ -684,6 +686,26 @@ public class SearchFragment extends Fragment {
 
                                }
                            });
+
+
+                           location.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                               @Override
+                               public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                                   boolean handled = false;
+                                   if (actionId == EditorInfo.IME_ACTION_DONE) {
+                                       View view = getActivity().getCurrentFocus();
+                                       if (view != null) {
+                                           InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                           imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                                       }
+                                       fil.performClick();
+                                       handled = true;
+                                   }
+                                   return handled;
+                               }
+                           });
+
+
                        }
                    });
 

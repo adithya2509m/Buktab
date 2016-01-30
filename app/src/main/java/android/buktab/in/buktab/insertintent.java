@@ -19,8 +19,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -210,7 +213,7 @@ public class insertintent extends AppCompatActivity {
         });
 
 
-        Button insert=(Button)findViewById(R.id.insert);
+        final Button insert=(Button)findViewById(R.id.insert);
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,6 +236,24 @@ public class insertintent extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+
+        location.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    View view = getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                    insert.performClick();
+                    handled = true;
+                }
+                return handled;
             }
         });
 

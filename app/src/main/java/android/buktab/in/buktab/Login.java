@@ -10,9 +10,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,24 @@ public class Login extends ActionBarActivity {
        final EditText Uname=(EditText) findViewById(R.id.Uname);
         final EditText Pword=(EditText) findViewById(R.id.Pword);
         TextView register=(TextView) findViewById(R.id.register);
+
+
+        Pword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    View view = getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                    circularButton1.performClick();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
 
 
         SharedPreferences pref = getSharedPreferences("MyPref", Context.MODE_PRIVATE);

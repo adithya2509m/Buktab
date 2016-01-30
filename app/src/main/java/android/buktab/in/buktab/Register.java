@@ -13,8 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,11 +51,20 @@ public class Register extends AppCompatActivity {
         final EditText Runame=(EditText) findViewById(R.id.Runame);
         final EditText Rpword=(EditText) findViewById(R.id.Rpword);
         final EditText Remail=(EditText) findViewById(R.id.Remail);
+        TextView terms=(TextView) findViewById(R.id.terms);
 
         final EditText Rphone=(EditText) findViewById(R.id.Rphone);
         final ImageView male,female;
         male=(ImageView)findViewById(R.id.maleimage);
         female=(ImageView)findViewById(R.id.femaleimage);
+
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Register.this,Terms.class);
+                startActivity(i);
+            }
+        });
 
         male.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,15 +103,13 @@ public class Register extends AppCompatActivity {
                                                     if (Runame.getText().toString().equals("")) {
                                                         Runame.setError("Please enter username");
 
-                                                    } else if (Runame.getText().length() < 4){
+                                                    } else if (Runame.getText().length() < 4) {
 
 
+                                                        Runame.setError("Username should have more than 4 characters");
 
-                                                            Runame.setError("Username should have more than 4 characters");
 
-
-                                                        }
-                                                    else{
+                                                    } else {
 
                                                         final ConnectionDetector cd = new ConnectionDetector(Register.this);
                                                         if (cd.isConnectingToInternet()) {
@@ -108,7 +118,7 @@ public class Register extends AppCompatActivity {
                                                             final JSONParser jParser3 = new JSONParser();
                                                             List<NameValuePair> params3 = new ArrayList<NameValuePair>();
 
-                                                            String url = "http://52.10.251.227:3000/validate/username/" + Runame.getText().toString().replaceAll("\\s","");
+                                                            String url = "http://52.10.251.227:3000/validate/username/" + Runame.getText().toString().replaceAll("\\s", "");
 
                                                             jsonobject3 = jParser3.makeHttpRequest(url, "GET", params3);
 
@@ -188,6 +198,24 @@ public class Register extends AppCompatActivity {
                     }}
             }
         });
+
+        Rphone.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    View view = getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                    circularButton2.performClick();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
+
 
 
         Rphone.setOnFocusChangeListener(new View.OnFocusChangeListener()
@@ -446,6 +474,9 @@ public class Register extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }

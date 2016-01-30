@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,7 +71,7 @@ public class ManageProfile extends Fragment {
         TextView mpname;
         final ImageButton ename,ephone,email;
 
-        Button save;
+        final Button save;
 
         mpname=(TextView)rootView.findViewById(R.id.mpname);
         mpphone=(EditText)rootView.findViewById(R.id.mpphone);
@@ -106,7 +108,7 @@ public class ManageProfile extends Fragment {
                 if (!p) {
                     viewAnimator1.showNext();
                     ephone.setImageResource(R.drawable.ic_check_black_24dp);
-                    p=true;
+                    p = true;
                 } else {
                     //viewAnimator1.showPrevious();
                     //ephone.setImageResource(R.drawable.ic_edit_black_24dp);
@@ -131,7 +133,7 @@ public class ManageProfile extends Fragment {
                             List<NameValuePair> params4 = new ArrayList<NameValuePair>();
 
                             String url = "http://52.10.251.227:3000/validate/phoneNo/" + edphone.getText();
-                           // startAnim();
+                            // startAnim();
                             jsonobject4 = jParser4.makeHttpRequest(url, "GET", params4);
 
                             try {
@@ -144,16 +146,15 @@ public class ManageProfile extends Fragment {
                                         Toast.makeText(getActivity(), "Phone Number Taken", Toast.LENGTH_LONG).show();
 
 
-
                                     } else {
                                         viewAnimator1.showPrevious();
                                         ephone.setImageResource(R.drawable.ic_edit_black_24dp);
                                         mpphone.setText(edphone.getText().toString());
-                                        p=false;
+                                        p = false;
 
                                         View v = getActivity().getCurrentFocus();
                                         if (v != null) {
-                                            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                                             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                                         }
 
@@ -242,6 +243,24 @@ public class ManageProfile extends Fragment {
 
                     Toast.makeText(getContext().getApplicationContext(), "Enter Your Password to Update", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+
+        mppass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    View view = getActivity().getCurrentFocus();
+                    if (view != null) {
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                    save.performClick();
+                    handled = true;
+                }
+                return handled;
             }
         });
 
