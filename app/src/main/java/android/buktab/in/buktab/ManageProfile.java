@@ -38,7 +38,7 @@ public class ManageProfile extends Fragment {
     View rootView;
     EditText mpphone,mpmail,mppass,edmail,edphone;
     boolean e=false,p=false;
-    String url="http://52.10.251.227/:3000/updateProfile";
+    String url="http://52.10.251.227:3000/updateProfile";
 
     ViewAnimator viewAnimator1,viewAnimator2;
     @Override
@@ -230,7 +230,9 @@ public class ManageProfile extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mppass.getText().equals("")) {
+
+
+                if (!mppass.getText().toString().equals("")) {
 
 
                     new manage().execute();
@@ -284,7 +286,8 @@ private class manage extends AsyncTask<String,String,Boolean>
 
         params2.add(new BasicNameValuePair("token",Login.token));
         params2.add(new BasicNameValuePair("password",mppass.getText().toString()));
-        params2.add(new BasicNameValuePair("phonenumber",mpphone.getText().toString()));
+        String test=mpphone.getText().toString();
+        params2.add(new BasicNameValuePair("phoneNo",mpphone.getText().toString()));
         params2.add(new BasicNameValuePair("email",mpmail.getText().toString()));
 
 

@@ -52,7 +52,7 @@
 
             android:id="@+id/Uname"
 
-            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
 
 
             android:hint="Username" />

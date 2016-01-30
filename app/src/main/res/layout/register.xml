@@ -12,8 +12,14 @@
     xmlns:float="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"
+        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
 
     <com.wrapp.floatlabelededittext.FloatLabeledEditText
         android:layout_width="match_parent"
@@ -30,7 +36,7 @@
             android:singleLine="true"
             android:inputType="textNoSuggestions"
 
-            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
 
 
             android:hint="Username" />
@@ -126,11 +132,12 @@
         android:layout_height="50dp"
         android:textColor="@color/cpb_white"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="100dp"
+        android:layout_gravity="center"
         android:textSize="18dp"
         app:cpb_cornerRadius="48dp"
         app:cpb_iconComplete="@drawable/ic_check_black_24dp"
         app:cpb_iconError="@drawable/ic_cancel_black_24dp"
         app:cpb_textIdle="Register" />
+</LinearLayout>
 </LinearLayout>
 </ScrollView>
