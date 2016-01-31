@@ -82,7 +82,54 @@
     </array>
 
     <string name="aboutus">
-        Buktab is an online market for borrowing and lending books with ease.
+        Buktab is an online market for buying and selling books with ease. We focus on making the experience smoother and time saving. Now
+        all you have to do is post an ad from our vast database and fix your price, sit back and wait for somebody to come find you. Or just
+        go and search for what it is you need, even made finer by filtering by location and contact them with one touch of a fingertip. No more running around looking for what you
+        want or stashing up your old books and letting them rot. Now every book is an investment.
     </string>
 
+    <string name="terms">
+        Thsnk you for your interest in Buktab. By using Buktab, you agree to these terms. Please read them carefully. \n
+    If you use Buktab, you are responsible for maintaining the confidentiality of your account and
+    password and for restricting access to your phone, and you agree to accept responsibility for all activities
+    that occur under your account or password.\n
+    Buktab reserves the right to refuse service, terminate accounts, remove or edit content, or cancel ads in its sole discretion.\n
+    You may not use a false e-mail address, impersonate any person or entity, or otherwise mislead as to the location or other
+    content. Buktab reserves the right (but not the obligation) to remove or edit such content.\n
+    Buktab does not warrant that product descriptions or other content posted by users is accurate, complete, reliable, current,
+    or error-free.\n
+    When an item is offered for sale by one of our users, the price is provided by that user and any bargains must be handled with
+    responsibility by said user.\n
+    Buktab is not liable to any of the transactions.\n
+    When you use Buktab, you grant certain permissions to use your device. You may find them at your settings.\n
+    Software terms\n
+    Use of Buktab Software. You may use Buktab Software solely for purposes of enabling you to use and enjoy the
+    Services as provided by Buktab, and as permitted by the Conditions of Use, these Software Terms and any Service Terms.
+    You may not incorporate any portion of the Buktab Software into your own programs or compile any portion of it in combination
+    with your own programs, transfer it for use with another service, or sell, rent, lease, lend, loan, distribute or
+    sub-license the Buktab Software or otherwise assign any rights to the Buktab Software in whole or in part. You may not
+    use the Buktab Software for any illegal purpose. We may cease providing any Buktab Software and we may terminate your
+    right to use any Buktab Software at any time. Your rights to use the Buktab Software will automatically terminate without
+    notice from us if you fail to comply with any of these Software Terms, the Conditions of Use or any other Service Terms.
+    Use of Third Party Services. When you use the Buktab Software, you may also be using the services of one or more third parties,
+    such as a wireless carrier or a mobile platform provider. Your use of these third party services may be subject to the separate
+    policies, terms of use, and fees of these third parties.
+    No Reverse Engineering. You may not, and you will not encourage, assist or authorize any other person to copy, modify, reverse
+    engineer, decompile or disassemble, or otherwise tamper with, the Buktab Software, whether in whole or in part, or create any
+    derivative works from or of the Buktab Software.
+    Updates. In order to keep the Buktab Software up-to-date, we may offer automatic or manual updates at any time and without
+    notice to you.
+    DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY
+
+    THE BUKTAB SERVICES AND ALL INFORMATION, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE) AND OTHER SERVICES INCLUDED ON OR
+    OTHERWISE MADE AVAILABLE TO YOU THROUGH THE BUKTAB SERVICES ARE PROVIDED BY BUKTAB ON AN "AS IS" AND "AS AVAILABLE" BASIS,
+    UNLESS OTHERWISE SPECIFIED IN WRITING. BUKTAB MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS
+    TO THE OPERATION OF THE BUKTAB SERVICES, OR THE INFORMATION, CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE) OR OTHER
+    SERVICES INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE BUKTAB SERVICES, UNLESS OTHERWISE SPECIFIED IN WRITING.
+    YOU EXPRESSLY AGREE THAT YOUR USE OF THE BUKTAB SERVICES IS AT YOUR SOLE RISK.\n
+    BUKTAB WILL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND ARISING FROM THE USE OF ANY BUKTAB SERVICE, OR FROM ANY INFORMATION,
+    CONTENT, MATERIALS, PRODUCTS (INCLUDING SOFTWARE) OR OTHER SERVICES INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH
+    ANY BUKTAB SERVICE, INCLUDING, BUT NOT LIMITED TO DIRECT, INDIRECT, INCIDENTAL, PUNITIVE, AND CONSEQUENTIAL DAMAGES, UNLESS
+    OTHERWISE SPECIFIED IN WRITING.
+    </string>
 </resources>
