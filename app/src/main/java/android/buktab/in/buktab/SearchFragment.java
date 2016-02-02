@@ -745,7 +745,7 @@ public class SearchFragment extends Fragment {
                        JSONObject jsonobject;
                        final JSONParser jParser2 = new JSONParser();
                        List<NameValuePair> params2 = new ArrayList<NameValuePair>();
-                       String url = searchurl + search.getText().toString();
+                       String url = searchurl +  search.getText().toString().replaceAll(" ","%20");
                        params2.add(new BasicNameValuePair("token", Login.token));
 
                        jsonobject = jParser2.makeHttpRequest(url, "GET", params2);

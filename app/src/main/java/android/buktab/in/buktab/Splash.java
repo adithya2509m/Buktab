@@ -234,7 +234,7 @@ public class Splash extends Activity {
                     Toast.makeText(Splash.this, "No response from server", Toast.LENGTH_LONG).show();
 
             }else{
-                new splashmanage().execute();
+                 new splashmanage().execute();
 
             }
 
