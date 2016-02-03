@@ -90,7 +90,7 @@ RelativeLayout draw;
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Hey !! try this cool app which lets me sell out old books.";
+                String shareBody = "Hey! Try this cool app which lets me buy and sell old books.";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Download the Interrupt15 App from");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
