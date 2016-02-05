@@ -69,7 +69,7 @@ public class Register extends AppCompatActivity {
         male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                male.setBackgroundColor(Color.rgb(81, 45, 168));
+                male.setBackgroundColor(Color.rgb(255, 171, 64));
                 female.setBackgroundColor(Color.rgb(255,255, 255));
                 gender="M";
             }
@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity {
         female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                female.setBackgroundColor(Color.rgb(81, 45, 168));
+                female.setBackgroundColor(Color.rgb(255, 171, 64));
                 male.setBackgroundColor(Color.rgb(255,255, 255));
                 gender="F";
             }
