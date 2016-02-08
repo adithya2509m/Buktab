@@ -8,7 +8,7 @@ android {
 
 
     defaultConfig {
-        applicationId "android.buktab.in.buktab"
+        applicationId "in.buktab.android"
         minSdkVersion 17
         targetSdkVersion 21
         versionCode 1
