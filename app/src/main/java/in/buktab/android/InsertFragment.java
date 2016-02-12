@@ -230,6 +230,15 @@ public class InsertFragment extends Fragment {
                     //TextView m=(TextView)rootView.findViewById(R.id.message);
                     listheader.setText("No Such Book.You could suggest the book to us.");
                     rootView.findViewById(R.id.suggest).setVisibility(View.VISIBLE);
+                    jasonbook=new String[1];
+                    jasonauthor=new String[1];
+                    jasondept=new String[1];
+                    jasonbook[0]="";
+                    jasonauthor[0]="";
+                    jasondept[0]="";
+                    jasonprice=new String[1];
+                    jasonprice[0]="";
+                    ListAdapter EventList= new customlist(getActivity(),jasonbook,jasondept,jasonauthor,jasonprice);
                 }
             }else{
 
