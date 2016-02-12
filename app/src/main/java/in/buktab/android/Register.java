@@ -84,11 +84,11 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        Remail.setText(getEmail(Register.this));
+       // Remail.setText(getEmail(Register.this));
 
-        TelephonyManager tMgr = (TelephonyManager)Register.this.getSystemService(Context.TELEPHONY_SERVICE);
-        String mPhoneNumber = tMgr.getLine1Number();
-        Rphone.setText(mPhoneNumber);
+      //  TelephonyManager tMgr = (TelephonyManager)Register.this.getSystemService(Context.TELEPHONY_SERVICE);
+       // String mPhoneNumber = tMgr.getLine1Number();
+        //Rphone.setText(mPhoneNumber);
 
         final CircularProgressButton circularButton2 = (CircularProgressButton) findViewById(R.id.circularButton2);
         circularButton2.setIndeterminateProgressMode(true);
@@ -338,7 +338,7 @@ public class Register extends AppCompatActivity {
 
                             if (result.equals("true")) {
 
-                                Toast.makeText(Register.this, "Registeration Successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
 
 
                                 circularButton2.setProgress(100);
@@ -347,7 +347,7 @@ public class Register extends AppCompatActivity {
                                 startActivity(i);
 
                             } else {
-                                Toast.makeText(Register.this, "Registeration failed", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Register.this, "Registration failed", Toast.LENGTH_LONG).show();
                                 circularButton2.setProgress(-1);
                                 final Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -409,7 +409,7 @@ public class Register extends AppCompatActivity {
 
             );
         }
-
+/*
     static String getEmail(Context context) {
         AccountManager accountManager = AccountManager.get(context);
         Account account = getAccount(accountManager);
@@ -434,7 +434,7 @@ public class Register extends AppCompatActivity {
         return account;
     }
 
-
+*/
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView mToolBarTextView = (TextView) findViewById(R.id.text_view_toolbar_title);
