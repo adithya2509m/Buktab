@@ -105,6 +105,14 @@ public class InsertFragment extends Fragment {
         });
 
 
+        rootView.findViewById(R.id.suggest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(getActivity().getApplicationContext(),Suggest.class);
+                startActivity(i);
+            }
+        });
+
 
 
 
@@ -121,6 +129,8 @@ public class InsertFragment extends Fragment {
     void stopAnim(){
         rootView.findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
     }
+
+
 
 
 
@@ -218,12 +228,14 @@ public class InsertFragment extends Fragment {
                     stopAnim();
                    // top.setVisibility(View.VISIBLE);
                     //TextView m=(TextView)rootView.findViewById(R.id.message);
-                    listheader.setText("No Such Book");
+                    listheader.setText("No Such Book.You could suggest the book to us.");
+                    rootView.findViewById(R.id.suggest).setVisibility(View.VISIBLE);
                 }
             }else{
 
                 ListAdapter EventList= new customlist(getActivity(),jasonbook,jasondept,jasonauthor,jasonprice);
                 stopAnim();
+                rootView.findViewById(R.id.suggest).setVisibility(View.GONE);
                 listheader.setText("Select book to set price and post");
                 resultlist.setAdapter(EventList);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
