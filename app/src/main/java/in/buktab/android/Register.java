@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class Register extends AppCompatActivity {
         final EditText Rpword=(EditText) findViewById(R.id.Rpword);
         final EditText Remail=(EditText) findViewById(R.id.Remail);
         TextView terms=(TextView) findViewById(R.id.terms);
+        final CheckBox shownum=(CheckBox)findViewById(R.id.shownum);
+
 
         final EditText Rphone=(EditText) findViewById(R.id.Rphone);
         final ImageView male,female;
@@ -193,6 +196,7 @@ public class Register extends AppCompatActivity {
 
                             Remail.setError("Invalid emailid");
 
+
                         }
 
                     }}
@@ -313,6 +317,12 @@ public class Register extends AppCompatActivity {
                 String rpass = Rpword.getText().toString();
                 String remail = Remail.getText().toString();
                 String rphone = Rphone.getText().toString();
+                    String hidden="";
+                    boolean sendno=shownum.isChecked();
+                    if(sendno)
+                        hidden="true";
+                        else
+                    hidden="false";
 
 
                 final ConnectionDetector cd = new ConnectionDetector(Register.this);
@@ -327,6 +337,7 @@ public class Register extends AppCompatActivity {
                     params2.add(new BasicNameValuePair("username", ruser));
                     params2.add(new BasicNameValuePair("phoneNo", rphone));
                     params2.add(new BasicNameValuePair("sex",gender));
+                    params2.add(new BasicNameValuePair("hidden",hidden));
 
 
                     jsonobject = jParser2.makeHttpRequest(Regsiterurl, "POST", params2);

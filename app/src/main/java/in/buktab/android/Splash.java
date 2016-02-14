@@ -194,7 +194,26 @@ public class Splash extends Activity {
                             resdept.add(temp2.getString("Department"));
                             respub.add(temp2.getString("Publisher"));
                             resemail.add(temp3.getString("email"));
-                            resphone.add(temp3.getString("phoneNo"));
+
+                            String hidden=null;
+                            try{
+                                hidden=temp3.getString("hidden");
+                            }catch (JSONException e){
+                                e.printStackTrace();
+                            }
+
+
+                            if(hidden!=null) {
+                                if(hidden.equals("true"))
+                                    resphone.add("Hidden By User");
+                                else
+                                    resphone.add(temp3.getString("phoneNo"));
+                            }else{
+                                resphone.add(temp3.getString("phoneNo"));
+                            }
+
+
+                          //  resphone.add(temp3.getString("phoneNo"));
                             resgender.add(temp3.getString("sex"));
                             reslocation.add(temp.getString("location"));
                             resname.add(temp3.getString("username"));

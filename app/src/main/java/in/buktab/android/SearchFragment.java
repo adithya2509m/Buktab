@@ -57,7 +57,7 @@ public class SearchFragment extends Fragment {
     ListView resultlist ;
     int count =0,pos=0,objectcount,no=0;
     View rootView;
-    private jasonsearch searchquery;
+    private jasonsearch task;
     int sposition =0,dposition=0;
     boolean isfiltered=false;
 
@@ -206,8 +206,31 @@ public class SearchFragment extends Fragment {
                                final ConnectionDetector cd = new ConnectionDetector(getActivity());
                                if (cd.isConnectingToInternet()) {
 
-                                   searchquery = new jasonsearch();
-                                   searchquery.execute();
+                                   jasonbook.clear();
+                                   jasonauthor.clear();
+                                   jasonsem.clear();
+                                   jasonprice.clear();
+                                   jsondept.clear();
+                                   jsonmail.clear();
+                                   jsonph.clear();
+                                   jsonname.clear();
+                                   jsonlocation.clear();
+                                   jsongender.clear();
+
+
+                                   ListAdapter EventList= new customlist2(getActivity(),jasonbook,jasonsem,jasonauthor,jasonprice,jsondept,jsonlocation);
+                                   resultlist.setAdapter(EventList);
+
+
+                                   if(task!=null){
+                                       task.cancel(true);
+
+                                   }
+
+
+
+                                   task= new jasonsearch();
+                                   task.execute();
 
                                } else {
                                    Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
@@ -787,7 +810,20 @@ public class SearchFragment extends Fragment {
                                        jsondept.add(temp2.getString("Department"));
                                        jsonpub.add(temp2.getString("Publisher"));
                                        jsonmail.add(temp3.getString("email"));
-                                       jsonph.add(temp3.getString("phoneNo"));
+                                       String hidden=null;
+                                       try{
+                                           hidden=temp3.getString("hidden");
+                                       }catch (JSONException e){
+                                           e.printStackTrace();
+                                       }
+                                       if(hidden!=null) {
+                                           if(hidden.equals("true"))
+                                               jsonph.add("Hidden By User");
+                                               else
+                                           jsonph.add(temp3.getString("phoneNo"));
+                                       }else{
+                                           jsonph.add(temp3.getString("phoneNo"));
+                                       }
                                        jsonname.add(temp3.getString("username"));
                                        jsonlocation.add(temp.getString("location"));
                                        jsongender.add(temp3.getString("sex"));
@@ -844,6 +880,12 @@ public class SearchFragment extends Fragment {
 
 
                                    Intent i = new Intent(getActivity(), Searchintent.class);
+                                   if(task!=null){
+                                       if(!task.isCancelled())
+                                           task.cancel(true);
+
+                                   }
+
                                    i.putExtra("name", jsonname.get(position));
                                    i.putExtra("phone", jsonph.get(position));
                                    i.putExtra("email", jsonmail.get(position));

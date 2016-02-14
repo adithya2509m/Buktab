@@ -517,7 +517,25 @@ initToolbar();
                             Splash.resdept.add(temp2.getString("Department"));
                             Splash.respub.add(temp2.getString("Publisher"));
                             Splash.resemail.add(temp3.getString("email"));
-                            Splash.resphone.add(temp3.getString("phoneNo"));
+                            String hidden=null;
+
+                            try{
+                                hidden=temp3.getString("hidden");
+                            }catch (JSONException e){
+                                e.printStackTrace();
+                            }
+
+
+                            if(hidden!=null) {
+                                if(hidden.equals("true"))
+                                    Splash.resphone.add("Hidden By User");
+                                else
+                                    Splash.resphone.add(temp3.getString("phoneNo"));
+                            }else{
+                                Splash.resphone.add(temp3.getString("phoneNo"));
+                            }
+
+                            //Splash.resphone.add(temp3.getString("phoneNo"));
                             Splash.reslocation.add(temp.getString("location"));
                             Splash.resname.add(temp3.getString("username"));
                             Splash.resgender.add(temp3.getString("sex"));

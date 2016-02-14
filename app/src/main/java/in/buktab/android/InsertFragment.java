@@ -49,6 +49,7 @@ public class InsertFragment extends Fragment {
     int no=0;
 
     String[] jasonbook,jasonauthor,jasondept,jasonprice,jsonid;
+    jasonsearch task=null;
 
 
 
@@ -87,7 +88,14 @@ public class InsertFragment extends Fragment {
                     startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
                     if (cd.isConnectingToInternet()) {
-                        new jasonsearch().execute();
+                        if(task!=null){
+                            task.cancel(true);
+
+                        }
+
+                           task=new jasonsearch();
+                        task.execute();
+
                     } else {
                         Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
                     }
@@ -162,6 +170,7 @@ public class InsertFragment extends Fragment {
             List<NameValuePair> params2 = new ArrayList<NameValuePair>();
             params2.add(new BasicNameValuePair("query", search.getText().toString()));
             params2.add(new BasicNameValuePair("token", Login.token));
+
 
             jsonobject = jParser2.makeHttpRequest(searchurl, "GET", params2);
 
@@ -252,7 +261,11 @@ public class InsertFragment extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                         //  Toast.makeText(getActivity().getApplicationContext(),"Heloo",Toast.LENGTH_SHORT).show();
 
+                        if(task!=null){
+                            if(!task.isCancelled())
+                                task.cancel(true);
 
+                        }
                         Intent i = new Intent(getActivity(), insertintent.class);
                         i.putExtra("bookname",jasonbook[position]);
                         i.putExtra("author",jasonauthor[position]);

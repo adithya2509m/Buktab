@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class ManageProfile extends Fragment {
 
     View rootView;
     EditText mpphone,mpmail,mppass,edmail,edphone;
+    CheckBox hide;
     boolean e=false,p=false;
     String url="http://52.10.251.227:3000/updateProfile";
 
@@ -81,7 +83,7 @@ public class ManageProfile extends Fragment {
         ephone=(ImageButton)rootView.findViewById(R.id.phoneedit);
         email=(ImageButton)rootView.findViewById(R.id.mailedit);
         save=(Button)rootView.findViewById(R.id.editprof);
-
+        hide=(CheckBox)rootView.findViewById(R.id.shownum);
         edmail=(EditText)rootView.findViewById(R.id.empemail);
         edphone=(EditText)rootView.findViewById(R.id.empphone);
 
@@ -305,9 +307,16 @@ private class manage extends AsyncTask<String,String,Boolean>
 
         params2.add(new BasicNameValuePair("token",Login.token));
         params2.add(new BasicNameValuePair("password",mppass.getText().toString()));
-        String test=mpphone.getText().toString();
+        String hidden="";
+        if(hide.isChecked()){
+            hidden="true";
+        }else{
+            hidden="flase";
+
+        }
         params2.add(new BasicNameValuePair("phoneNo",mpphone.getText().toString()));
         params2.add(new BasicNameValuePair("email",mpmail.getText().toString()));
+        params2.add(new BasicNameValuePair("hidden",hidden));
 
 
         jsonobject = jParser2.makeHttpRequest(url, "POST", params2);

@@ -72,7 +72,8 @@ public class Searchintent extends AppCompatActivity {
         pub.setText(getIntent().getExtras().getString("pub").trim());
         loc.setText(getIntent().getExtras().getString("location").trim());
 
-
+        String MobilePattern = "[0-9]{10}";
+        String inbuilt="^+91[0-9]{10}$";
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +84,11 @@ public class Searchintent extends AppCompatActivity {
 
             }
         });
+
+        if(!(getIntent().getExtras().getString("phone").matches(MobilePattern)||getIntent().getExtras().getString("phone").matches(inbuilt)))
+            call.setClickable(false);
+
+
 
         mail.setOnClickListener(new View.OnClickListener() {
             @Override

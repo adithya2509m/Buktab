@@ -90,6 +90,14 @@
             android:imeOptions="actionDone"
             />
     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show My Phone Number in Ads"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:checked="true"
+            android:id="@+id/shownum"/>
 
     <TextView
         android:layout_width="match_parent"
