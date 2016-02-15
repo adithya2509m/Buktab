@@ -88,7 +88,29 @@ public class InsertFragment extends Fragment {
                     startAnim();
                     final ConnectionDetector cd = new ConnectionDetector(getActivity());
                     if (cd.isConnectingToInternet()) {
+
+
+                        jasonbook=new String[1];
+                        jasonauthor=new String[1];
+                        jasondept=new String[1];
+                       jasonbook[0]="";
+                       jasonauthor[0]="";
+                       jasondept[0]="";
+                        jasonprice=new String[1];
+                        jasonprice[0]="";
+                        ListAdapter EventList= new customlist(getActivity(),jasonbook,jasondept,jasonauthor,jasonprice);
+                        resultlist.setAdapter(EventList);
+
+                        rootView.findViewById(R.id.resultlist).setVisibility(View.GONE);
+
+
+
+
+
+
+
                         if(task!=null){
+
                             task.cancel(true);
 
                         }
@@ -239,6 +261,7 @@ public class InsertFragment extends Fragment {
                     //TextView m=(TextView)rootView.findViewById(R.id.message);
                     listheader.setText("No Such Book.You could suggest the book to us.");
                     rootView.findViewById(R.id.suggest).setVisibility(View.VISIBLE);
+
                     jasonbook=new String[1];
                     jasonauthor=new String[1];
                     jasondept=new String[1];
@@ -256,6 +279,7 @@ public class InsertFragment extends Fragment {
                 rootView.findViewById(R.id.suggest).setVisibility(View.GONE);
                 listheader.setText("Select book to set price and post");
                 resultlist.setAdapter(EventList);
+                rootView.findViewById(R.id.resultlist).setVisibility(View.VISIBLE);
                 resultlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {

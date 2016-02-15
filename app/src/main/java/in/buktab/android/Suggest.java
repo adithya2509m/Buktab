@@ -5,10 +5,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Arunkumar on 2/12/2016.
@@ -19,11 +21,17 @@ public class Suggest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.suggest);
 
+        Toolbar mtoolbar =(Toolbar)findViewById(R.id.toolbar2);
+        setSupportActionBar(mtoolbar);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        TextView title=(TextView)mtoolbar.findViewById(R.id.text_view_toolbar_title);
+        title.setText("Suggest Books");
+       getSupportActionBar().setHomeButtonEnabled(true);
+      final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         upArrow.setColorFilter(getResources().getColor(R.color.cpb_white), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+       getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
         EditText sugbanme,suganame,sugdept,sugpub;
