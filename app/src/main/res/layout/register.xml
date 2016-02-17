@@ -93,10 +93,10 @@
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show My Phone Number in Ads"
+            android:text="Do NOT Show My Phone Number in Ads"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:checked="true"
+            android:checked="false"
             android:id="@+id/shownum"/>
 
     <TextView

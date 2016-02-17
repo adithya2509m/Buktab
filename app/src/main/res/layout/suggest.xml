@@ -63,7 +63,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/sugbname"
-                        android:hint="bookname"
+                        android:hint="Book name"
                         android:textColor="#000000"
                         android:textSize="15dp"
 
@@ -88,7 +88,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/suganame"
-                        android:hint="authorname"
+                        android:hint="Author name"
                         android:textColor="#000000"
                         android:textSize="15dp"
 

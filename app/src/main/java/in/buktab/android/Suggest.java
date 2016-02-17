@@ -153,7 +153,7 @@ public class Suggest extends AppCompatActivity {
 
                     if(result.equals("true"))
                     {
-                        Toast.makeText(Suggest.this, "Your suggestion has been sent", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Suggest.this, "Your suggestion has been sent", Toast.LENGTH_LONG).show();
                         return true;
                     }
 
