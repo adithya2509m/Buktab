@@ -311,7 +311,7 @@ private class manage extends AsyncTask<String,String,Boolean>
         if(hide.isChecked()){
             hidden="true";
         }else{
-            hidden="flase";
+            hidden="false";
 
         }
         params2.add(new BasicNameValuePair("phoneNo",mpphone.getText().toString()));

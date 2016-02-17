@@ -94,57 +94,9 @@
 
                         android:layout_marginTop="10dp"/>
 
-                    <TextView
-                        android:layout_marginTop="30dp"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18dp"
-                        android:textColor="@color/primary_dark"
-
-                        android:editable="false"
-                        android:text="Publisher"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_height="1dp"
-                        android:background="@color/primary_dark" />
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sugpublisher"
-                        android:hint="publisher"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-
-                        android:layout_marginTop="10dp"/>
-
-                    <TextView
-                        android:layout_marginTop="30dp"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18dp"
-                        android:textColor="@color/primary_dark"
-                        android:editable="false"
-                        android:text="Department"/>
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_height="1dp"
-                        android:background="@color/primary_dark" />
 
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sugdept"
-                        android:hint="department"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-
-                        android:layout_marginTop="10dp"/>
 
 
 
@@ -157,9 +109,11 @@
 
                     <Button
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:id="@+id/suggestbook"
-                        android:layout_gravity="center"
+                        android:layout_gravity="bottom|center"
+
                         android:text="Suggest"
                         android:textColor="@color/textColorPrimary"
                         android:layout_marginTop="20dp"
