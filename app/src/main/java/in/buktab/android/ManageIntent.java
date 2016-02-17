@@ -333,7 +333,7 @@ public class ManageIntent extends AppCompatActivity {
             // nDialog.dismiss();
             if(!th){
 
-                Toast.makeText(ManageIntent.this, "Updated Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(ManageIntent.this, "Update Successful", Toast.LENGTH_LONG).show();
 
 
                // Intent i=new Intent(ManageIntent.this,MainMenu.class);

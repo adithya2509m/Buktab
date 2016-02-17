@@ -354,7 +354,7 @@ public class Splash extends Activity {
                     if(result.equals("true"))
                     {
 
-                        if(message.equals("Oops! You have not Posted any Book"))
+                        if(message.equals("Oops! You have not posted any book."))
                             return true;
 
 

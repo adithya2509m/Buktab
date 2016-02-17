@@ -259,7 +259,7 @@ public class InsertFragment extends Fragment {
                     stopAnim();
                    // top.setVisibility(View.VISIBLE);
                     //TextView m=(TextView)rootView.findViewById(R.id.message);
-                    listheader.setText("No such book.You could suggest the book to us.");
+                    listheader.setText("No such book. You could suggest the book to us.");
                     rootView.findViewById(R.id.suggest).setVisibility(View.VISIBLE);
 
                     jasonbook=new String[1];

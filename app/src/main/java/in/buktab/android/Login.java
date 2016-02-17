@@ -5,14 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -347,7 +345,7 @@ initToolbar();
                     String message=jsonobject.getString("message");
                     if(result.equals("true"))
                     {
-                        if(message.equals("Oops! You have not Posted any Book"))
+                        if(message.equals("Oops! You have not posted any book"))
                             return true;
 
 

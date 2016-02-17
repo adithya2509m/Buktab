@@ -863,7 +863,7 @@ public class SearchFragment extends Fragment {
                                //   Toast.makeText(getActivity(), "No such book", Toast.LENGTH_LONG).show();
                                //top.setVisibility(View.VISIBLE);
                                //TextView m = (TextView) rootView.findViewById(R.id.message);
-                               listHeader.setText("No Books match your Search Condition");
+                               listHeader.setText("No books match your search condition");
                            }
                        } else {
 

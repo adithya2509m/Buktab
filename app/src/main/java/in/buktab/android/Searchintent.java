@@ -8,12 +8,10 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Created by Arunkumar on 1/21/2016.
@@ -93,15 +91,21 @@ public class Searchintent extends AppCompatActivity {
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
+                Intent Email = new Intent(Intent.ACTION_SEND);
+                Email.setType("text/email");
+                Email.putExtra(Intent.EXTRA_EMAIL, new String[] { oemail.getText().toString() });
+                Email.putExtra(Intent.EXTRA_SUBJECT, "Willing to purchase " + bookname.getText());
+                Email.putExtra(Intent.EXTRA_TEXT, "Hi I am " + Login.username + ", I would like Purchase your book '" + bookname.getText() + "' .");
+                startActivity(Intent.createChooser(Email, "Send Email"));
+                //Intent intent = new Intent(Intent.ACTION_SEND);
 
-                intent.setData(Uri.parse("mailto:"));
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_EMAIL, oemail.getText());
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Willing to purchase " + bookname.getText());
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi I am " + Login.username + " ,I would like Purchase your book '" + bookname.getText() + "' .");
+                //intent.setData(Uri.parse("mailto:"));
+                //intent.setType("text/email");
+                //intent.putExtra(Intent.EXTRA_EMAIL, new String(oemail.getText().toString()));
+                //intent.putExtra(Intent.EXTRA_SUBJECT, "Willing to purchase " + bookname.getText());
+                //intent.putExtra(Intent.EXTRA_TEXT, "Hi I am " + Login.username + ", I would like Purchase your book '" + bookname.getText() + "' .");
 
-                startActivity(Intent.createChooser(intent, "Send Email"));
+                //startActivity(Intent.createChooser(intent, "Send Email"));
             }
         });
 
